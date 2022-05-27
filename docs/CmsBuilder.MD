@@ -54,8 +54,8 @@ Types with a question mark after it is optional but its necessary for certain fu
 
 The `<Cms />` component has these types:
 
-#### `Title`?
-Title is the title that will appear on top of the cms this is optional but it will be "Upload content" by default. This can be changed in the Cms.tsx file if needed
+#### `title`?
+Title is of type string. Title is the title that will appear on top of the cms this is optional but it will be "Upload content" by default. This can be changed in the Cms.tsx file if needed
 
-#### `Props`?
-Props is the fields that you want to render in the cms. It is set to optional but nothing will render if you don't include at least one prop.
+#### `fields`?
+Fields is a list of ICmsField, fields is the elements rendered in the form. It is set to optional but nothing will render if you don't include at least one field. A field is of type [ICmsField](CmsBuilder.MD#icmsfield). 
