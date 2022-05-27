@@ -1,17 +1,34 @@
+import { useEffect, useState } from "react";
+import { useQuery } from "react-query";
+import { useParams } from "react-router-dom";
+import Loader from "../../../components/loaders/Loader";
+import { fetchInvoices } from "../../../scripts/fetch";
+import { TInvoice } from "../../../types/Limeyfy";
+
 /* This example requires Tailwind CSS v2.0+ */
-const projects = [
-    { id: 1, name: 'New Advertising Campaign', hours: '12.0', rate: '$75.00', price: '$900.00' },
-]
 
 const Invoice = () => {
+    const { id } = useParams();
+    const { data } = useQuery("limeyfy_invoices", fetchInvoices)
+
+    const [invoice, setInvoice] = useState<TInvoice>()
+
+    useEffect(() => {
+        if (!data || !id) return;
+        const obj: TInvoice = data.data.find((x: TInvoice) => x.id === id);
+        if (obj)
+            setInvoice(obj);
+    }, [data, id])
+
+    if (!invoice) return <Loader />
+
     return (
         <div className="px-4 sm:px-6 lg:px-8">
             <div className="sm:flex sm:items-center">
                 <div className="sm:flex-auto">
-                    <h1 className="text-xl font-semibold text-gray-900 dark:text-gray-100">Invoice</h1>
+                    <h1 className="text-xl font-semibold text-gray-900 dark:text-gray-100">{`${invoice.title} (${invoice.company.name})`}</h1>
                     <p className="mt-2 text-sm text-gray-700 dark:text-gray-300">
-                        For work completed from <time dateTime="2022-08-01">August 1, 2022</time> to{' '}
-                        <time dateTime="2022-08-31">August 31, 2022</time>.
+                        {invoice.description}
                     </p>
                 </div>
                 <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
@@ -31,7 +48,7 @@ const Invoice = () => {
                                 scope="col"
                                 className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 dark:text-gray-100 sm:pl-6 md:pl-0"
                             >
-                                Project
+                                Task
                             </th>
                             <th
                                 scope="col"
@@ -54,17 +71,17 @@ const Invoice = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {projects.map((project) => (
-                            <tr key={project.id} className="border-b border-gray-200 dark:border-stone-700">
+                        {invoice.invoiceLines.map((line, idx) => (
+                            <tr key={idx} className="border-b border-gray-200 dark:border-stone-700">
                                 <td className="py-4 pl-4 pr-3 text-sm sm:pl-6 md:pl-0">
-                                    <div className="font-medium text-gray-900 dark:text-gray-100">{project.name}</div>
+                                    <div className="font-medium text-gray-900 dark:text-gray-100">{line.description}</div>
                                     <div className="mt-0.5 text-gray-500 dark:text-gray-400 sm:hidden">
-                                        {project.hours} hours at {project.rate}
+                                        {line.hours} hours at {line.rate}
                                     </div>
                                 </td>
-                                <td className="hidden py-4 px-3 text-right text-sm text-gray-500 dark:text-gray-400 sm:table-cell">{project.hours}</td>
-                                <td className="hidden py-4 px-3 text-right text-sm text-gray-500 dark:text-gray-400 sm:table-cell">{project.rate}</td>
-                                <td className="py-4 pl-3 pr-4 text-right text-sm text-gray-500 dark:text-gray-400 sm:pr-6 md:pr-0">{project.price}</td>
+                                <td className="hidden py-4 px-3 text-right text-sm text-gray-500 dark:text-gray-400 sm:table-cell">{line.hours}</td>
+                                <td className="hidden py-4 px-3 text-right text-sm text-gray-500 dark:text-gray-400 sm:table-cell">{line.rate}</td>
+                                <td className="py-4 pl-3 pr-4 text-right text-sm text-gray-500 dark:text-gray-400 sm:pr-6 md:pr-0">Kr {line.price},-</td>
                             </tr>
                         ))}
                     </tbody>
@@ -80,21 +97,21 @@ const Invoice = () => {
                             <th scope="row" className="pl-4 pr-3 pt-6 text-left text-sm font-normal text-gray-500 dark:text-gray-400 sm:hidden">
                                 Subtotal
                             </th>
-                            <td className="pl-3 pr-4 pt-6 text-right text-sm text-gray-500 dark:text-gray-400 sm:pr-6 md:pr-0">$3,900.00</td>
+                            <td className="pl-3 pr-4 pt-6 text-right text-sm text-gray-500 dark:text-gray-400 sm:pr-6 md:pr-0">Kr {invoice.amount},-</td>
                         </tr>
-                        <tr>
+                        {invoice.useMva && <tr>
                             <th
                                 scope="row"
                                 colSpan={3}
                                 className="hidden pl-6 pr-3 pt-4 text-right text-sm font-normal text-gray-500 dark:text-gray-400 sm:table-cell md:pl-0"
                             >
-                                Tax
+                                Mva
                             </th>
                             <th scope="row" className="pl-4 pr-3 pt-4 text-left text-sm font-normal text-gray-500 dark:text-gray-400 sm:hidden">
-                                Tax
+                                Mva
                             </th>
-                            <td className="pl-3 pr-4 pt-4 text-right text-sm text-gray-500 dark:text-gray-400 sm:pr-6 md:pr-0">$585.00</td>
-                        </tr>
+                            <td className="pl-3 pr-4 pt-4 text-right text-sm text-gray-500 dark:text-gray-400 sm:pr-6 md:pr-0">Kr {invoice.mva},-</td>
+                        </tr>}
                         <tr>
                             <th
                                 scope="row"
@@ -107,7 +124,7 @@ const Invoice = () => {
                                 Total
                             </th>
                             <td className="pl-3 pr-4 pt-4 text-right text-sm font-semibold text-gray-900 dark:text-gray-100 sm:pr-6 md:pr-0">
-                                $4,485.00
+                                Kr {invoice.total},-
                             </td>
                         </tr>
                     </tfoot>
