@@ -13,7 +13,7 @@ const Register = () => {
             <Cms
                 title="Register new user"
                 submit={{
-                    endpoint: "/user/register",
+                    endpoint: "/auth/register",
                     onSuccessAfterToast: () => refetchUsers()
                 }}
                 props={[

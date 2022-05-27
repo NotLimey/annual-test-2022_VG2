@@ -23,7 +23,7 @@ const Login = () => {
 
     const login = async (data: LoginDto) =>
         await axios(
-            `/user/login`,
+            `/auth/login`,
             {
                 method: "POST",
                 data: data,
