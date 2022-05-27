@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import Robot404 from "../../assets/svgs/404Error.svg";
 
-
 const NotFound = () => {
     return (
         <div className="w-full min-h-screen px-10 flex items-center justify-center">

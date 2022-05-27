@@ -16,7 +16,6 @@ const Home = () => {
     return (
         <div>
             <h1 className="text-3xl font-regular">{GetGreeting()}, {user.firstName.length > 0 ? user.firstName : user.userName}</h1>
-            <ErrorPage />
         </div>
     );
 }
