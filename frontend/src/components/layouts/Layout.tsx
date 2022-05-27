@@ -33,7 +33,7 @@ const navigation = [
 ]
 const userNavigation = [
     { name: 'Your Profile', href: '/profile' },
-    { name: 'Settings', href: '/profile/settings' },
+    { name: 'Settings', href: '/profile?page=settings' },
     { name: 'Sign out', func: () => signOut() },
 ]
 

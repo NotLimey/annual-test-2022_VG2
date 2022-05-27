@@ -63,12 +63,12 @@ export default function Profile() {
                         </div>
                         <header className="relative py-10">
                             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                                <button onClick={() => navigate(-1)} className="text-xl font-bold text-white dark:text-stone-900 flex items-center">
+                                <button onClick={() => navigate("/")} className="text-xl font-bold text-white dark:text-stone-900 flex items-center">
                                     <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
                                         <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M10.25 6.75L4.75 12L10.25 17.25" />
                                         <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M19.25 12H5" />
                                     </svg>
-                                    Back
+                                    Home
                                 </button>
                                 <h1 className="text-3xl font-bold text-white dark:text-stone-900 mt-2">Settings</h1>
                             </div>
