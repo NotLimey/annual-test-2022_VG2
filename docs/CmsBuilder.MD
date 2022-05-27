@@ -59,3 +59,20 @@ Title is of type string. Title is the title that will appear on top of the cms t
 
 #### `fields`?
 Fields is a list of ICmsField, fields is the elements rendered in the form. It is set to optional but nothing will render if you don't include at least one field. A field is of type [ICmsField](CmsBuilder.MD#icmsfield). 
+
+#### `edit`?
+Edit is a boolean. If edit is sat to true some words/sentences will change to fit edit instead of the regular create.
+
+#### `submitBtnText`?
+submitBtn text is a string and it is the text that is being rendered on the submit button.
+
+#### `onSubmit`?
+on submit is of type ``(data: any) => void``. If you want to treat the data by yourself, for example handle post yourself you can use this function to get the data when the user pressed the submit button. The data is formattet for you to a object where the key is the field name and the value is what the user sets it to be.
+example: 
+```ts
+{
+    title: "This is a title",
+    description: "This is a description"
+}
+```
+
