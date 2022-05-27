@@ -23,7 +23,7 @@ const useAuth = () => {
         isError,
         refetch,
         rolesIsLoading,
-        statusCode: userData?.data?.response?.status ?? 0,
+        statusCode: userData?.status,
         error,
         data: userData,
         isFetched,
