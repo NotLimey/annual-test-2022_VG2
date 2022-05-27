@@ -1,6 +1,7 @@
 
-import { Page, PDFViewer, StyleSheet, Text, View, Document } from '@react-pdf/renderer';
+import pdf from '@react-pdf/renderer';
 import { TInvoice } from '../../types/Limeyfy';
+const { Page, PDFViewer, StyleSheet, Text, Document, View } = pdf;
 
 const styles = StyleSheet.create({
     page: { backgroundColor: '#f1f1f1', fontFamily: 'Helvetica' },
@@ -15,15 +16,11 @@ const styles = StyleSheet.create({
     bottomSection: { margin: "0 30px" }
 });
 
-interface BillProps {
-    invoice: TInvoice;
-}
-
 const InvoicePDF = (invoice: TInvoice) => {
     return <>
         {invoice && <PDFViewer style={{ width: "1200px", maxWidth: "100%", height: "100%", maxHeight: "100%", marginTop: "40px" }}>
             <Document>
-                <Page size="A4">
+                <Page size="A4" style={styles.page}>
                     <View style={styles.section}>
                         <Text style={styles.header}>{invoice.title}</Text>
                     </View>
