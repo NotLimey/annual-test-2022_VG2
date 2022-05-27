@@ -2,6 +2,8 @@
 
 The cms builder is a component which i added to simplify the process of making forms and pushing data to the api. All the forms are going to have the same style so it was only logical that when this application was going to use tens if not hundreds of forms that i made some kind og generating form.
 
+!Note see [submit](CmsBuilder.MD#submit) for the form to handle the post request
+
 ## Links
 
 - [Examples](CmsBuilder.md#examples)
@@ -79,4 +81,15 @@ example:
 #### `submit`?
 submit is a object of type [ICmsSubmit](CmsBuilder.MD#icmssubmit). This has to be set for the form to handle the post requests by itself. This only value in submit that isn't optional is the endpoint which the form will post to.
 
+#### `extraValues`?
+extraValues is a object of type any. Extra values can be set if you want to pass extra values in the json request on the post method.
 
+For example:
+```tsx
+extraValues={{
+    userId: user.id
+}}
+```
+Now the json request will include userId as an extra value in the request
+
+Useful if you are updating an object so the user doesn't have to set the id of the object he/she is editing themselves.
