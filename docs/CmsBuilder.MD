@@ -6,6 +6,8 @@ Im using the word CMS in this whole documentation. CMS stands for Content manage
 
 !Note see [submit](CmsBuilder.MD#submit) for the form to handle the post request
 
+The Cms also uses axios and you have to set a default baseUrl. If you don't know how to do this you can follow [this tutorial](https://axios-http.com/docs/config_defaults)
+
 ## Links
 
 - [Examples](CmsBuilder.md#examples)
