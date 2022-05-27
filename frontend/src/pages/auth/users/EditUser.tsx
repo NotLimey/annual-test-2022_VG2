@@ -52,7 +52,7 @@ const EditUser = () => {
                         method: "PUT",
                     }
                 }}
-                props={[
+                fields={[
                     {
                         name: "firstName",
                         type: "string",

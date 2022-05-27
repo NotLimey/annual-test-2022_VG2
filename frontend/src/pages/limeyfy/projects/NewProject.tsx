@@ -13,7 +13,7 @@ const NewProject = () => {
                     endpoint: "/limeyfy/project",
                     onSuccessAfterToast: () => refetch()
                 }}
-                props={[
+                fields={[
                     {
                         name: "title",
                         type: "string",

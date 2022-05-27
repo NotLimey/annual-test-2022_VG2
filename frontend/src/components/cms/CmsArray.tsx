@@ -3,17 +3,17 @@ import { useState } from "react";
 import { classNames } from "../../scripts/tailwind";
 import { formatPascalAndSpace } from "../../scripts/text";
 import CmsObjectActionPanel from "../action-panels/CmsObjectActionPanel";
-import { ICmsField, ICmsProp } from "./CmsTypes";
+import { ICmsObjectField, ICmsField } from "./CmsTypes";
 
 interface ICmsArray {
-    prop: ICmsProp;
+    prop: ICmsField;
     onAddToArray: (obj: any) => void;
     onEditItem: (obj: any, idx: number) => void;
 }
 
 const CmsArray = ({ prop, onAddToArray, onEditItem }: ICmsArray) => {
     const [isPanelActive, togglePanel] = useState(false);
-    const [edit, setEdit] = useState<ICmsField[]>([]);
+    const [edit, setEdit] = useState<ICmsObjectField[]>([]);
     const [editIdx, setEditIdx] = useState(0);
 
     if (!prop.fields)
@@ -26,8 +26,8 @@ const CmsArray = ({ prop, onAddToArray, onEditItem }: ICmsArray) => {
         togglePanel(false);
     };
 
-    const handleEdit = (prop: ICmsProp, idx: number) => {
-        let fields: ICmsField[] = prop.fields || [];
+    const handleEdit = (prop: ICmsField, idx: number) => {
+        let fields: ICmsObjectField[] = prop.fields || [];
         fields.forEach((val) => {
             val.value = prop.value[idx][val.name];
         });

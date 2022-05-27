@@ -1,8 +1,8 @@
 import { formatPascalAndSpace } from "../../scripts/text";
-import { ICmsProp } from "./CmsTypes";
+import { ICmsField } from "./CmsTypes";
 
 interface ICmsTextField {
-    prop: ICmsProp;
+    prop: ICmsField;
     onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 

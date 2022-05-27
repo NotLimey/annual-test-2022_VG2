@@ -11,7 +11,7 @@ const NewCompany = () => {
                 endpoint: "/companies",
                 onSuccessAfterToast: () => refetch()
             }}
-            props={[
+            fields={[
                 {
                     name: "name",
                     title: "Company name",

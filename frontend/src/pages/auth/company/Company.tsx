@@ -48,7 +48,7 @@ const Company = () => {
                     method: "PUT",
                 }
             }}
-            props={[
+            fields={[
                 {
                     name: "name",
                     title: "Company name",

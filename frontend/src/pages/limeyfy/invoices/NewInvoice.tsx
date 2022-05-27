@@ -30,7 +30,7 @@ const NewInvoice = () => {
             extraValues={{
                 userId: user.id
             }}
-            props={[
+            fields={[
                 {
                     name: "title",
                     type: "string",

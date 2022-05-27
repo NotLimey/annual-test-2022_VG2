@@ -49,7 +49,7 @@ const Project = () => {
                         "Id": project.id
                     }
                 }}
-                props={[
+                fields={[
                     {
                         name: "title",
                         type: "string",

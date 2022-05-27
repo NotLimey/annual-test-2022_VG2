@@ -3,20 +3,20 @@ import { formatPascalAndSpace } from "../../scripts/text";
 import CmsBooleanCheckBox from "./CmsBooleanCheckBox";
 import CmsStringField from "./CmsStringField";
 import CmsTextField from "./CmsTextField";
-import { ICmsField } from "./CmsTypes";
+import { ICmsObjectField } from "./CmsTypes";
 
 interface ICmsObject {
     name: string;
     title?: string;
-    fields: ICmsField[];
-    updateForm: (fields: ICmsField[], name: string) => void;
+    fields: ICmsObjectField[];
+    updateForm: (fields: ICmsObjectField[], name: string) => void;
     noIndent?: boolean;
 }
 
 const CmsObject = ({ fields, name, updateForm, noIndent, title }: ICmsObject) => {
     const getObjectIndexAndArray = (name: string) => {
         let newArr = [...fields];
-        let objectIdx = fields.findIndex((x: ICmsField) => x.name === name);
+        let objectIdx = fields.findIndex((x: ICmsObjectField) => x.name === name);
         return {
             newArr,
             objectIdx,

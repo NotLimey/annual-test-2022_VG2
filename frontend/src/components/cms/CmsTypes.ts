@@ -2,7 +2,7 @@ import { AxiosRequestHeaders } from "axios";
 
 export interface ICms {
     title?: string;
-    props?: ICmsProp[];
+    fields?: ICmsField[];
     edit?: boolean;
     submitBtnText?: string;
     onSubmit?: (data: any) => void;
@@ -12,13 +12,13 @@ export interface ICms {
 
 export type ICmsTypes = "string" | "text" | "boolean" | "number" | "array" | "object" | "select" | "password" | "date";
 
-export interface ICmsProp {
+export interface ICmsField {
     type: ICmsTypes;
     name: string;
     options?: ICmsOptions;
     value?: any;
     of?: "string" | "object";
-    fields?: ICmsField[];
+    fields?: ICmsObjectField[];
     select?: ICmsSelectOptions;
     title?: string;
 }
@@ -34,7 +34,7 @@ export interface ICmsOptions {
     placeholder?: string;
 }
 
-export interface ICmsField {
+export interface ICmsObjectField {
     type: "string" | "text" | "boolean" | "number";
     name: string;
     title?: string;

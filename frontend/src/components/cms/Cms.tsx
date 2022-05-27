@@ -12,25 +12,25 @@ import CmsObject from "./CmsObject";
 import CmsSelect from "./CmsSelect";
 import CmsStringField from "./CmsStringField";
 import CmsTextField from "./CmsTextField";
-import { ICms, ICmsField, ICmsProp } from "./CmsTypes";
+import { ICms, ICmsObjectField, ICmsField } from "./CmsTypes";
 
 const Cms = (props: ICms) => {
     const { title } = props;
 
-    const [form, setForm] = useState<ICmsProp[]>([]);
+    const [form, setForm] = useState<ICmsField[]>([]);
     const { errorToast, emojiToast } = useToast();
     const queryClient = useQueryClient();
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!props.props || props.props.length < 1) return;
-        const isDuplicate = isDuplicates(props.props);
+        if (!props.fields || props.fields.length < 1) return;
+        const isDuplicate = isDuplicates(props.fields);
         if (isDuplicate) {
             throw Error("CMS: Cant have duplicated props with same name");
         }
-        const formData = getDefaultValuesCms(props.props);
+        const formData = getDefaultValuesCms(props.fields);
         setForm(formData);
-    }, [props.props]);
+    }, [props.fields]);
 
     const postData = async (data: any) => {
         if (!props.submit)
@@ -94,7 +94,7 @@ const Cms = (props: ICms) => {
 
     const getObjectIndexAndArray = (name: string) => {
         let newArr = [...form];
-        let objectIdx = form.findIndex((x: ICmsProp) => x.name === name);
+        let objectIdx = form.findIndex((x: ICmsField) => x.name === name);
         return {
             newArr,
             objectIdx,
@@ -138,7 +138,7 @@ const Cms = (props: ICms) => {
         setForm(newArr);
     };
 
-    const handleObjectChange = (name: string, val: ICmsField[]) => {
+    const handleObjectChange = (name: string, val: ICmsObjectField[]) => {
         const { newArr, objectIdx } = getObjectIndexAndArray(name);
         let value: any = {};
         for (var f = 0; f < val.length; f++) {

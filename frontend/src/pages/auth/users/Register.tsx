@@ -16,7 +16,7 @@ const Register = () => {
                     endpoint: "/auth/register",
                     onSuccessAfterToast: () => refetchUsers()
                 }}
-                props={[
+                fields={[
                     {
                         name: "firstName",
                         type: "string"
