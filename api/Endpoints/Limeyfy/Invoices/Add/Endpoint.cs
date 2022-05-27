@@ -21,7 +21,7 @@ public class Endpoint : Endpoint<Request, Response>
 
     public override void Configure()
     {
-        Post("/limeyfy/invoice");
+        Post("/invoices");
         AuthSchemes(JwtBearerDefaults.AuthenticationScheme);
         Policies("finance");
     }

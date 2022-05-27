@@ -20,7 +20,7 @@ public class Endpoint : Endpoint<Request, List<InvoiceDto>>
 
     public override void Configure()
     {
-        Get("/limeyfy/invoices");
+        Get("/invoices");
         AuthSchemes(JwtBearerDefaults.AuthenticationScheme);
         Policies("finance");
     }

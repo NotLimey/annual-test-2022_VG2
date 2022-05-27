@@ -1,16 +1,26 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import RenderInvoicePDF from "../../../components/invoices/RenderInvoicePdfTS";
 import Loader from "../../../components/loaders/Loader";
 import { fetchInvoices } from "../../../scripts/fetch";
+import { classNames } from "../../../scripts/tailwind";
 import { TInvoice } from "../../../types/Limeyfy";
 
-/* This example requires Tailwind CSS v2.0+ */
+const updateInvoice = async (id: string, isPaid: boolean) => {
+    await axios("/invoices", {
+        method: "PUT",
+        data: {
+            id,
+            isPaid
+        }
+    })
+}
 
 const Invoice = () => {
     const { id } = useParams();
-    const { data } = useQuery("limeyfy_invoices", fetchInvoices)
+    const { data, refetch } = useQuery("limeyfy_invoices", fetchInvoices)
     const [showAsPDF, setShowAsPDF] = useState(false)
 
     const [invoice, setInvoice] = useState<TInvoice>()
@@ -24,6 +34,12 @@ const Invoice = () => {
 
     if (!invoice) return <Loader />
 
+    const handleUpdateIsPaid = async () => {
+        await updateInvoice(invoice.id, !invoice.isPaid)
+        setInvoice({ ...invoice, isPaid: !invoice.isPaid });
+        await refetch();
+    }
+
     return (
         <div className="px-4 sm:px-6 lg:px-8">
             <div className="sm:flex sm:items-center">
@@ -36,10 +52,18 @@ const Invoice = () => {
                 <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
                     <button
                         type="button"
-                        onClick={() => setShowAsPDF(true)}
+                        onClick={handleUpdateIsPaid}
+                        className={classNames("mr-4 inline-flex items-center justify-center rounded-md border border-transparent  px-4 py-2 text-sm font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 sm:w-auto",
+                            invoice.isPaid ? "bg-red-600 hover:bg-red-700 focus:ring-red-500 " : "bg-limeyfy-600 hover:bg-limeyfy-700 focus:ring-limeyfy-500 ")}
+                    >
+                        {!invoice.isPaid ? "Mark paid" : "Mark unpaid"}
+                    </button>
+                    <button
+                        type="button"
+                        onClick={() => setShowAsPDF(!showAsPDF)}
                         className="inline-flex items-center justify-center rounded-md border border-transparent bg-limeyfy-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-limeyfy-700 focus:outline-none focus:ring-2 focus:ring-limeyfy-500 focus:ring-offset-2 sm:w-auto"
                     >
-                        Print
+                        {showAsPDF ? "Hide PDF" : "Show PDF"}
                     </button>
                 </div>
             </div>

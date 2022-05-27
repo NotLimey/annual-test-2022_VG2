@@ -25,7 +25,7 @@ const NewInvoice = () => {
         <Cms
             title="Create new invoice"
             submit={{
-                endpoint: "/limeyfy/invoice",
+                endpoint: "/invoices",
             }}
             extraValues={{
                 userId: user.id

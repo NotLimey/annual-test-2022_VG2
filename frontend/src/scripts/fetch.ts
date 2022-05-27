@@ -11,4 +11,4 @@ export const fetchUsersWithParams = async (username?: string) => await axios(`/u
 
 export const fetchUsersRoles = async () => await axios("/user/get-user-roles")
 
-export const fetchInvoices = async () => await axios("/limeyfy/invoices");
+export const fetchInvoices = async () => await axios("/invoices");
