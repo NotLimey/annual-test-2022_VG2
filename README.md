@@ -2,4 +2,4 @@
  My answer to the annual test 2022, in VG2(Upper secondary school) information technology
 
 Documentations
-- [Cms component or cms builder](docs/CmsBuilder.Md)
+- [Cms component or cms builder](docs/CmsBuilder.MD)
