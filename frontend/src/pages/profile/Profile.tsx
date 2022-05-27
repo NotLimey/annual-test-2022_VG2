@@ -4,15 +4,15 @@ import {
     CogIcon, KeyIcon, UserCircleIcon
 } from '@heroicons/react/outline'
 import { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import ProfileHome from './ProfileHome'
 import ProfileSettings from './ProfileSettings'
 
 const subNavigation = [
     { name: 'Profile', to: "", icon: UserCircleIcon, component: <ProfileHome /> },
     { name: 'Settings', to: "settings", icon: CogIcon, component: <ProfileSettings /> },
-    { name: 'Password', to: "password", icon: KeyIcon, component: <p>Hei</p> },
-    { name: 'Notifications', to: "notifications", icon: BellIcon, component: <p>Hei</p> },
+    { name: 'Password', to: "password", icon: KeyIcon, component: <p>Nothing to se here</p> },
+    { name: 'Notifications', to: "notifications", icon: BellIcon, component: <p>Nothing to se here</p> },
 ]
 
 function classNames(...classes: any[]) {
@@ -21,16 +21,14 @@ function classNames(...classes: any[]) {
 
 export default function Profile() {
     const [activePage, setActivePage] = useState(0);
-    const params = useParams();
+    const [searchParams, setSearchParams] = useSearchParams();
     const navigate = useNavigate();
 
     useEffect(() => {
-        let { page } = params;
+        const page = searchParams.get("page");
         const idx = subNavigation.findIndex(x => x.to === page?.toString());
         if (idx >= 0) setActivePage(idx);
-    }, [params])
-
-
+    }, [searchParams])
 
     return (
         <div className='dark:bg-stone-900 min-h-screen'>
@@ -87,7 +85,7 @@ export default function Profile() {
                                 <nav className="space-y-1">
                                     {subNavigation.map((item, idx) => (
                                         <button
-                                            onClick={() => setActivePage(idx)}
+                                            onClick={() => setSearchParams({ page: item.to })}
                                             key={item.name}
                                             className={classNames(
                                                 idx === activePage
