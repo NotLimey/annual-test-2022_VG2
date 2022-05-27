@@ -10,3 +10,34 @@ The Cms builder is based around the idea that you should be able to write as lit
 - Giving proper errors for an easier time debugging
 - Give the user feedback if something fails or succeeds
 - Open for fully customization from the developers perspective
+
+
+## Examples
+
+Here you can find multiple examples on how to use the `<Cms />` component
+
+### Basic usage
+```tsx
+<Cms
+                title="Create new project"
+                submit={{
+                    endpoint: "/limeyfy/project"
+                }}
+                props={[
+                    {
+                        name: "title",
+                        type: "string",
+                        options: {
+                            placeholder: "Project title"
+                        }
+                    },
+                    {
+                        name: "description",
+                        type: "text",
+                        options: {
+                            placeholder: "..."
+                        }
+                    },
+                ]}
+            />
+```
