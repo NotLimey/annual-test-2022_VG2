@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom"
+import Unauthorized from "../../components/status-pages/Unauthorized";
 import useAuth from "../../hooks/useAuth";
 import Companies from "./company/Companies";
 import Company from "./company/Company";
@@ -20,11 +21,7 @@ const AuthRoutes = () => {
     }, [roles])
 
     if (!authorized) {
-        return (
-            <div>
-                You dont have permissions to this site
-            </div>
-        )
+        return <Unauthorized />
     }
 
     return (

@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom"
 import Cms from "../../components/cms/Cms";
 import Loader from "../../components/loaders/Loader";
 import NotFound from "../../components/status-pages/NotFound";
+import Unauthorized from "../../components/status-pages/Unauthorized";
 import useAuth from "../../hooks/useAuth";
 import Invoice from "./invoices/Invoice";
 import Invoices from "./invoices/Invoices";
@@ -25,13 +26,8 @@ const LimeyfyRouting = () => {
 
     if (isLoading) return <Loader />
 
-    if (!authorized) {
-        return (
-            <div>
-                You dont have permissions to this site
-            </div>
-        )
-    }
+    if (!authorized)
+        return <Unauthorized />
 
     return (
         <Routes>
