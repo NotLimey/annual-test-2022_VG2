@@ -1,4 +1,4 @@
-# Cms builder
+# Cms builder / Form builder
 
 The cms builder is a component which i added to simplify the process of making forms and pushing data to the api. All the forms are going to have the same style so it was only logical that when this application was going to use tens if not hundreds of forms that i made some kind og generating form.
 
