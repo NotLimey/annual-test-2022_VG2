@@ -76,3 +76,7 @@ example:
 }
 ```
 
+#### `submit`?
+submit is a object of type [ICmsSubmit](CmsBuilder.MD#icmssubmit). This has to be set for the form to handle the post requests by itself. This only value in submit that isn't optional is the endpoint which the form will post to.
+
+
