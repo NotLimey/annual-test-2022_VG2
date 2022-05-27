@@ -17,6 +17,7 @@ import LogoDark from "../../assets/LogoWhiteTextFull.svg"
 import useAuth from '../../hooks/useAuth'
 import useTheme from '../../hooks/useTheme'
 import { getIdenticon } from '../../scripts/avatar'
+import signOut from '../../scripts/signOut'
 import { classNames } from '../../scripts/tailwind'
 import BannerFloatingAtBottom from '../banners/BannerFloatingAtBottom'
 import BackBtn from '../buttons/BackBtn'
@@ -33,7 +34,7 @@ const navigation = [
 const userNavigation = [
     { name: 'Your Profile', href: '/profile' },
     { name: 'Settings', href: '/profile/settings' },
-    { name: 'Sign out', href: '/sign-out' },
+    { name: 'Sign out', func: () => signOut() },
 ]
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
@@ -215,7 +216,15 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                                         <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white dark:bg-stone-900 ring-1 ring-black dark:ring-stone-700 ring-opacity-5 focus:outline-none">
                                             {userNavigation.map((item) => (
                                                 <Menu.Item key={item.name}>
-                                                    {({ active }) => (
+                                                    {({ active }) => item.func ? <button
+                                                        onClick={item.func}
+                                                        className={classNames(
+                                                            active ? 'bg-gray-100 dark:bg-stone-800' : '',
+                                                            'block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 w-full text-left'
+                                                        )}
+                                                    >
+                                                        {item.name}
+                                                    </button> : (
                                                         <Link
                                                             to={item.href}
                                                             className={classNames(

@@ -11,7 +11,6 @@ import useTheme from './hooks/useTheme';
 import Home from './pages';
 import AuthRoutes from './pages/auth/AuthRoutes';
 import Login from './pages/auth/Login';
-import SignOut from './pages/auth/SignOut';
 import LimeyfyRouting from './pages/limeyfy/LimeyfyRouting';
 import PrivateProvider from './providers/PrivateProvider';
 
@@ -40,7 +39,6 @@ const App = () => {
       />
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route path="/sign-out" element={<SignOut />} />
         <Route path="*" element={<PrivatePaths />} />
       </Routes>
     </div>
@@ -52,7 +50,7 @@ const PrivatePaths = () => {
 
   if (user.isLoading) return <FullscreenLoader text='Connecting to database..' />
 
-  if (user.isError || user.statusCode.toString().startsWith("2"))
+  if (user.isError || !user.statusCode.toString().startsWith("2"))
     return <ErrorPage apiStatus={user.statusCode} />
 
   return (
