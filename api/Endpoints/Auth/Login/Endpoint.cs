@@ -20,7 +20,7 @@ public class Endpoint : Endpoint<Request, Response>
 
     public override void Configure()
     {
-        Post("/user/login");
+        Post("/auth/login");
         AllowAnonymous();
     }
     public override async Task HandleAsync(Request r, CancellationToken c)

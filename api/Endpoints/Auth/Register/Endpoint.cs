@@ -14,7 +14,7 @@ public class Endpoint : Endpoint<Request, Response>
 
     public override void Configure()
     {
-        Post("/user/register");
+        Post("/auth/register");
         AllowAnonymous();
     }
     

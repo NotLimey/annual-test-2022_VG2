@@ -15,7 +15,7 @@ public class Enpoint : Endpoint<Request, Response>
 
     public override void Configure()
     {
-        Put("/user");
+        Put("/auth/user");
         AuthSchemes(JwtBearerDefaults.AuthenticationScheme);
     }
 
