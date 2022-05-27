@@ -21,7 +21,7 @@ public class Enpoint : Endpoint<Request, Response>
 
     public override async Task HandleAsync(Request r, CancellationToken c)
     {
-        ApplicationUser? user = await _userManager.FindByNameAsync(User.Identity?.Name);
+        var user = await _userManager.FindByNameAsync(User.Identity?.Name);
 
         if (user == null)
         {
@@ -32,7 +32,7 @@ public class Enpoint : Endpoint<Request, Response>
         if (!string.IsNullOrEmpty(r.Id))
         {
             var roles = await _userManager.GetRolesAsync(user);
-            if(!roles.Contains("admin"))
+            if(!roles.Contains("Admin"))
                 ThrowError("You're not authorized");
 
             var editUser = await _userManager.FindByIdAsync(r.Id);
