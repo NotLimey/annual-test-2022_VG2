@@ -2,6 +2,8 @@
 
 The cms builder is a component which i added to simplify the process of making forms and pushing data to the api. All the forms are going to have the same style so it was only logical that when this application was going to use tens if not hundreds of forms that i made some kind og generating form.
 
+Im using the word CMS in this whole documentation. CMS stands for Content management system which this form builder is not alone. In my case it comes with an api so it becomes a CMS system but alone this is NOT a CMS.
+
 !Note see [submit](CmsBuilder.MD#submit) for the form to handle the post request
 
 ## Links
@@ -97,10 +99,12 @@ Useful if you are updating an object so the user doesn't have to set the id of t
 
 ### ICmsTypes
 
-All the diffrent field types the cms supports:
+All the diffrent field types the form supports:
 ```ts
 export type ICmsTypes = "string" | "text" | "boolean" | "number" | "array" | "object" | "select" | "password" | "date";
 ```
 
 ### ICmsField
+ICmsField is a field in the cms. This is a component which renders in the form
 
+#### `submit`?
