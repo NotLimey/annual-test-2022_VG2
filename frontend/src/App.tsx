@@ -5,6 +5,7 @@ import { Route, Routes } from 'react-router-dom';
 import Layout from './components/layouts/Layout';
 import FullscreenLoader from './components/loaders/FullscreenLoader';
 import ErrorPage from './components/status-pages/ErrorPage';
+import NotFound from './components/status-pages/NotFound';
 import useAuth from './hooks/useAuth';
 import useTheme from './hooks/useTheme';
 import Home from './pages';
@@ -62,7 +63,7 @@ const PrivatePaths = () => {
         <Route path='/profile/:page' element={<Suspense fallback="...Loading"><Profile /></Suspense>} />
         <Route path='/limeyfy/*' element={<Layout><LimeyfyRouting /></Layout>} />
         <Route path='/auth/*' element={<Layout><AuthRoutes /></Layout>} />
-        <Route path='*' element={<Layout><p>Not found</p></Layout>} />
+        <Route path='*' element={<NotFound />} />
       </Routes>
     </PrivateProvider>
   )

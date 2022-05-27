@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom"
 import Cms from "../../components/cms/Cms";
 import Loader from "../../components/loaders/Loader";
+import NotFound from "../../components/status-pages/NotFound";
 import useAuth from "../../hooks/useAuth";
-import NotFound from "../404";
 import Invoice from "./invoices/Invoice";
 import Invoices from "./invoices/Invoices";
 import NewInvoice from "./invoices/NewInvoice";
