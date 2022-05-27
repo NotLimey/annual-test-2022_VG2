@@ -17,7 +17,7 @@ const Invoices = () => {
             <PageHeading publishPath="/limeyfy/invoices/add" publishText="Create invoice">Invoices</PageHeading>
             <StackedList
                 data={data.data}
-                title={(invoice: TInvoice) => `${invoice.title} (${invoice.company.name})`}
+                title={(invoice: TInvoice) => `${invoice.invoiceNumber} - ${invoice.title} (${invoice.company.name})`}
                 badge={(idx) => data.data[idx].isPaid ? { color: "green", text: "Paid" } : { color: "red", text: "Not paid" }}
                 typeIcon={"CashIcon"}
                 typeAttribute="total"

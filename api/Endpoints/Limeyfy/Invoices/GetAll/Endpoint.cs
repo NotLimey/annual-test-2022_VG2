@@ -37,6 +37,8 @@ public class Endpoint : Endpoint<Request, List<InvoiceDto>>
             invoices.Add(new InvoiceDto(invoice, company, invoiceLines));
         }
         
-        await SendAsync(invoices);
+        var sorted = invoices.OrderBy(x => x.InvoiceNumber).Reverse().ToList();
+        
+        await SendAsync(sorted);
     }
 }
