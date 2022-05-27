@@ -28,6 +28,8 @@ public class UserDtoFull
     
     public List<string> Roles { get; set; }
     
+    public List<string> Claims { get; set; }
+    
     [AdaptIgnore]
     public Company? Company { get; set; }
     

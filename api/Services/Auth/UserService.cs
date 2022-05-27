@@ -1,4 +1,5 @@
 using System.IdentityModel.Tokens.Jwt;
+using System.Runtime.InteropServices;
 using System.Security.Claims;
 using System.Text;
 using Limeyfy.API.DTOs.Auth;
@@ -44,10 +45,23 @@ public class UserService : IUserService
         return mappedUsers;
     }
     
-    public async Task<UserDtoFull> GetMappedUser(ApplicationUser user)
+    public async Task<UserDtoFull> GetMappedUser(ApplicationUser user, [Optional] ClaimsPrincipal? principal)
     {
         var mappedUser = user.Adapt<UserDtoFull>();
         mappedUser.Company = await _companyService.GetCompanyAsync(user.Company) ?? null;
+        mappedUser.Roles = (await _userManager.GetRolesAsync(user)).ToList();
+        if (principal != null)
+        {
+            mappedUser.Claims = principal.Claims.Select(claim =>
+            {
+                if (claim.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role")
+                {
+                    return claim.Value;
+                }
+
+                return "";
+            }).Where(x => !String.IsNullOrEmpty(x)).ToList();
+        }
         return mappedUser;
     }
 

@@ -16,7 +16,7 @@ public class Endpoint : Endpoint<Request, Response>
 
     public override void Configure()
     {
-        Post("/company");
+        Post("/companies");
         AuthSchemes(JwtBearerDefaults.AuthenticationScheme);
         Roles("Admin");
     }

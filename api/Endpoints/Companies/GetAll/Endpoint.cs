@@ -16,7 +16,7 @@ public class Endpoint : Endpoint<Request, List<Company>>
 
     public override void Configure()
     {
-        Get("/company/companies");
+        Get("/companies");
         AuthSchemes(JwtBearerDefaults.AuthenticationScheme);
         Roles("Admin");
     }

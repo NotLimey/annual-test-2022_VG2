@@ -34,7 +34,7 @@ public class Enpoint : Endpoint<Request, UserDtoFull>
             return;
         }
 
-        var mappedUser = await _userService.GetMappedUser(user);
+        var mappedUser = await _userService.GetMappedUser(user, User);
         
         await SendAsync(mappedUser);
     }

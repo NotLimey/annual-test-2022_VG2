@@ -8,7 +8,7 @@ const NewCompany = () => {
         <Cms
             title={`Add company`}
             submit={{
-                endpoint: "/company",
+                endpoint: "/companies",
                 onSuccessAfterToast: () => refetch()
             }}
             props={[

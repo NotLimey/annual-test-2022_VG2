@@ -39,7 +39,7 @@ const Company = () => {
             edit
             title={`Edit ${company.name}`}
             submit={{
-                endpoint: "/company",
+                endpoint: "/companies",
                 onSuccessAfterToast: () => refetch(),
                 headers: {
                     "Id": company.id

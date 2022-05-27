@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const fetchProjects = async () => await axios("/limeyfy/projects");
 
-export const fetchCompanies = async () => await axios("/company/companies")
+export const fetchCompanies = async () => await axios("/companies")
 
 export const fetchRoles = async () => await axios("/role/roles")
 
