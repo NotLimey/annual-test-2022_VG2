@@ -40,9 +40,9 @@ public class InvoiceDto
     [AdaptIgnore]
     public Company Company { get; set; }
     
-    public int OrganizationId { get; set; }
+    public long OrganizationId { get; set; }
     
-    public int BankAccount { get; set; }
+    public long BankAccount { get; set; }
     
     public int InvoiceNumber { get; set; }
     

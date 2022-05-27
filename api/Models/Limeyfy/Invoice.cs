@@ -17,9 +17,9 @@ public class Invoice
     
     public string CompanyId { get; set; }
     
-    public int OrganizationId { get; set; }
+    public long OrganizationId { get; set; }
     
-    public int BankAccount { get; set; }
+    public long BankAccount { get; set; }
     
     public int InvoiceNumber { get; set; }
     

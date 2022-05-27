@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
-import InvoicePDF from "../../../components/invoices/InvoicePDF";
+import RenderInvoicePDF from "../../../components/invoices/RenderInvoicePdfTS";
 import Loader from "../../../components/loaders/Loader";
 import { fetchInvoices } from "../../../scripts/fetch";
 import { TInvoice } from "../../../types/Limeyfy";
@@ -136,7 +136,7 @@ const Invoice = () => {
                 </div>
             ) : (
                 <div className="max-h-screen h-screen">
-                    <InvoicePDF {...invoice} />
+                    <RenderInvoicePDF {...invoice} />
                 </div>
             )}
         </div>

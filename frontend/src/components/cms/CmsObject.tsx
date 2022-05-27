@@ -37,7 +37,7 @@ const CmsObject = ({ fields, name, updateForm, noIndent, title }: ICmsObject) =>
         e: React.ChangeEvent<HTMLInputElement>
     ) => {
         const { newArr, objectIdx } = getObjectIndexAndArray(name);
-        newArr[objectIdx].value = e.target.value;
+        newArr[objectIdx].value = parseInt(e.target.value);
         updateForm(newArr, name);
     };
 
