@@ -12,7 +12,7 @@ const getUser = async () => await axios(`${BaseUrl}/user/user`, {
 }).catch(ex => ex);
 
 const useAuth = () => {
-    const { data: userData, isLoading, isError, refetch, error } = useQuery("user", getUser);
+    const { data: userData, isLoading, isError, refetch, error, isFetched, status } = useQuery("user", getUser);
     const { data: roleData, isLoading: rolesIsLoading } = useQuery("user_roles", fetchUsersRoles);
 
     return {
@@ -25,7 +25,9 @@ const useAuth = () => {
         rolesIsLoading,
         statusCode: userData?.data?.response?.status ?? 0,
         error,
-        data: userData
+        data: userData,
+        isFetched,
+        status
     }
 }
 

@@ -4,6 +4,7 @@ import { Toaster } from 'react-hot-toast';
 import { Route, Routes } from 'react-router-dom';
 import Layout from './components/layouts/Layout';
 import FullscreenLoader from './components/loaders/FullscreenLoader';
+import ErrorPage from './components/status-pages/ErrorPage';
 import useAuth from './hooks/useAuth';
 import useTheme from './hooks/useTheme';
 import Home from './pages';
@@ -50,9 +51,8 @@ const PrivatePaths = () => {
 
   if (user.isLoading) return <FullscreenLoader text='Connecting to database..' />
 
-  if (user.isError && user.statusCode !== 401) {
-    return <p>An error occurred</p>
-  }
+  if (user.isError || user.statusCode !== 200)
+    return <ErrorPage apiStatus={user.statusCode} />
 
   return (
     <PrivateProvider user={user.user}>
