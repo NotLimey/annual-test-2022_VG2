@@ -8,6 +8,7 @@ The cms builder is a component which i added to simplify the process of making f
 
 - [Examples](CmsBuilder.md#examples)
 - [Types](CmsBuilder.md#types)
+  - [ICmsType](CmsBuilder.MD#icms)
 
 The Cms builder is based around the idea that you should be able to write as little code as possible to generate i good and structured form which handles the following by itself if given the right values:
 
@@ -52,7 +53,7 @@ Here you can find multiple examples on how to use the `<Cms />` component
 ## Types 
 Types with a question mark after it is optional but its necessary for certain functionality which is described underneath it, 
 
-### Cms component types
+### ICms
 
 The `<Cms />` component has these types:
 
@@ -93,3 +94,13 @@ extraValues={{
 Now the json request will include userId as an extra value in the request
 
 Useful if you are updating an object so the user doesn't have to set the id of the object he/she is editing themselves.
+
+### ICmsTypes
+
+All the diffrent field types the cms supports:
+```ts
+export type ICmsTypes = "string" | "text" | "boolean" | "number" | "array" | "object" | "select" | "password" | "date";
+```
+
+### ICmsField
+
