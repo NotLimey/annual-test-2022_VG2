@@ -51,7 +51,7 @@ const PrivatePaths = () => {
 
   if (user.isLoading) return <FullscreenLoader text='Connecting to database..' />
 
-  if (user.isError || user.statusCode !== 200)
+  if (user.isError || user.statusCode.toString().startsWith("2"))
     return <ErrorPage apiStatus={user.statusCode} />
 
   return (
