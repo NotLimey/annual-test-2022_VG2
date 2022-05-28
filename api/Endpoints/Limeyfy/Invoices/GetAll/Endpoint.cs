@@ -3,6 +3,7 @@ using Limeyfy.API.DTOs.Limeyfy;
 using Limeyfy.API.Models.Application;
 using Limeyfy.API.Services.Limeyfy.Companies;
 using Limeyfy.API.Services.Limeyfy.Invoices;
+using Mapster;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace Limeyfy.API.Endpoints.Limeyfy.Invoices.GetAll;
@@ -34,7 +35,8 @@ public class Endpoint : Endpoint<Request, List<InvoiceDto>>
         {
             var company = await _companyService.GetCompanyAsync(invoice.CompanyId);
             var invoiceLines = JsonSerializer.Deserialize<List<InvoiceLineDto>>(invoice.InvoiceLines);
-            invoices.Add(new InvoiceDto(invoice, company, invoiceLines));
+            var invoicePdfData = JsonSerializer.Deserialize<InvoicePdfDataModel>(invoice.PdfData);
+            invoices.Add(new InvoiceDto(invoice, company, invoiceLines, invoicePdfData));
         }
         
         var sorted = invoices.OrderBy(x => x.InvoiceNumber).Reverse().ToList();

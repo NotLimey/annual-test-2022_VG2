@@ -37,5 +37,7 @@ public class Invoice
     
     public bool UseMva { get; set; }
 
+    public string PdfData { get; set; } = string.Empty;
+    
     public DateTime CreatedAt { get; set; }
 }

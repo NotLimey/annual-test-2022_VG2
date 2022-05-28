@@ -31,6 +31,7 @@ export type TInvoice = {
     invoiceLines: InvoiceLine[];
     useMva: boolean;
     createdAt: Date;
+    pdfData: InvoicePDFData;
 }
 
 export interface InvoiceLine {
@@ -38,4 +39,22 @@ export interface InvoiceLine {
     hours: number;
     rate: number;
     price: number;
+}
+
+export interface InvoicePDFData {
+    title: string;
+    companyName: string;
+    companyStreetAddress: string;
+    companyCity: string;
+    companyZipCode: number;
+    invoiceNumber: number;
+    dueDate: Date;
+    organizationId: number;
+    bankAccount: number;
+    invoiceLines: InvoiceLine[];
+    amount: number;
+    mva: number;
+    total: number;
+    createdAt: Date;
+    useMva: boolean;
 }

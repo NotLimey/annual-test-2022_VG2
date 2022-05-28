@@ -2,12 +2,14 @@ using Limeyfy.API.DTOs.Auth;
 using Limeyfy.API.Models.Application;
 using Limeyfy.API.Models.Limeyfy;
 using Mapster;
+using Newtonsoft.Json;
+using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace Limeyfy.API.DTOs.Limeyfy;
 
 public class InvoiceDto
 {
-    public InvoiceDto(Invoice invoice, Company? company, List<InvoiceLineDto>? invoiceLines)
+    public InvoiceDto(Invoice invoice, Company? company, List<InvoiceLineDto>? invoiceLines, InvoicePdfDataModel pdfData)
     {
         Id = invoice.Id;
         CreatedBy = invoice.CreatedBy;
@@ -27,6 +29,7 @@ public class InvoiceDto
         Total = invoice.Total;
         Title = invoice.Title;
         Description = invoice.Description;
+        PdfData = pdfData;
     }
     
     public string Id { get; set; }
@@ -62,5 +65,7 @@ public class InvoiceDto
     public bool UseMva { get; set; }
 
     public DateTime CreatedAt { get; set; }
+    
+    public InvoicePdfDataModel? PdfData { get; set; }
     
 }

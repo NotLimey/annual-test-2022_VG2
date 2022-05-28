@@ -160,7 +160,7 @@ const Invoice = () => {
                 </div>
             ) : (
                 <div className="max-h-screen h-screen">
-                    <RenderInvoicePDF {...invoice} />
+                    <RenderInvoicePDF {...invoice.pdfData} />
                 </div>
             )}
         </div>

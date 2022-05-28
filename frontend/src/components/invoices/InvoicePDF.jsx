@@ -26,9 +26,9 @@ const InvoicePDF = (invoice) => {
                     </View>
                     <View style={[styles.flexbox, styles.AddPaddingBottom, styles.marginLeftRight]}>
                         <View>
-                            <Text>{invoice.company.name}</Text>
-                            <Text>{invoice.company.streetAddress}</Text>
-                            <Text>{`${invoice.company.zipCode} ${invoice.company.city}`}</Text>
+                            <Text>{invoice.companyName}</Text>
+                            <Text>{invoice.companyStreetAddress}</Text>
+                            <Text>{`${invoice.companyZipCode} ${invoice.companyCity}`}</Text>
                         </View>
                         <View style={styles.alignRight}>
                             <Text>Faktura {invoice.invoiceNumber} / 2021</Text>

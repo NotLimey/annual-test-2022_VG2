@@ -21,6 +21,9 @@ const NewInvoice = () => {
         return yyyy + "-" + mm + "-" + dd;
     }
 
+    //if (!data.data) return <p>No comapnies</p>
+    if (data.data.length < 1) return <p>There has to be at least one company</p>
+
     return (
         <Cms
             title="Create new invoice"

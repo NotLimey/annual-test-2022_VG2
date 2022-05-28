@@ -1,8 +1,8 @@
 
-import { TInvoice } from '../../types/Limeyfy';
+import { InvoicePDFData, TInvoice } from '../../types/Limeyfy';
 // @ts-ignore
 import InvoicePDF from './InvoicePDF';
 
-const RenderInvoicePDF = (props: TInvoice) => <InvoicePDF {...props} />;
+const RenderInvoicePDF = (props: InvoicePDFData) => <InvoicePDF {...props} />;
 
 export default RenderInvoicePDF;
