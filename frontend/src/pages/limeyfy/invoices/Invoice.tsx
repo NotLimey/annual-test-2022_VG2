@@ -108,8 +108,8 @@ const Invoice = () => {
                                         </div>
                                     </td>
                                     <td className="hidden py-4 px-3 text-right text-sm text-gray-500 dark:text-gray-400 sm:table-cell">{line.hours}</td>
-                                    <td className="hidden py-4 px-3 text-right text-sm text-gray-500 dark:text-gray-400 sm:table-cell">{line.rate}</td>
-                                    <td className="py-4 pl-3 pr-4 text-right text-sm text-gray-500 dark:text-gray-400 sm:pr-6 md:pr-0">Kr {line.price},-</td>
+                                    <td className="hidden py-4 px-3 text-right text-sm text-gray-500 dark:text-gray-400 sm:table-cell">{line.rate.toLocaleString()}</td>
+                                    <td className="py-4 pl-3 pr-4 text-right text-sm text-gray-500 dark:text-gray-400 sm:pr-6 md:pr-0">Kr {line.price.toLocaleString()},-</td>
                                 </tr>
                             ))}
                         </tbody>
@@ -125,7 +125,7 @@ const Invoice = () => {
                                 <th scope="row" className="pl-4 pr-3 pt-6 text-left text-sm font-normal text-gray-500 dark:text-gray-400 sm:hidden">
                                     Subtotal
                                 </th>
-                                <td className="pl-3 pr-4 pt-6 text-right text-sm text-gray-500 dark:text-gray-400 sm:pr-6 md:pr-0">Kr {invoice.amount},-</td>
+                                <td className="pl-3 pr-4 pt-6 text-right text-sm text-gray-500 dark:text-gray-400 sm:pr-6 md:pr-0">Kr {invoice.amount.toLocaleString()},-</td>
                             </tr>
                             {invoice.useMva && <tr>
                                 <th
@@ -138,7 +138,7 @@ const Invoice = () => {
                                 <th scope="row" className="pl-4 pr-3 pt-4 text-left text-sm font-normal text-gray-500 dark:text-gray-400 sm:hidden">
                                     Mva
                                 </th>
-                                <td className="pl-3 pr-4 pt-4 text-right text-sm text-gray-500 dark:text-gray-400 sm:pr-6 md:pr-0">Kr {invoice.mva},-</td>
+                                <td className="pl-3 pr-4 pt-4 text-right text-sm text-gray-500 dark:text-gray-400 sm:pr-6 md:pr-0">Kr {invoice.mva.toLocaleString()},-</td>
                             </tr>}
                             <tr>
                                 <th
@@ -152,7 +152,7 @@ const Invoice = () => {
                                     Total
                                 </th>
                                 <td className="pl-3 pr-4 pt-4 text-right text-sm font-semibold text-gray-900 dark:text-gray-100 sm:pr-6 md:pr-0">
-                                    Kr {invoice.total},-
+                                    Kr {invoice.total.toLocaleString()},-
                                 </td>
                             </tr>
                         </tfoot>

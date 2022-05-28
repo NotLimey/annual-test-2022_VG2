@@ -1,9 +1,9 @@
 import React from "react";
 import { formatPascalAndSpace } from "../../scripts/text";
-import { ICmsOptions, ICmsProp, ICmsTypes } from "./CmsTypes";
+import { ICmsField, ICmsTypes } from "./CmsTypes";
 
 interface ICmsStringField {
-    prop: ICmsProp;
+    prop: ICmsField;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     number?: boolean;
 }

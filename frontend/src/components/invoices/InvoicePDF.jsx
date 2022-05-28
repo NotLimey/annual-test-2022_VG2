@@ -47,8 +47,8 @@ const InvoicePDF = (invoice) => {
                         <View key={idx} style={[styles.flexbox, styles.AddPaddingTop, styles.marginLeftRight]}>
                             <Text style={{ width: "50%", textAlign: "left" }}>{line.description}</Text>
                             <Text style={{ width: "14%", textAlign: "right" }}>{line.hours}</Text>
-                            <Text style={{ width: "14%", textAlign: "right" }}>{line.rate}</Text>
-                            <Text style={{ width: "22%", textAlign: "right" }}>Kr {line.price},- </Text>
+                            <Text style={{ width: "14%", textAlign: "right" }}>{line.rate.toLocaleString()}</Text>
+                            <Text style={{ width: "22%", textAlign: "right" }}>Kr {line.price.toLocaleString()},- </Text>
                         </View>
                     )
                     )}
@@ -57,17 +57,17 @@ const InvoicePDF = (invoice) => {
                             <>
                                 <View style={[styles.flexbox, styles.smallText]}>
                                     <Text>Del sum</Text>
-                                    <Text style={{ fontFamily: 'Helvetica' }}>Kr {invoice.amount},- </Text>
+                                    <Text style={{ fontFamily: 'Helvetica' }}>Kr {invoice.amount.toLocaleString()},- </Text>
                                 </View>
                                 <View style={[styles.flexbox, { paddingTop: 10 }, styles.smallText]}>
                                     <Text>Mva</Text>
-                                    <Text style={{ fontFamily: 'Helvetica' }}>Kr {invoice.mva},- </Text>
+                                    <Text style={{ fontFamily: 'Helvetica' }}>Kr {invoice.mva.toLocaleString()},- </Text>
                                 </View>
                             </>
                         )}
                         <View style={[styles.flexbox, { paddingTop: 10 }, styles.smallText]}>
                             <Text>Totalt</Text>
-                            <Text style={{ fontFamily: 'Helvetica' }}>Kr {invoice.total},- </Text>
+                            <Text style={{ fontFamily: 'Helvetica' }}>Kr {invoice.total.toLocaleString()},- </Text>
                         </View>
                         {!invoice.useMva && <Text style={{ fontSize: 11, paddingTop: 30 }}>Jeg er ikke registrert for merverdiavgift</Text>}
                         <Text style={{ fontSize: 11, paddingTop: 10 }}>Forfalls dato: {new Date(`${invoice.dueDate}`).toLocaleDateString()}</Text>
