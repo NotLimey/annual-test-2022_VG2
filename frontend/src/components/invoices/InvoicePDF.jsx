@@ -38,7 +38,7 @@ const InvoicePDF = (invoice) => {
                     </View>
 
                     <View style={[styles.flexbox, styles.AddPaddingTop, styles.marginLeftRight, styles.smallText, { borderBottom: "1px solid #000", paddingBottom: "5px" }]}>
-                        <Text style={{ width: "50%", textAlign: "left" }}>Oppgave</Text>
+                        <Text style={{ width: "50%", textAlign: "left" }}></Text>
                         <Text style={{ width: "14%", textAlign: "right" }}>Timer</Text>
                         <Text style={{ width: "14%", textAlign: "right" }}>Timepris</Text>
                         <Text style={{ width: "22%", textAlign: "right" }}>Pris i NOK</Text>
@@ -47,7 +47,7 @@ const InvoicePDF = (invoice) => {
                         <View key={idx} style={[styles.flexbox, styles.AddPaddingTop, styles.marginLeftRight]}>
                             <Text style={{ width: "50%", textAlign: "left" }}>{line.description}</Text>
                             <Text style={{ width: "14%", textAlign: "right" }}>{line.hours}</Text>
-                            <Text style={{ width: "14%", textAlign: "right" }}>{line.rate},-</Text>
+                            <Text style={{ width: "14%", textAlign: "right" }}>{line.rate}</Text>
                             <Text style={{ width: "22%", textAlign: "right" }}>Kr {line.price},- </Text>
                         </View>
                     )

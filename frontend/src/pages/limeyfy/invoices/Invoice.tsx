@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import RenderInvoicePDF from "../../../components/invoices/RenderInvoicePdfTS";
 import Loader from "../../../components/loaders/Loader";
 import { fetchInvoices } from "../../../scripts/fetch";
@@ -44,7 +44,7 @@ const Invoice = () => {
         <div className="px-4 sm:px-6 lg:px-8">
             <div className="sm:flex sm:items-center">
                 <div className="sm:flex-auto">
-                    <h1 className="text-xl font-semibold text-gray-900 dark:text-gray-100">{`${invoice.title} (${invoice.company.name})`}</h1>
+                    <h1 className="text-xl font-semibold text-gray-900 dark:text-gray-100">{invoice.title} (<Link to={"/auth/companies/" + invoice.company.id} className="text-limeyfy-600">{invoice.company.name}</Link>)</h1>
                     <p className="mt-2 text-sm text-gray-700 dark:text-gray-300">
                         {invoice.description}
                     </p>
