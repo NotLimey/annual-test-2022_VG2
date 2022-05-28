@@ -42,3 +42,9 @@ The solution will be an admin dashboard where you can manage content, with one u
 Most of the limitations here are things that I put time in if I should have a lot of time to spare. 
 
 It will not be possible for administrators to manage other users. It will not be possible to receive or send invoices, just read and create. Basically, you will not be able to upload photos, but may come if I have a good time. Notifications are also something I will implement if i have spare time. The solution will not be hosted, but a demo version will be displayed for the teacher or a video that shows the application. But the project should be very easy to host, the front-end can be hosted either at Vercel, Netlify or a server. The backend can only be hosted on services that support dotnet code such as azure or own server.
+
+### Technologies
+
+- Sketch made with figma
+- Frontend made in react
+- Backend is dotnet 6 api 
