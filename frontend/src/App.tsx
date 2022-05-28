@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { Suspense, useEffect, useState } from 'react';
 import { Toaster } from 'react-hot-toast';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import Layout from './components/layouts/Layout';
 import FullscreenLoader from './components/loaders/FullscreenLoader';
 import ErrorPage from './components/status-pages/ErrorPage';
@@ -50,8 +50,11 @@ const PrivatePaths = () => {
 
   if (user.isLoading) return <FullscreenLoader text='Connecting to database..' />
 
-  if ((user.isError && user.statusCode !== 401) || user.statusCode === undefined)
+  if (user.isError && user.statusCode !== 401)
     return <ErrorPage apiStatus={user.statusCode ?? 0} />
+
+  if (!user.user.id)
+    return <Navigate to="/login" />
 
   return (
     <PrivateProvider user={user.user}>

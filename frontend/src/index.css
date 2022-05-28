@@ -17,3 +17,8 @@ code {
   height: 100%;
   overflow: hidden;
 }
+
+.dark .recharts-default-tooltip {
+  background-color: black !important;
+  border: rgb(10, 10, 10) !important;
+}

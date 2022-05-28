@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Limeyfy.API.Endpoints.Statistics.Revenue.LastMonth;
+namespace Limeyfy.API.Endpoints.Statistics.Revenue.LastYear;
 
 public class Request
 {

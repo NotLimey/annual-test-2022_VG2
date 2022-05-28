@@ -1,4 +1,4 @@
-import ErrorPage from "../components/status-pages/ErrorPage";
+import RevenueStatistics from "../components/statistics/RevenueStatistics";
 import useAuth from "../hooks/useAuth";
 
 
@@ -12,10 +12,16 @@ const GetGreeting = () => {
 
 
 const Home = () => {
-    const { user } = useAuth();
+    const finance = ["finance", "admin"];
+
+    const { user, roles } = useAuth();
+
     return (
         <div>
-            <h1 className="text-3xl font-regular">{GetGreeting()}, {user.firstName.length > 0 ? user.firstName : user.userName}</h1>
+            <h1 className="text-3xl font-regular">{GetGreeting()}, {user.firstName?.length > 0 ? user.firstName : user.userName}</h1>
+            {(!finance || roles.some(x => finance.includes(x))) && (
+                <RevenueStatistics />
+            )}
         </div>
     );
 }

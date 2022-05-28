@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
 import { useNavigate } from "react-router-dom";
 import Logo from "../../assets/Logo_ikon.svg";
+import useAuth from "../../hooks/useAuth";
 import useToast from "../../hooks/useToast";
 
 interface LoginDto {
@@ -20,6 +21,7 @@ const Login = () => {
     const { errorToast } = useToast();
     const navigate = useNavigate();
     const queryClient = useQueryClient();
+    const { user } = useAuth();
 
     const login = async (data: LoginDto) =>
         await axios(
@@ -35,11 +37,11 @@ const Login = () => {
             const token = data.data.token;
             if (token) {
                 window.localStorage.setItem("token", JSON.stringify(token));
+                window.location.href = "/";
             } else {
                 errorToast("Couldn't store token")
                 return;
             }
-            navigate(0);
         },
         onError: (err: any) => {
             if (err.request.status === 0) {
@@ -62,6 +64,10 @@ const Login = () => {
             rememberMe
         });
     };
+
+    if (user?.id?.length > 0) {
+        window.location.href = "/";
+    }
 
     return (
         <div className="dark:bg-stone-800 min-h-screen">
