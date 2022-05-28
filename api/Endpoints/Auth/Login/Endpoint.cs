@@ -23,6 +23,7 @@ public class Endpoint : Endpoint<Request, Response>
         Post("/auth/login");
         AllowAnonymous();
     }
+    
     public override async Task HandleAsync(Request r, CancellationToken c)
     {
         var user = await _userManager.FindByNameAsync(r.UserName);

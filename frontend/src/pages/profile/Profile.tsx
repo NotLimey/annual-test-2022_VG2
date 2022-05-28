@@ -7,11 +7,12 @@ import { useEffect, useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import ProfileHome from './ProfileHome'
 import ProfileSettings from './ProfileSettings'
+import ProfileUpdatePassword from './ProfileUpdatePassword'
 
 const subNavigation = [
     { name: 'Profile', to: "", icon: UserCircleIcon, component: <ProfileHome /> },
     { name: 'Settings', to: "settings", icon: CogIcon, component: <ProfileSettings /> },
-    { name: 'Password', to: "password", icon: KeyIcon, component: <p>Nothing to se here</p> },
+    { name: 'Password', to: "password", icon: KeyIcon, component: <ProfileUpdatePassword /> },
     { name: 'Notifications', to: "notifications", icon: BellIcon, component: <p>Nothing to se here</p> },
 ]
 
