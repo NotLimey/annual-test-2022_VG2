@@ -132,8 +132,9 @@ const ProfileUpdatePassword = () => {
                         type="button"
                         className="w-full md:w-1/2 mb-5 bg-limeyfy-700 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-limeyfy-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-limeyfy-500"
                         onClick={handleSaveChanges}
+                        disabled={isLoading}
                     >
-                        Update Password
+                        {isLoading ? "Updating password.." : "Update Password"}
                     </button>
                 </div>
             </div>
