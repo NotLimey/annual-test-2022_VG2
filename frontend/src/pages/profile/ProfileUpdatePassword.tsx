@@ -74,7 +74,7 @@ const ProfileUpdatePassword = () => {
     return (
         <form className="divide-y divide-gray-200 dark:divide-stone-700 lg:col-span-9" action="#" method="POST">
             {/* Profile section */}
-            <div className="py-6 px-4 sm:p-6 lg:pb-8 md:ml-10">
+            <div className="py-6 px-4 sm:p-6 lg:pb-8">
                 <div>
                     <h2 className="text-lg leading-6 font-medium text-gray-900 dark:text-gray-100">Update your password</h2>
                 </div>
