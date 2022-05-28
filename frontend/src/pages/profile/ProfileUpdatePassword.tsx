@@ -80,7 +80,7 @@ const ProfileUpdatePassword = () => {
                 </div>
 
                 <div className="mt-6 flex flex-col w-full">
-                    <div className="w-full md:w-1/2 mb-5">
+                    <div className="w-full mb-5">
                         <label htmlFor="username" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                             Old Password
                         </label>
@@ -96,7 +96,7 @@ const ProfileUpdatePassword = () => {
                             />
                         </div>
                     </div>
-                    <div className="w-full md:w-1/2 mb-5">
+                    <div className="w-full mb-5">
                         <label htmlFor="username" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                             New Password
                         </label>
@@ -112,7 +112,7 @@ const ProfileUpdatePassword = () => {
                             />
                         </div>
                     </div>
-                    <div className="w-full md:w-1/2 mb-5">
+                    <div className="w-full mb-5">
                         <label htmlFor="username" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                             Confirm Password
                         </label>
@@ -130,7 +130,7 @@ const ProfileUpdatePassword = () => {
                     </div>
                     <button
                         type="button"
-                        className="w-full md:w-1/2 mb-5 bg-limeyfy-700 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-limeyfy-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-limeyfy-500"
+                        className="w-full mb-5 bg-limeyfy-700 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-limeyfy-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-limeyfy-500"
                         onClick={handleSaveChanges}
                         disabled={isLoading}
                     >
