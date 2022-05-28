@@ -54,7 +54,7 @@ const RevenueStatistics = () => {
                                 <Tooltip />
                                 <YAxis />
                                 <XAxis dataKey="label" />
-                                <Line type="monotone" dataKey="value" stroke="#5cb85c" strokeWidth={2} />
+                                <Line type="monotone" dataKey="value" stroke="#5cb85c" strokeWidth={2} unit=" Kr" name="Revenue" />
                             </LineChart>
                         </ResponsiveContainer>
                     </ResponsiveContainer>
