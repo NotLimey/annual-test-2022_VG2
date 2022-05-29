@@ -58,3 +58,15 @@ export interface InvoicePDFData {
     createdAt: Date;
     useMva: boolean;
 }
+
+export interface TExpense {
+    id: string;
+    userId: string;
+    date: Date;
+    amount: number;
+    description: string;
+    category: string;
+    to: string;
+    toLink: string;
+    why: string;
+}

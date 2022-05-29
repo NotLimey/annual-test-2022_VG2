@@ -1,6 +1,6 @@
 import { Dialog, Menu, Transition } from '@headlessui/react'
 import {
-    BellIcon, DocumentTextIcon,
+    BellIcon, CurrencyDollarIcon, DocumentTextIcon,
     FingerPrintIcon,
     FolderIcon,
     HomeIcon, MenuAlt2Icon,
@@ -22,7 +22,8 @@ import BackBtn from '../buttons/BackBtn'
 const navigation = [
     { name: 'Dashboard', href: '/', icon: HomeIcon },
     { name: 'Projects', href: '/limeyfy/projects', icon: FolderIcon, roles: ["limeyfy", "admin"] },
-    { name: "Invoices", href: '/limeyfy/invoices', icon: DocumentTextIcon, roles: ["limeyfy", "admin"] },
+    { name: "Invoices", href: '/limeyfy/invoices', icon: DocumentTextIcon, roles: ["finance", "admin"] },
+    { name: "Expenses", href: '/limeyfy/expenses', icon: CurrencyDollarIcon, roles: ["finance", "admin"] },
     { name: "Users", href: '/auth/users', icon: UsersIcon, roles: ["admin"] },
     { name: "Roles", href: '/auth/roles', icon: FingerPrintIcon, roles: ["admin"] },
     { name: "Companies", href: '/auth/companies', icon: OfficeBuildingIcon, roles: ["admin"] },
