@@ -23,7 +23,7 @@ function arraysEqual(a: string[], b: string[]) {
 }
 
 const useAuth = () => {
-    const { data: userData, isLoading, isError: fetchError, refetch, error, isFetched, status } = useQuery("user", getUser);
+    const { data: userData, isLoading, isError: fetchError, refetch, error, isFetched, status } = useQuery("auth_user", getUser);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [user, setUser] = useState<UserType>({} as UserType);
     const [roles, setRoles] = useState<string[]>([]);
@@ -36,9 +36,9 @@ const useAuth = () => {
         if (isLoading) return;
         if (!isFetched) return;
 
-        const status = userData?.response?.status;
+        const status = userData?.response?.status || userData?.status;
 
-        if (status === undefined && userData?.data) {
+        if ((status === undefined && userData?.data)) {
             setUser(userData.data);
             if (userData.data?.id.length > 10) {
                 setIsAuthenticated(true);
@@ -47,6 +47,12 @@ const useAuth = () => {
             const claims = userData.data?.claims.map((x: string) => x.toLowerCase())
             setRoles(roles);
             setRolesUpToDate(arraysEqual(claims, roles));
+            setIsLoadingUser(false)
+            return;
+        }
+
+        if (status === 401) {
+            setIsAuthenticated(false);
             setIsLoadingUser(false)
             return;
         }
