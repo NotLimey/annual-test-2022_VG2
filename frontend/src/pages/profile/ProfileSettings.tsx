@@ -1,22 +1,22 @@
 import { RadioGroup, Switch } from "@headlessui/react";
 import { CheckCircleIcon } from "@heroicons/react/outline";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import useSettings from "../../hooks/useSettings";
 import useTheme, { themes } from "../../hooks/useTheme";
 import { classNames } from "../../scripts/tailwind";
 import { firstLetterUppercase } from "../../scripts/text";
 
 
-const mailingLists = [
-    { id: 1, title: 'Newsletter', description: 'Last message sent an hour ago', users: '621 users' },
-    { id: 2, title: 'Existing Customers', description: 'Last message sent 2 weeks ago', users: '1200 users' },
-    { id: 3, title: 'Trial Users', description: 'Last message sent 4 days ago', users: '2740 users' },
-]
-
 const ProfileSettings = () => {
     const theme = useTheme();
     const [account, setAccount] = useState<string | null>(null)
-    const [sensitiveDataMode, setSensitiveDataMode] = useState(false)
-    const [selectedMailingLists, setSelectedMailingLists] = useState(mailingLists[0])
+
+    const { settings, toggleSensitiveDataMode } = useSettings();
+
+
+    const handleSentitiveDataModeChange = (val: boolean) => {
+        toggleSensitiveDataMode(val);
+    }
 
     const connectMetaMask = async () => {
         const ethereum = (window as any).ethereum;
@@ -90,8 +90,8 @@ const ProfileSettings = () => {
                                 </Switch.Description>
                             </span>
                             <Switch
-                                checked={sensitiveDataMode}
-                                onChange={setSensitiveDataMode}
+                                checked={settings.sensitiveDataMode}
+                                onChange={handleSentitiveDataModeChange}
                                 className="flex-shrink-0 group relative rounded-full inline-flex items-center justify-center h-5 w-10 cursor-pointer focus:outline-none"
                             >
                                 <span className="sr-only">Use sensitive data mode</span>
@@ -99,14 +99,14 @@ const ProfileSettings = () => {
                                 <span
                                     aria-hidden="true"
                                     className={classNames(
-                                        sensitiveDataMode ? 'bg-limeyfy-600' : 'bg-gray-200 dark:bg-stone-800',
+                                        settings.sensitiveDataMode ? 'bg-limeyfy-600' : 'bg-gray-200 dark:bg-stone-800',
                                         'pointer-events-none absolute h-4 w-9 mx-auto rounded-full transition-colors ease-in-out duration-200'
                                     )}
                                 />
                                 <span
                                     aria-hidden="true"
                                     className={classNames(
-                                        sensitiveDataMode ? 'translate-x-5' : 'translate-x-0',
+                                        settings.sensitiveDataMode ? 'translate-x-5' : 'translate-x-0',
                                         'pointer-events-none absolute left-0 inline-block h-5 w-5 border border-gray-200 rounded-full bg-white dark:bg-stone-900 dark:border-stone-700 shadow transform ring-0 transition-transform ease-in-out duration-200'
                                     )}
                                 />
