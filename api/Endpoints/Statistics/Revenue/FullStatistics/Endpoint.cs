@@ -48,7 +48,7 @@ public class Endpoint : Endpoint<Request, Response>
         var dataSets = new List<StatisticDataSet>();
         foreach (var month in months)
         {
-            var monthInvoices = invoices.Where(i => i.CreatedAt.Month == month.Month && i.CreatedAt.Year == month.Year && i.IsPaid);
+            var monthInvoices = invoices.Where(i => i.DueDate.Month == month.Month && i.DueDate.Year == month.Year && i.IsPaid);
             var monthExpensesDocs = expenses.Where(e => e.Date.Month == month.Month && e.Date.Year == month.Year);
             var monthRevenue = monthInvoices.Sum(i => i.Total);
             var monthExpenses = monthExpensesDocs.Sum(e => e.Amount);
@@ -63,9 +63,9 @@ public class Endpoint : Endpoint<Request, Response>
         
         
         
-        var thisYearRevenue = invoices.Where(i => i.CreatedAt.Year == DateTime.Now.Year && i.IsPaid).Sum(i => i.Total);
-        var lastYearRevenue = invoices.Where(i => i.CreatedAt.Year == DateTime.Now.Year - 1 && i.IsPaid).Sum(i => i.Total);
-        var last30DaysRevenue = invoices.Where(i => i.CreatedAt >= DateTime.Now.AddDays(-30) && i.IsPaid).Sum(i => i.Total);
+        var thisYearRevenue = invoices.Where(i => i.DueDate.Year == DateTime.Now.Year && i.IsPaid).Sum(i => i.Total);
+        var lastYearRevenue = invoices.Where(i => i.DueDate.Year == DateTime.Now.Year - 1 && i.IsPaid).Sum(i => i.Total);
+        var last30DaysRevenue = invoices.Where(i => i.DueDate >= DateTime.Now.AddDays(-30) && i.IsPaid).Sum(i => i.Total);
         var totalRevenue = invoices.Where(x => x.IsPaid).Sum(i => i.Total);
         
         await SendAsync(new Response()

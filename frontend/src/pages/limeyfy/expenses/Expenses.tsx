@@ -22,7 +22,8 @@ const Expenses = () => {
             <div className={classNames(settings.sensitiveDataMode ? "blur-lg" : "")}>
                 <StackedList
                     data={data.data}
-                    title={(invoice: TExpense) => `${invoice.to} (${invoice.category})`}
+                    title={(invoice: TExpense) => `${invoice.to}`}
+                    badge={(idx) => data.data[idx].category ? { color: "green", text: data.data[idx].category } : { color: "green", text: "undefined" }}
                     typeIcon={"CashIcon"}
                     typeAttribute="amount"
                     path={(id) => `/limeyfy/expenses/${id}`}

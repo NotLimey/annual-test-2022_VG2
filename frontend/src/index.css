@@ -19,6 +19,6 @@ code {
 }
 
 .dark .recharts-default-tooltip {
-  background-color: black !important;
+  background-color: #1c1917 !important;
   border: rgb(10, 10, 10) !important;
 }
