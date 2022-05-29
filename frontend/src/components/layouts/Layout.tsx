@@ -218,7 +218,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                                                         onClick={item.func}
                                                         className={classNames(
                                                             active ? 'bg-gray-100 dark:bg-stone-800' : '',
-                                                            'block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 w-full text-left'
+                                                            'block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 w-full text-left focus:outline-none '
                                                         )}
                                                     >
                                                         {item.name}
