@@ -43,7 +43,14 @@ const InvoicePDF = (invoice) => {
                         <Text style={{ width: "14%", textAlign: "right" }}>Timepris</Text>
                         <Text style={{ width: "22%", textAlign: "right" }}>Pris i NOK</Text>
                     </View>
-                    {invoice.invoiceLines.map((line, idx) => (
+                    {invoice.invoiceLines.map((line, idx) => line.hours <= 1 ? (
+                        <View key={idx} style={[styles.flexbox, styles.AddPaddingTop, styles.marginLeftRight]}>
+                            <Text style={{ width: "50%", textAlign: "left" }}>{line.description}</Text>
+                            <Text style={{ width: "14%", textAlign: "right" }}></Text>
+                            <Text style={{ width: "14%", textAlign: "right" }}></Text>
+                            <Text style={{ width: "22%", textAlign: "right" }}>Kr {line.price.toLocaleString()},- </Text>
+                        </View>
+                    ) : (
                         <View key={idx} style={[styles.flexbox, styles.AddPaddingTop, styles.marginLeftRight]}>
                             <Text style={{ width: "50%", textAlign: "left" }}>{line.description}</Text>
                             <Text style={{ width: "14%", textAlign: "right" }}>{line.hours}</Text>
