@@ -12,7 +12,8 @@ interface IRevenueStatisticsData {
     total: number;
     thisYearDataSets: {
         label: string;
-        value: number;
+        income: number;
+        expense: number;
     }[];
 }
 
@@ -56,7 +57,8 @@ const RevenueStatistics = () => {
                                 <Tooltip />
                                 <YAxis />
                                 <XAxis dataKey="label" />
-                                <Line type="monotone" dataKey="value" stroke="#5cb85c" strokeWidth={2} unit=" Kr" name="Revenue" />
+                                <Line type="monotone" dataKey="expense" stroke="#EF4444" strokeWidth={2} unit=" Kr" name="Expenses" />
+                                <Line type="monotone" dataKey="income" stroke="#5cb85c" strokeWidth={2} unit=" Kr" name="Revenue" />
                             </LineChart>
                         </ResponsiveContainer>
                     </div>

@@ -17,5 +17,7 @@ public class StatisticDataSet
 {
     public string Label { get; set; }
     
-    public double Value { get; set; }
+    public double Income { get; set; }
+    
+    public double Expense { get; set; }
 }

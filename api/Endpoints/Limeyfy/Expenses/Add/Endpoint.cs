@@ -32,7 +32,7 @@ public class Endpoint : Endpoint<Request, Response>
             UserId = ""
         };
         
-        await _expenseRepository.CreateExpense(expense);
+        await _expenseRepository.CreateExpenseAsync(expense);
         
         await SendAsync(new Response()
         {

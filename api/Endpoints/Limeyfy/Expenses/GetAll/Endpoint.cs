@@ -21,7 +21,7 @@ public class Endpoint : Endpoint<Request, List<Expense>>
     public override async Task HandleAsync(Request r, CancellationToken c)
     {
         
-        var expenses = await _expenseRepository.GetExpenses();
+        var expenses = await _expenseRepository.GetExpensesAsync();
         
         await SendAsync(expenses);
     }

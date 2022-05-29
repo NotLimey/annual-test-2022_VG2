@@ -4,9 +4,9 @@ namespace Limeyfy.API.Services.Limeyfy.Expences;
 
 public interface IExpenseService
 {
-    Task<Expense?> GetExpense(string id);
+    Task<Expense?> GetExpenseAsync(string id);
     
-    Task<List<Expense>> GetExpenses();
+    Task<List<Expense>> GetExpensesAsync();
     
-    Task<Expense> CreateExpense(Expense expense);
+    Task<Expense> CreateExpenseAsync(Expense expense);
 }
