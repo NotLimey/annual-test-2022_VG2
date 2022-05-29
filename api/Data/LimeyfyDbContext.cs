@@ -16,4 +16,6 @@ public class LimeyfyDbContext : DbContext
     public DbSet<Invoice> Invoices => Set<Invoice>();
     
     public DbSet<Expense> Expenses => Set<Expense>();
+    
+    public DbSet<Hour> Hours => Set<Hour>();
 }
