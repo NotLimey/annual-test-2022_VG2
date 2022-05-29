@@ -20,7 +20,7 @@ public class Enpoint : Endpoint<Request, UserDtoFull>
 
     public override void Configure()
     {
-        Get("/user/user");
+        Get("/users/user");
         AuthSchemes(JwtBearerDefaults.AuthenticationScheme);
     }
 

@@ -14,7 +14,7 @@ import Projects from "./projects/Projects";
 
 
 const LimeyfyRouting = () => {
-    const { roles: userRoles, isLoading } = useAuth();
+    const { roles: userRoles, isLoadingUser } = useAuth();
     const [authorized, setAuthorized] = useState(false)
     const perms = ["admin", "limeyfy"]
 
@@ -24,7 +24,7 @@ const LimeyfyRouting = () => {
     }, [userRoles])
 
 
-    if (isLoading) return <Loader />
+    if (isLoadingUser) return <Loader />
 
     if (!authorized)
         return <Unauthorized />

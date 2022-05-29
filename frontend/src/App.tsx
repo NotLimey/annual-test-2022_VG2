@@ -48,10 +48,10 @@ const App = () => {
 const PrivatePaths = () => {
   const user = useAuth();
 
-  if (user.isLoading) return <FullscreenLoader text='Connecting to database..' />
+  if (user.isLoadingUser) return <FullscreenLoader text='Connecting to database..' />
 
-  if (user.isError && user.statusCode !== 401)
-    return <ErrorPage apiStatus={user.statusCode ?? 0} />
+  if (user.isError)
+    return <ErrorPage apiStatus={user.errorCode} />
 
   if (!user.user.id)
     return <Navigate to="/login" />

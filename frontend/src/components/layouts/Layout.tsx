@@ -4,9 +4,7 @@ import {
     FingerPrintIcon,
     FolderIcon,
     HomeIcon, MenuAlt2Icon,
-    OfficeBuildingIcon,
-    ShieldExclamationIcon,
-    TruckIcon,
+    OfficeBuildingIcon, TruckIcon,
     UsersIcon,
     XIcon
 } from '@heroicons/react/outline'
@@ -19,7 +17,6 @@ import useTheme from '../../hooks/useTheme'
 import { getIdenticon } from '../../scripts/avatar'
 import signOut from '../../scripts/signOut'
 import { classNames } from '../../scripts/tailwind'
-import BannerFloatingAtBottom from '../banners/BannerFloatingAtBottom'
 import BackBtn from '../buttons/BackBtn'
 
 const navigation = [

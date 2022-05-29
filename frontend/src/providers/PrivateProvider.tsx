@@ -1,4 +1,5 @@
 import { createContext } from "react";
+import ErrorPage from "../components/status-pages/ErrorPage";
 import useAuth from "../hooks/useAuth";
 import Login from "../pages/auth/Login";
 import signOut from "../scripts/signOut";
@@ -24,11 +25,13 @@ function arraysEqual(a: string[], b: string[]) {
 
 const PrivateProvider = (value: IPrivateContext) => {
 
-    const { roles, roleClaims, rolesIsLoading, isError } = useAuth();
+    const { rolesUpToDate, isError, errorCode, isAuthenticated } = useAuth();
 
-    if (!value || !value.user || isError) return <Login />
+    if (isError) return <ErrorPage apiStatus={errorCode} />
 
-    if (!rolesIsLoading && !arraysEqual(roles, roleClaims)) {
+    if (!isAuthenticated) return <Login />
+
+    if (!rolesUpToDate) {
         signOut();
         return <></>
     }

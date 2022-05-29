@@ -21,7 +21,7 @@ public class Endpoint : Endpoint<Request, List<UserDto>>
 
     public override void Configure()
     {
-        Get("/user/users");
+        Get("/users");
         AuthSchemes(JwtBearerDefaults.AuthenticationScheme);
         Roles("Admin");
     }
