@@ -14,4 +14,6 @@ public class LimeyfyDbContext : DbContext
     public DbSet<Project> Projects => Set<Project>();
     
     public DbSet<Invoice> Invoices => Set<Invoice>();
+    
+    public DbSet<Expense> Expenses => Set<Expense>();
 }

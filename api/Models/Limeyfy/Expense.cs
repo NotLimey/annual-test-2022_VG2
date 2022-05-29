@@ -3,8 +3,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Limeyfy.API.Models.Limeyfy;
 
-public class Expence
+public class Expense
 {
+    
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public string Id { get; set; }
@@ -20,6 +21,8 @@ public class Expence
     public string Category { get; set; }
     
     public string To { get; set; }
+    
+    public string ToLink { get; set; }
     
     public string Why { get; set; }
 }
