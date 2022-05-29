@@ -34,18 +34,17 @@ const RevenueStatistics = () => {
         <>
             <div className={classNames(settings.sensitiveDataMode ? "blur-lg" : "", "mt-5")}>
                 <div>
-                    <h3 className="text-lg md:text-xl leading-6 font-medium text-gray-900 dark:text-gray-100">Revenue over the last year</h3>
                     <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
                         <div className="px-4 py-5 bg-white dark:bg-stone-800 shadow rounded-lg overflow-hidden sm:p-6">
-                            <dt className="text-sm font-medium text-gray-500 dark:text-gray-300 truncate">Last 30 days</dt>
+                            <dt className="text-sm font-medium text-gray-500 dark:text-gray-300 truncate">Income last 30 days</dt>
                             <dd className="mt-1 text-3xl font-semibold text-gray-900 dark:text-gray-100">Kr {stats.last30Days.toLocaleString()},- </dd>
                         </div>
                         <div className="px-4 py-5 bg-white dark:bg-stone-800 shadow rounded-lg overflow-hidden sm:p-6">
-                            <dt className="text-sm font-medium text-gray-500 dark:text-gray-300 truncate">This year</dt>
+                            <dt className="text-sm font-medium text-gray-500 dark:text-gray-300 truncate">Income this year</dt>
                             <dd className="mt-1 text-3xl font-semibold text-gray-900 dark:text-gray-100">Kr {stats.thisYear.toLocaleString()},- </dd>
                         </div>
                         <div className="px-4 py-5 bg-white dark:bg-stone-800 shadow rounded-lg overflow-hidden sm:p-6">
-                            <dt className="text-sm font-medium text-gray-500 dark:text-gray-300 truncate">Total</dt>
+                            <dt className="text-sm font-medium text-gray-500 dark:text-gray-300 truncate">Total income</dt>
                             <dd className="mt-1 text-3xl font-semibold text-gray-900 dark:text-gray-100">Kr {stats.total.toLocaleString()},- </dd>
                         </div>
                     </dl>
