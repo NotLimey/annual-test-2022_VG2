@@ -44,6 +44,11 @@ const Login = () => {
             }
         },
         onError: (err: any) => {
+            const status = err?.response?.status;
+            if (status && status === 400) {
+                errorToast("Username or password is incorrect");
+                return;
+            }
             if (err.request.status === 0) {
                 errorToast(`Can't connect to api. Check your internet connection`)
                 return;

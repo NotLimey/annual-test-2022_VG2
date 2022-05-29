@@ -38,7 +38,7 @@ const useAuth = () => {
 
         const status = userData?.response?.status || userData?.status;
 
-        if ((status === undefined && userData?.data)) {
+        if ((status === undefined || status === 200) && userData?.data) {
             setUser(userData.data);
             if (userData.data?.id.length > 10) {
                 setIsAuthenticated(true);
