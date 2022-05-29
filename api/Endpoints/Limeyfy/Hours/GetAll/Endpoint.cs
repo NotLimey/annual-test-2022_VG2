@@ -23,6 +23,8 @@ public class Endpoint : Endpoint<Request, List<Hour>>
     public override async Task HandleAsync(Request r, CancellationToken c) 
     {
         var hours = await _hourService.GetHoursAsync();
-        await SendAsync(hours);
+        var sorted = hours.OrderBy(x => x.Date).ToList();
+        sorted.Reverse();
+        await SendAsync(sorted);
     }
 }
