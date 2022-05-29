@@ -35,7 +35,6 @@ const Users = () => {
 
     const removeRole = async (role: string) => {
         if (!selectedUser) return;
-        const id = selectedUser.id;
         const res = await axios("/role/remove-from", {
             method: "POST",
             data: {
@@ -52,7 +51,6 @@ const Users = () => {
 
     const addRole = async (role: string) => {
         if (!selectedUser) return;
-        const id = selectedUser.id;
         const res = await axios("/role/add-to", {
             method: "POST",
             data: {
