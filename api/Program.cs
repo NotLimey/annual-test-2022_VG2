@@ -6,6 +6,7 @@ using Limeyfy.API.Models.Application;
 using Limeyfy.API.Services.Auth;
 using Limeyfy.API.Services.Limeyfy.Companies;
 using Limeyfy.API.Services.Limeyfy.Expences;
+using Limeyfy.API.Services.Limeyfy.Hours;
 using Limeyfy.API.Services.Limeyfy.Invoices;
 using Limeyfy.API.Services.Limeyfy.Projects;
 using Microsoft.EntityFrameworkCore;
@@ -45,6 +46,7 @@ builder.Services.AddScoped<IProjectService, ProjectService>();
 builder.Services.AddScoped<ICompanyService, CompanyService>();
 builder.Services.AddScoped<IInvoiceService, InvoiceService>();
 builder.Services.AddScoped<IExpenseService, ExpenseService>();
+builder.Services.AddScoped<IHourService, HourService>();
 
 builder.Services.AddIdentity<ApplicationUser, ApplicationRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>()
