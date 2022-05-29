@@ -6,7 +6,7 @@ public interface IHourService
 {
     Task<Hour?> GetHourAsync(string id);
     
-    Task<IList<Hour>> GetHoursAsync();
+    Task<List<Hour>> GetHoursAsync();
     
     Task<Hour> CreateHourAsync(Hour hour);
 }
