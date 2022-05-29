@@ -52,7 +52,7 @@ const RevenueStatistics = () => {
                         </div>
                     </dl>
                 </div>
-                <div className={classNames(settings.sensitiveDataMode ? "hidden" : "", "w-full h-96 px-5 py-3 rounded-lg shadow-md dark:bg-stone-800 my-5 flex flex-col")}>
+                <div className={classNames(settings.sensitiveDataMode ? "hidden" : "", "w-full h-96 px-5 py-3 rounded-lg shadow-md bg-white dark:bg-stone-800 my-5 flex flex-col")}>
                     <div className="w-full h-full max-h-fit">
                         <ResponsiveContainer width="100%" height="100%">
                             <LineChart data={stats.thisYearDataSets}>

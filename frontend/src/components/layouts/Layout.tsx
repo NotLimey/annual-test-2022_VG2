@@ -70,7 +70,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                                 leaveFrom="translate-x-0"
                                 leaveTo="-translate-x-full"
                             >
-                                <Dialog.Panel className="relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4 bg-white dark:bg-stone-900">
+                                <Dialog.Panel className="relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4 bg-gray-100 dark:bg-stone-900">
                                     <Transition.Child
                                         as={Fragment}
                                         enter="ease-in-out duration-300"
@@ -135,7 +135,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                 {/* Static sidebar for desktop */}
                 <div className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0">
                     {/* Sidebar component, swap this element with another sidebar if you like */}
-                    <div className="flex flex-col flex-grow border-r border-gray-200 dark:border-stone-700 pt-5 bg-white dark:bg-stone-900 overflow-y-auto">
+                    <div className="flex flex-col flex-grow border-r border-gray-200 dark:border-stone-700 pt-5 bg-gray-100 dark:bg-stone-900 overflow-y-auto">
                         <div className="flex items-center flex-shrink-0 px-4">
                             <img
                                 className="h-8 w-auto"
@@ -169,7 +169,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                     </div>
                 </div>
                 <div className="md:pl-64 flex flex-col flex-1 min-h-screen">
-                    <div className="sticky top-0 z-10 flex-shrink-0 flex h-16 bg-white dark:bg-stone-900 dark:border-b dark:border-b-stone-700 shadow">
+                    <div className="sticky top-0 z-10 flex-shrink-0 flex h-16 bg-gray-100 dark:bg-stone-900 dark:border-b dark:border-b-stone-700 shadow">
                         <button
                             type="button"
                             className="px-4 border-r border-gray-200 dark:border-stone-700 text-gray-500 dark:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-limeyfy-500 md:hidden"
@@ -185,7 +185,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                             <div className="ml-4 flex items-center md:ml-6">
                                 <button
                                     type="button"
-                                    className="bg-white dark:bg-stone-900 p-1 rounded-full text-gray-400 dark:text-gray-500 hover:text-gray-500 dark:hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-limeyfy-500"
+                                    className="bg-gray-100 dark:bg-stone-900 p-1 rounded-full text-gray-400 dark:text-gray-500 hover:text-gray-500 dark:hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-limeyfy-500"
                                 >
                                     <span className="sr-only">View notifications</span>
                                     <BellIcon className="h-6 w-6" aria-hidden="true" />
@@ -194,7 +194,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                                 {/* Profile dropdown */}
                                 <Menu as="div" className="ml-3 relative">
                                     <div>
-                                        <Menu.Button className="max-w-xs bg-white dark:bg-stone-900 flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-limeyfy-500">
+                                        <Menu.Button className="max-w-xs bg-gray-100 dark:bg-stone-900 flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-limeyfy-500">
                                             <span className="sr-only">Open user menu</span>
                                             <img
                                                 className="h-8 w-8 rounded-full"
@@ -212,7 +212,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                                         leaveFrom="transform opacity-100 scale-100"
                                         leaveTo="transform opacity-0 scale-95"
                                     >
-                                        <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white dark:bg-stone-900 ring-1 ring-black dark:ring-stone-700 ring-opacity-5 focus:outline-none">
+                                        <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-gray-100 dark:bg-stone-900 ring-1 ring-black dark:ring-stone-700 ring-opacity-5 focus:outline-none">
                                             {userNavigation.map((item) => (
                                                 <Menu.Item key={item.name}>
                                                     {({ active }) => item.func ? <button
