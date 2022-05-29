@@ -7,7 +7,7 @@ namespace Limeyfy.API.Endpoints.Roles.RemoveFromRole;
 
 public class Endpoint : Endpoint<Request, Response>
 {
-    private readonly List<string> roles = new () {"admin", "limeyfy"};
+    private readonly List<string> _roles = new() { "Admin", "User", "Limeyfy", "UnoMarine", "Finance" };
     
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly RoleManager<ApplicationRole> _roleManager;
@@ -29,10 +29,14 @@ public class Endpoint : Endpoint<Request, Response>
     
     public override async Task HandleAsync(Request r, CancellationToken c)
     {
-        if(!roles.Contains(r.Role))
+        if(!_roles.Contains(r.Role))
             ThrowError("Role doesnt exist");
         
-        await CreateRoles();
+        if (!await _roleManager.RoleExistsAsync(r.Role))
+        {
+            await  _roleManager.CreateAsync(new ApplicationRole(r.Role));
+        }
+        
         ApplicationUser user = await _userManager.FindByIdAsync(r.Id);
         await _userManager.RemoveFromRoleAsync(user, r.Role);
         
@@ -41,16 +45,5 @@ public class Endpoint : Endpoint<Request, Response>
             Status = "Success",
             Message = "Removed from role!"
         });
-    }
-
-    private async Task CreateRoles()
-    {
-        foreach (string role in roles)
-        {
-            if (!await _roleManager.RoleExistsAsync(role))
-            {
-                await _roleManager.CreateAsync(new ApplicationRole(role));
-            }
-        }
     }
 }

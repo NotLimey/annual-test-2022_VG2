@@ -8,7 +8,7 @@ import PageHeading from "../../../components/page-headings/PageHeading";
 import useAuth from "../../../hooks/useAuth";
 import { fetchRoles, fetchUsers, fetchUsersWithParams } from "../../../scripts/fetch";
 import { classNames } from "../../../scripts/tailwind";
-import { formatPascalAndSpace } from "../../../scripts/text";
+import { firstLetterUppercase, formatPascalAndSpace } from "../../../scripts/text";
 import { UserType } from "../../../types/User";
 
 const Users = () => {
@@ -40,7 +40,7 @@ const Users = () => {
             method: "POST",
             data: {
                 id: selectedUser.id,
-                role: role
+                role: firstLetterUppercase(role)
             }
         })
         if (res.status === 200) {
@@ -57,7 +57,7 @@ const Users = () => {
             method: "POST",
             data: {
                 id: selectedUser.id,
-                role: role
+                role: firstLetterUppercase(role)
             }
         })
         if (res.status === 200) {
@@ -241,7 +241,7 @@ const Users = () => {
                                                                 <p className="text-sm mt-2 mb-2 text-gray-600 dark:text-gray-400">
                                                                     Cant change your own roles
                                                                 </p>
-                                                                <p className="text-sm mt-2 mb-5 text-gray-600 dark:text-gray-400">Your roles: {selectedUser.roles.join(", ")}</p>
+                                                                <p className="text-sm mt-2 mb-5 text-gray-600 dark:text-gray-400">Your roles: {selectedUser?.roles?.join(", ")}</p>
                                                             </div>}
                                                     </fieldset>}
                                                 </div>

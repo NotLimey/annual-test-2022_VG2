@@ -7,7 +7,7 @@ namespace Limeyfy.API.Endpoints.Roles.Add;
 
 public class Endpoint : Endpoint<Request, Response>
 {
-    private readonly List<string> roles = new () {"admin", "limeyfy"};
+    private readonly List<string> _roles = new() { "Admin", "User", "Limeyfy", "UnoMarine", "Finance" };
     
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly RoleManager<ApplicationRole> _roleManager;
@@ -29,7 +29,7 @@ public class Endpoint : Endpoint<Request, Response>
     
     public override async Task HandleAsync(Request r, CancellationToken c)
     {
-        if(!roles.Contains(r.Role))
+        if(!_roles.Contains(r.Role))
             ThrowError("Role doesnt exist");
 
         if (!await _roleManager.RoleExistsAsync(r.Role))
@@ -56,16 +56,5 @@ public class Endpoint : Endpoint<Request, Response>
             Status = "Success",
             Message = "Added user to role!"
         });
-    }
-
-    private async Task CreateRoles()
-    {
-        foreach (string role in roles)
-        {
-            if (!await _roleManager.RoleExistsAsync(role))
-            {
-                await _roleManager.CreateAsync(new ApplicationRole(role));
-            }
-        }
     }
 }
