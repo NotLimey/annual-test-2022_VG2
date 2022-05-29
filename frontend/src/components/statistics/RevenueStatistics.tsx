@@ -7,9 +7,12 @@ import useSettings from "../../hooks/useSettings";
 
 interface IRevenueStatisticsData {
     lastYear: number;
+    lastYearNet: number;
     thisYear: number;
+    thisYearNet: number;
     last30Days: number;
     total: number;
+    totalNet: number;
     thisYearDataSets: {
         label: string;
         income: number;
@@ -57,10 +60,26 @@ const RevenueStatistics = () => {
                                 <YAxis />
                                 <XAxis dataKey="label" />
                                 <Line type="monotone" dataKey="expense" stroke="#EF4444" strokeWidth={2} unit=" Kr" name="Expenses" />
-                                <Line type="monotone" dataKey="income" stroke="#5cb85c" strokeWidth={2} unit=" Kr" name="Revenue" />
+                                <Line type="monotone" dataKey="income" stroke="#5cb85c" strokeWidth={2} unit=" Kr" name="Income" />
                             </LineChart>
                         </ResponsiveContainer>
                     </div>
+                </div>
+                <div>
+                    <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
+                        <div className="px-4 py-5 bg-white dark:bg-stone-800 shadow rounded-lg overflow-hidden sm:p-6">
+                            <dt className="text-sm font-medium text-gray-500 dark:text-gray-300 truncate">Net income this year</dt>
+                            <dd className="mt-1 text-3xl font-semibold text-gray-900 dark:text-gray-100">Kr {stats.thisYearNet.toLocaleString()},- </dd>
+                        </div>
+                        <div className="px-4 py-5 bg-white dark:bg-stone-800 shadow rounded-lg overflow-hidden sm:p-6">
+                            <dt className="text-sm font-medium text-gray-500 dark:text-gray-300 truncate">Total net income</dt>
+                            <dd className="mt-1 text-3xl font-semibold text-gray-900 dark:text-gray-100">Kr {stats.totalNet.toLocaleString()},- </dd>
+                        </div>
+                        <div className="px-4 py-5 bg-white dark:bg-stone-800 shadow rounded-lg overflow-hidden sm:p-6">
+                            <dt className="text-sm font-medium text-gray-500 dark:text-gray-300 truncate">Income last year</dt>
+                            <dd className="mt-1 text-3xl font-semibold text-gray-900 dark:text-gray-100">Kr {stats.lastYear.toLocaleString()},- </dd>
+                        </div>
+                    </dl>
                 </div>
             </div >
         </>

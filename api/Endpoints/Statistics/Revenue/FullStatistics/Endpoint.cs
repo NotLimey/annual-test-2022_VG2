@@ -64,17 +64,26 @@ public class Endpoint : Endpoint<Request, Response>
         
         
         var thisYearRevenue = invoices.Where(i => i.DueDate.Year == DateTime.Now.Year && i.IsPaid).Sum(i => i.Total);
+        var thisYearExpenses = expenses.Where(e => e.Date.Year == DateTime.Now.Year).Sum(e => e.Amount);
+        
         var lastYearRevenue = invoices.Where(i => i.DueDate.Year == DateTime.Now.Year - 1 && i.IsPaid).Sum(i => i.Total);
+        var lastYearExpenses = expenses.Where(e => e.Date.Year == DateTime.Now.Year - 1).Sum(e => e.Amount);
+        
         var last30DaysRevenue = invoices.Where(i => i.DueDate >= DateTime.Now.AddDays(-30) && i.IsPaid).Sum(i => i.Total);
+
         var totalRevenue = invoices.Where(x => x.IsPaid).Sum(i => i.Total);
+        var totalExpenses = expenses.Sum(e => e.Amount);
         
         await SendAsync(new Response()
         {
             ThisYearDataSets = dataSets,
             ThisYear = thisYearRevenue,
+            ThisYearNet = thisYearRevenue - thisYearExpenses,
             LastYear = lastYearRevenue,
+            LastYearNet = lastYearRevenue - lastYearExpenses,
             Last30Days = last30DaysRevenue,
             Total = totalRevenue,
+            TotalNet = totalRevenue - totalExpenses
         });
     }
 }
