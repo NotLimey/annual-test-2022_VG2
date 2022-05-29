@@ -32,7 +32,7 @@ const ProfileSettings = () => {
                     <h2 className="text-lg leading-6 font-medium text-gray-900 dark:text-gray-100">Settings</h2>
                 </div>
                 <div className="mt-6 flex flex-col w-full">
-                    <div>
+                    <div className="mb-5">
                         <RadioGroup value={theme.theme} onChange={(t: themes) => theme.toggleTheme(t)}>
                             <RadioGroup.Label className="text-base font-medium text-gray-900 dark:text-gray-100">Themes</RadioGroup.Label>
 
@@ -79,9 +79,43 @@ const ProfileSettings = () => {
                             </div>
                         </RadioGroup>
                     </div>
+                    <div className="mb-5">
+                        <Switch.Group as="div" className="flex items-center justify-between w-full">
+                            <span className="flex-grow flex flex-col">
+                                <Switch.Label as="span" className="text-sm font-medium text-gray-900 dark:text-gray-100" passive>
+                                    Sensitive data mode
+                                </Switch.Label>
+                                <Switch.Description as="span" className="text-sm text-gray-500">
+                                    Sensitive data mode hides sensitive data like revenue and financial information.
+                                </Switch.Description>
+                            </span>
+                            <Switch
+                                checked={sensitiveDataMode}
+                                onChange={setSensitiveDataMode}
+                                className="flex-shrink-0 group relative rounded-full inline-flex items-center justify-center h-5 w-10 cursor-pointer focus:outline-none"
+                            >
+                                <span className="sr-only">Use sensitive data mode</span>
+                                <span aria-hidden="true" className="pointer-events-none absolute bg-white dark:bg-stone-900 w-full h-full rounded-md" />
+                                <span
+                                    aria-hidden="true"
+                                    className={classNames(
+                                        sensitiveDataMode ? 'bg-limeyfy-600' : 'bg-gray-200 dark:bg-stone-800',
+                                        'pointer-events-none absolute h-4 w-9 mx-auto rounded-full transition-colors ease-in-out duration-200'
+                                    )}
+                                />
+                                <span
+                                    aria-hidden="true"
+                                    className={classNames(
+                                        sensitiveDataMode ? 'translate-x-5' : 'translate-x-0',
+                                        'pointer-events-none absolute left-0 inline-block h-5 w-5 border border-gray-200 rounded-full bg-white dark:bg-stone-900 dark:border-stone-700 shadow transform ring-0 transition-transform ease-in-out duration-200'
+                                    )}
+                                />
+                            </Switch>
+                        </Switch.Group>
+                    </div>
                 </div>
             </div>
-        </div>
+        </div >
     )
 
     // return (
