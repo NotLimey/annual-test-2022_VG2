@@ -52,14 +52,12 @@ const RevenueStatistics = () => {
                 <div className={classNames(settings.sensitiveDataMode ? "hidden" : "", "w-full h-96 bg-gray-200 px-5 py-3 rounded-lg shadow-md dark:bg-stone-800 my-5 flex flex-col")}>
                     <div className="w-full h-full max-h-fit">
                         <ResponsiveContainer width="100%" height="100%">
-                            <ResponsiveContainer width="100%" height="100%">
-                                <LineChart width={300} height={100} data={stats.thisYearDataSets}>
-                                    <Tooltip />
-                                    <YAxis />
-                                    <XAxis dataKey="label" />
-                                    <Line type="monotone" dataKey="value" stroke="#5cb85c" strokeWidth={2} unit=" Kr" name="Revenue" />
-                                </LineChart>
-                            </ResponsiveContainer>
+                            <LineChart data={stats.thisYearDataSets}>
+                                <Tooltip />
+                                <YAxis />
+                                <XAxis dataKey="label" />
+                                <Line type="monotone" dataKey="value" stroke="#5cb85c" strokeWidth={2} unit=" Kr" name="Revenue" />
+                            </LineChart>
                         </ResponsiveContainer>
                     </div>
                 </div>
