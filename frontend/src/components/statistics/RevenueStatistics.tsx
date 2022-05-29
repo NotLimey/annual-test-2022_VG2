@@ -53,7 +53,7 @@ const RevenueStatistics = () => {
                     <div className="w-full h-full max-h-fit">
                         <ResponsiveContainer width="100%" height="100%">
                             <LineChart data={stats.thisYearDataSets}>
-                                <Tooltip />
+                                <Tooltip formatter={(d: number) => d.toLocaleString()} />
                                 <YAxis />
                                 <XAxis dataKey="label" />
                                 <Line type="monotone" dataKey="expense" stroke="#EF4444" strokeWidth={2} unit=" Kr" name="Expenses" />
