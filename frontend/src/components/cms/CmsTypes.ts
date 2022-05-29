@@ -32,6 +32,7 @@ export interface ICmsSelectOptions {
 
 export interface ICmsOptions {
     placeholder?: string;
+    sensitive?: boolean;
 }
 
 export interface ICmsObjectField {

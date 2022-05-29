@@ -3,11 +3,11 @@ import { CheckIcon, SelectorIcon } from "@heroicons/react/outline";
 import { Fragment, useState } from "react";
 import { classNames } from "../../scripts/tailwind";
 import { formatPascalAndSpace } from "../../scripts/text";
-import { ICmsProp, ICmsSelectOptions } from "./CmsTypes";
+import { ICmsField, ICmsSelectOptions } from "./CmsTypes";
 
 interface ICmsSelect {
     options: ICmsSelectOptions;
-    prop: ICmsProp;
+    prop: ICmsField;
     onChange: (data: any) => void;
 }
 
@@ -60,7 +60,7 @@ const CmsSelect = (props: ICmsSelect) => {
                                         >
                                             {({ selected, active }) => (
                                                 <>
-                                                    <span className={classNames(selected ? 'font-semibold' : 'font-normal', 'block truncate')}>
+                                                    <span className={classNames(props.prop.options?.sensitive ? "blur-lg" : "", selected ? 'font-semibold' : 'font-normal', 'block truncate')}>
                                                         {item[selectIdentifier]}
                                                     </span>
 

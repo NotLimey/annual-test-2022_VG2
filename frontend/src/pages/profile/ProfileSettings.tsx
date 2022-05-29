@@ -44,7 +44,7 @@ const ProfileSettings = () => {
                                         className={({ checked, active }) =>
                                             classNames(
                                                 themeVal === "dark" ? 'bg-black' :
-                                                    themeVal === "light" ? "bg-white" : "bg-white bg-gradient-to-r from-black ",
+                                                    themeVal === "light" ? "bg-white" : "bg-white bg-gradient-to-r from-black via-black ",
                                                 checked ? 'border-transparent' : 'border-gray-300',
                                                 active ? 'border-limeyfy-500 ring-2 ring-limeyfy-500' : '',
                                                 'relative border rounded-lg dark:border-black shadow-sm p-4 flex cursor-pointer focus:outline-none'

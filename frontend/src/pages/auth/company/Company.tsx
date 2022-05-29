@@ -3,6 +3,7 @@ import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import Cms from "../../../components/cms/Cms";
 import Loader from "../../../components/loaders/Loader";
+import useSettings from "../../../hooks/useSettings";
 import { fetchCompanies } from "../../../scripts/fetch";
 import { TCompany } from "../../../types/Company";
 
@@ -13,6 +14,7 @@ const Company = () => {
 
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState(false)
+    const { settings } = useSettings();
 
     useEffect(() => {
         if (dataLoading || !id || !data) return;
@@ -105,7 +107,8 @@ const Company = () => {
                     type: "number",
                     value: company.bankNr,
                     options: {
-                        placeholder: "1234 56 78901"
+                        placeholder: "1234 56 78901",
+                        sensitive: settings.sensitiveDataMode
                     }
                 },
                 {

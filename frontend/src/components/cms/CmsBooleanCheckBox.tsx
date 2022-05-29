@@ -1,8 +1,9 @@
+import { classNames } from "../../scripts/tailwind";
 import { formatPascalAndSpace } from "../../scripts/text";
-import { ICmsOptions, ICmsProp } from "./CmsTypes";
+import { ICmsOptions, ICmsField } from "./CmsTypes";
 
 interface ICmsBooleanCheckBox {
-    prop: ICmsProp;
+    prop: ICmsField;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -14,7 +15,7 @@ const CmsBooleanCheckBox = (props: ICmsBooleanCheckBox) => {
                     {props.prop.title ?? formatPascalAndSpace(props.prop.name)}
                 </label>
             </div>
-            <div className="ml-3 flex items-center h-5">
+            <div className={classNames(props.prop.options?.sensitive ? "blur-lg" : "", "ml-3 flex items-center h-5")}>
                 <input
                     type="checkbox"
                     name={props.prop.name}

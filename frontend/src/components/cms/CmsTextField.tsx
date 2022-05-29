@@ -1,3 +1,4 @@
+import { classNames } from "../../scripts/tailwind";
 import { formatPascalAndSpace } from "../../scripts/text";
 import { ICmsField } from "./CmsTypes";
 
@@ -15,7 +16,7 @@ const CmsTextField = (props: ICmsTextField) => {
             >
                 {props.prop.title ?? formatPascalAndSpace(props.prop.name)}
             </label>
-            <div className="mt-1">
+            <div className={classNames(props.prop.options?.sensitive ? "blur-lg" : "", "mt-1")}>
                 <textarea
                     rows={4}
                     name={props.prop.name}

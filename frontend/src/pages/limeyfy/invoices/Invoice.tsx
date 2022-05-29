@@ -4,6 +4,7 @@ import { useQuery } from "react-query";
 import { Link, useParams } from "react-router-dom";
 import RenderInvoicePDF from "../../../components/invoices/RenderInvoicePdfTS";
 import Loader from "../../../components/loaders/Loader";
+import useSettings from "../../../hooks/useSettings";
 import { fetchInvoices } from "../../../scripts/fetch";
 import { classNames } from "../../../scripts/tailwind";
 import { TInvoice } from "../../../types/Limeyfy";
@@ -21,8 +22,9 @@ const updateInvoice = async (id: string, isPaid: boolean) => {
 const Invoice = () => {
     const { id } = useParams();
     const { data, refetch } = useQuery("limeyfy_invoices", fetchInvoices)
-    const [showAsPDF, setShowAsPDF] = useState(false)
+    const { settings } = useSettings();
 
+    const [showAsPDF, setShowAsPDF] = useState(false)
     const [invoice, setInvoice] = useState<TInvoice>()
 
     useEffect(() => {
@@ -98,7 +100,7 @@ const Invoice = () => {
                                 </th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody className={classNames(settings.sensitiveDataMode ? "blur-lg" : "")}>
                             {invoice.invoiceLines.map((line, idx) => (
                                 <tr key={idx} className="border-b border-gray-200 dark:border-stone-700">
                                     <td className="py-4 pl-4 pr-3 text-sm sm:pl-6 md:pl-0">
@@ -113,7 +115,7 @@ const Invoice = () => {
                                 </tr>
                             ))}
                         </tbody>
-                        <tfoot>
+                        <tfoot className={classNames(settings.sensitiveDataMode ? "blur-lg" : "")}>
                             <tr>
                                 <th
                                     scope="row"
@@ -159,7 +161,7 @@ const Invoice = () => {
                     </table>
                 </div>
             ) : (
-                <div className="max-h-screen h-screen">
+                <div className={classNames(settings.sensitiveDataMode ? "blur-lg" : "", "max-h-screen h-screen")}>
                     <RenderInvoicePDF {...invoice.pdfData} />
                 </div>
             )}

@@ -1,4 +1,5 @@
 import React from "react";
+import { classNames } from "../../scripts/tailwind";
 import { formatPascalAndSpace } from "../../scripts/text";
 import { ICmsField, ICmsTypes } from "./CmsTypes";
 
@@ -16,7 +17,7 @@ const CmsStringField = (props: ICmsStringField) => (
         >
             {props.prop.title ?? formatPascalAndSpace(props.prop.name)}
         </label>
-        <div className="mt-1">
+        <div className={classNames(props.prop.options?.sensitive ? "blur-lg" : "", "mt-1")}>
             <input
                 type={getType(props.prop.type)}
                 name={props.prop.name}
