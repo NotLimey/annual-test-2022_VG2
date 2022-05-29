@@ -6,7 +6,7 @@ public interface IExpenseService
 {
     Task<Expense?> GetExpense(string id);
     
-    Task<IEnumerable<Expense>> GetExpenses();
+    Task<List<Expense>> GetExpenses();
     
     Task<Expense> CreateExpense(Expense expense);
 }

@@ -5,6 +5,8 @@ import Loader from "../../components/loaders/Loader";
 import NotFound from "../../components/status-pages/NotFound";
 import Unauthorized from "../../components/status-pages/Unauthorized";
 import useAuth from "../../hooks/useAuth";
+import Expenses from "./expenses/Expenses";
+import NewExpense from "./expenses/NewExpense";
 import Invoice from "./invoices/Invoice";
 import Invoices from "./invoices/Invoices";
 import NewInvoice from "./invoices/NewInvoice";
@@ -38,6 +40,9 @@ const LimeyfyRouting = () => {
             <Route path="invoices" element={<Invoices />} />
             <Route path="invoices/add" element={<NewInvoice />} />
             <Route path="invoice/:id" element={<Invoice />} />
+            {/* Expenses */}
+            <Route path="expenses" element={<Expenses />} />
+            <Route path="expenses/add" element={<NewExpense />} />
             {/* * Path */}
             <Route path="*" element={<NotFound />} />
         </Routes>

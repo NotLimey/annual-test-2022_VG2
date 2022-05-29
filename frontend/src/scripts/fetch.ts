@@ -13,3 +13,5 @@ export const fetchInvoices = async () => await axios("/invoices");
 
 export const fetchStatisticsRevenue = async () => await axios("/statistics/revenue");
 export const fetchStatisticsRevenueLastYear = async () => await axios("/statistics/revenue/last-year");
+
+export const fetchExpenses = async () => await axios("/expenses");

@@ -15,7 +15,7 @@ public class ExpenseService : IExpenseService
 
     public async Task<Expense?> GetExpense(string id) => await _context.Expenses.FirstOrDefaultAsync(x => x.Id == id);
 
-    public async Task<IEnumerable<Expense>> GetExpenses() => await _context.Expenses.ToListAsync();
+    public async Task<List<Expense>> GetExpenses() => await _context.Expenses.ToListAsync();
 
     public async Task<Expense> CreateExpense(Expense expense)
     {
