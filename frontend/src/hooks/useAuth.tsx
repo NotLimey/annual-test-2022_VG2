@@ -76,7 +76,8 @@ const useAuth = () => {
         isLoadingUser,
         isError,
         isAuthenticated,
-        errorCode
+        errorCode,
+        refetch
     }
 }
 

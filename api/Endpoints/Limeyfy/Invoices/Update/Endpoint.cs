@@ -31,6 +31,15 @@ public class Endpoint : Endpoint<Request, Response>
             ThrowError("Invoice not found");
         }
         invoice.IsPaid = r.IsPaid;
+        if (r.IsPaid)
+        {
+            invoice.PayementDate = DateTime.UtcNow;
+        }
+        else
+        {
+            invoice.PayementDate = new DateTime(8640000000000000).ToUniversalTime();
+        }
+        
         await _invoiceService.UpdateInvoiceAsync(invoice);
         await SendAsync(new Response()
         {

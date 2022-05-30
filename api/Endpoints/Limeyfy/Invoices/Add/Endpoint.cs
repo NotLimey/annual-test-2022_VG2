@@ -32,6 +32,7 @@ public class Endpoint : Endpoint<Request, Response>
 
     public override async Task HandleAsync(Request r, CancellationToken c)
     {
+        var invoices = await _invoiceService.GetInvoicesAsync();
         var invoiceLines = new List<InvoiceLineDto>();
         foreach (var invoiceLine in r.InvoiceLines)
         {
@@ -48,7 +49,8 @@ public class Endpoint : Endpoint<Request, Response>
         var serializedLines = JsonSerializer.Serialize(invoiceLines);
 
         var user = await _userManager.FindByNameAsync(User.Identity.Name);
-        
+
+        var invoiceId = invoices.Max(x => x.InvoiceNumber) + 1;
         
         var invoice = new Invoice
         {
@@ -57,7 +59,7 @@ public class Endpoint : Endpoint<Request, Response>
             BankAccount = r.BankAccount,
             CompanyId = r.CompanyId,
             DueDate = DateTime.Parse(r.DueDate).ToUniversalTime(),
-            InvoiceNumber = r.InvoiceNumber,
+            InvoiceNumber = invoiceId,
             IsPaid = r.IsPaid,
             OrganizationId = r.OrganizationId,
             UseMva = r.UseMva,
@@ -68,6 +70,15 @@ public class Endpoint : Endpoint<Request, Response>
             Title = r.Title,
             Description = r.Description
         };
+        
+        // check if due date is in the past
+        if (invoice.DueDate < DateTime.UtcNow && r.IsPaid)
+        {
+            invoice.PayementDate = invoice.DueDate;
+        }
+
+        if (r.IsPaid && invoice.DueDate > DateTime.UtcNow)
+            invoice.PayementDate = DateTime.UtcNow;
         
         var company = await _companyService.GetCompanyAsync(invoice.CompanyId);
         var invoicePdfData = new InvoicePdfDataModel

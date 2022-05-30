@@ -14,8 +14,6 @@ public class Request
     
     public long BankAccount { get; set; }
     
-    public int InvoiceNumber { get; set; }
-    
     public string DueDate { get; set; }
     
     public bool IsPaid { get; set; }

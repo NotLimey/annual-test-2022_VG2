@@ -2,16 +2,16 @@ import { useQuery } from "react-query";
 import Cms from "../../../components/cms/Cms"
 import Loader from "../../../components/loaders/Loader";
 import useAuth from "../../../hooks/useAuth";
-import { fetchCompanies } from "../../../scripts/fetch";
+import { fetchCompanies, fetchInvoices } from "../../../scripts/fetch";
 import { TCompany } from "../../../types/Company";
 
 const NewInvoice = () => {
     const { user } = useAuth();
     const { data } = useQuery("auth_companies", fetchCompanies);
+    const { refetch } = useQuery("limeyfy_invoices", fetchInvoices);
 
     if (!data) return <Loader />
 
-    // function that gets date in 14 days in format yyyy-mm-dd
     const getDate = () => {
         const date = new Date();
         date.setDate(date.getDate() + 14);
@@ -21,7 +21,6 @@ const NewInvoice = () => {
         return yyyy + "-" + mm + "-" + dd;
     }
 
-    //if (!data.data) return <p>No comapnies</p>
     if (data.data.length < 1) return <p>There has to be at least one company</p>
 
     return (
@@ -29,6 +28,7 @@ const NewInvoice = () => {
             title="Create new invoice"
             submit={{
                 endpoint: "/invoices",
+                onSuccessAfterToast: () => refetch()
             }}
             extraValues={{
                 userId: user.id
@@ -68,11 +68,6 @@ const NewInvoice = () => {
                     name: "bankAccount",
                     title: "Receiving bank account",
                     type: "number",
-                },
-                {
-                    name: "invoiceNumber",
-                    type: "number",
-                    title: "Invoice Id"
                 },
                 {
                     name: "dueDate",

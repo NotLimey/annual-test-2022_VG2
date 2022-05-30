@@ -40,4 +40,6 @@ public class Invoice
     public string PdfData { get; set; } = string.Empty;
     
     public DateTime CreatedAt { get; set; }
+    
+    public DateTime PayementDate { get; set; }
 }
