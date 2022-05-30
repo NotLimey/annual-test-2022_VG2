@@ -46,6 +46,27 @@ const Company = () => {
                 {
                     name: "created",
                     func: (val: string) => new Date(`${val}`).toLocaleDateString()
+                },
+                {
+                    name: "bankNr",
+                    func: (val: number) => {
+                        const stringVal = val.toString();
+                        return `${stringVal.substring(0, 4)} ${stringVal.substring(4, 6)} ${stringVal.substring(6, 11)}`
+                    }
+                },
+                {
+                    name: "orgNr",
+                    func: (val: number) => {
+                        const stringVal = val.toString();
+                        return `${stringVal.substring(0, 3)} ${stringVal.substring(3, 6)} ${stringVal.substring(6, 9)}`
+                    }
+                },
+                {
+                    name: "phoneNumber",
+                    func: (val: number) => {
+                        const stringVal = val.toString();
+                        return `${stringVal.substring(0, 3)} ${stringVal.substring(3, 5)} ${stringVal.substring(5, 8)}`
+                    }
                 }
             ]}
         />
