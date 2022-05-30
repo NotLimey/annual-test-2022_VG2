@@ -45,29 +45,17 @@ const App = () => {
   )
 }
 
-const PrivatePaths = () => {
-  const user = useAuth();
-
-  if (user.isLoadingUser) return <FullscreenLoader text='Connecting to database..' />
-
-  if (user.isError)
-    return <ErrorPage apiStatus={user.errorCode} />
-
-  if (!user.user.id)
-    return <Navigate to="/login" />
-
-  return (
-    <PrivateProvider user={user.user}>
-      <Routes>
-        <Route path='/' element={<Layout><Home /></Layout>} />
-        <Route path='/profile' element={<Suspense fallback="...Loading"><Profile /></Suspense>} />
-        <Route path='/profile/:page' element={<Suspense fallback="...Loading"><Profile /></Suspense>} />
-        <Route path='/limeyfy/*' element={<Layout><LimeyfyRouting /></Layout>} />
-        <Route path='/auth/*' element={<Layout><AuthRoutes /></Layout>} />
-        <Route path='*' element={<NotFound />} />
-      </Routes>
-    </PrivateProvider>
-  )
-}
+const PrivatePaths = () => (
+  <PrivateProvider>
+    <Routes>
+      <Route path='/' element={<Layout><Home /></Layout>} />
+      <Route path='/profile' element={<Suspense fallback="...Loading"><Profile /></Suspense>} />
+      <Route path='/profile/:page' element={<Suspense fallback="...Loading"><Profile /></Suspense>} />
+      <Route path='/limeyfy/*' element={<Layout><LimeyfyRouting /></Layout>} />
+      <Route path='/auth/*' element={<Layout><AuthRoutes /></Layout>} />
+      <Route path='*' element={<NotFound />} />
+    </Routes>
+  </PrivateProvider>
+)
 
 export default App
