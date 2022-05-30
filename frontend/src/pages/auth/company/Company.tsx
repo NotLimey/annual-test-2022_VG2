@@ -40,6 +40,7 @@ const Company = () => {
         <DescriptionList
             title={company.name}
             object={company}
+            editPath={`/auth/companies/${company.id}/edit`}
             ignoreValues={["id", "name"]}
             customFormatting={[
                 {

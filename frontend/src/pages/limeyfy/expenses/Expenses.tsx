@@ -20,12 +20,12 @@ const Expenses = () => {
         <div>
             <PageHeading publishPath="/limeyfy/expenses/add" publishText="Create expense">Expenses</PageHeading>
             <div className={classNames(settings.sensitiveDataMode ? "blur-lg" : "")}>
-                <StackedList
+                <StackedList<TExpense>
                     data={data.data}
                     title={(invoice: TExpense) => `${invoice.to}`}
                     badge={(idx) => data.data[idx].category ? { color: "green", text: data.data[idx].category } : { color: "green", text: "undefined" }}
-                    typeIcon={"CashIcon"}
-                    typeAttribute="amount"
+                    informationIcon={"CashIcon"}
+                    information={(data) => data.amount}
                     path={(id) => `/limeyfy/expenses/${id}`}
                     date={(id) => {
                         const item: TExpense = data.data.find((x: TExpense) => x.id === id);

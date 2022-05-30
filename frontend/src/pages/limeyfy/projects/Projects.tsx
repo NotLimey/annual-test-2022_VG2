@@ -18,11 +18,11 @@ const Projects = () => {
     return (
         <div>
             <PageHeading publishPath="/limeyfy/projects/add" publishText="New project">Projects</PageHeading>
-            {data && <StackedList
+            {data && <StackedList<TProject>
                 data={projects}
                 badge={(idx) => projects[idx].isPublic ? { color: "green", text: "Public" } : { color: "red", text: "Private" }}
-                typeIcon={"CodeIcon"}
-                typeAttribute="linesOfCode"
+                informationIcon={"CodeIcon"}
+                information={p => p.linesOfCode}
                 path={(id) => `/limeyfy/projects/${id}`}
                 date={(id) => {
                     const item = projects.find((x: TProject) => x.id === id);

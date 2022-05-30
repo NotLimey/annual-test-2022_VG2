@@ -15,11 +15,10 @@ const Companies = () => {
     return (
         <>
             <PageHeading publishPath="/auth/companies/add" publishText="New Company">Companies</PageHeading>
-            {data && <StackedList
+            {data && <StackedList<TCompany>
                 data={companies}
                 titleAttribute="name"
-                typeIcon={"InformationCircleIcon"}
-                typeAttribute="description"
+                informationIcon={"InformationCircleIcon"}
                 path={(id) => `/auth/companies/${id}`}
                 date={(id) => {
                     const item = companies.find((x: TCompany) => x.id === id);
@@ -32,6 +31,7 @@ const Companies = () => {
                         </p>
                     )
                 }}
+                information={(item) => item.description.length > 80 ? item.description.substring(0, 80) + "..." : item.description}
             />}
         </>
     );
