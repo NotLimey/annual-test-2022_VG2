@@ -69,7 +69,13 @@ const DescriptionList = ({ object, title, ignoreValues, customFormatting, editPa
                             <div key={idx} className="sm:col-span-2">
                                 <dt className="text-sm font-medium text-gray-500 dark:text-gray-400 flex">{formatPascalAndSpace(value[0])}  <DuplicateIcon onClick={() => copyToClipboard((value[1] as string), value[0])} className="h-4 w-4 ml-1 cursor-pointer" /></dt>
                                 <dd className="mt-1 text-sm text-gray-900 dark:text-gray-100">
-                                    {objectValueAsString.substring(0, 500)}{objectValueAsStringLength > 500 && <p>... <span>See</span></p>}
+                                    {showFullValue?.includes(value[0]) ? (
+                                        <span>{objectValueAsString}</span>
+                                    ) : (
+                                        <>
+                                            {objectValueAsString.substring(0, 500)}{objectValueAsStringLength > 500 && <span>... <span className="text-limeyfy-600 cursor-pointer" onClick={() => setShowFullValue([...showFullValue ?? [], value[0]])}>See more</span></span>}
+                                        </>
+                                    )}
                                 </dd>
                             </div>
                         )
@@ -82,8 +88,8 @@ const DescriptionList = ({ object, title, ignoreValues, customFormatting, editPa
                         )
                     })}
                 </dl>
-            </div>
-        </div>
+            </div >
+        </div >
     );
 }
 

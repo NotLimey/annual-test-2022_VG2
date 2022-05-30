@@ -20,7 +20,7 @@ const ProfileHome = () => {
     const queryClient = useQueryClient();
     const { emojiToast, errorToast } = useToast();
 
-    const updateUser = async (dto: UpdateUserDto) => await axios("/user", {
+    const updateUser = async (dto: UpdateUserDto) => await axios("/users", {
         method: "PUT",
         data: {
             firstName: dto.firstName,
