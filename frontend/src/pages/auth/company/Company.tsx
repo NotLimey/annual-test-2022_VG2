@@ -1,3 +1,4 @@
+import { classNames } from "@/scripts/tailwind";
 import { TCompany } from "@/types/Company";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
@@ -51,7 +52,7 @@ const Company = () => {
                     name: "bankNr",
                     func: (val: number) => {
                         const stringVal = val.toString();
-                        return `${stringVal.substring(0, 4)} ${stringVal.substring(4, 6)} ${stringVal.substring(6, 11)}`
+                        return <span className={classNames(settings.sensitiveDataMode ? "blur-lg" : "")}>{`${stringVal.substring(0, 4)} ${stringVal.substring(4, 6)} ${stringVal.substring(6, 11)}`}</span>
                     }
                 },
                 {
