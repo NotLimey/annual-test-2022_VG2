@@ -4,6 +4,7 @@ import Unauthorized from "../../components/status-pages/Unauthorized";
 import useAuth from "../../hooks/useAuth";
 import Companies from "./company/Companies";
 import Company from "./company/Company";
+import EditCompany from "./company/EditCompany";
 import NewCompany from "./company/NewCompany";
 import Roles from "./roles/Roles";
 import EditUser from "./users/EditUser";
@@ -28,6 +29,7 @@ const AuthRoutes = () => {
         <Routes>
             <Route path="companies" element={<Companies />} />
             <Route path="companies/:id" element={<Company />} />
+            <Route path="companies/:id/edit" element={<EditCompany />} />
             <Route path="companies/add" element={<NewCompany />} />
             {/* Roles */}
             <Route path="roles" element={<Roles />} />

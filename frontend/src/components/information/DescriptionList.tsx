@@ -1,3 +1,6 @@
+import { smile } from "@/emojies";
+import useToast from "@/hooks/useToast";
+import copyTextToClipboard from "@/scripts/copyToClipboard";
 import { formatPascalAndSpace } from "@/scripts/text";
 import { DuplicateIcon, PaperClipIcon } from "@heroicons/react/outline";
 
@@ -14,6 +17,17 @@ interface DescriptionListCustomField {
 }
 
 const DescriptionList = ({ object, title, ignoreValues, customFormatting }: DescriptionListProps) => {
+    const { errorToast, emojiToast } = useToast();
+
+    const copyToClipboard = async (text: string, name: string) => {
+        const successful = await copyTextToClipboard(text);
+        if (successful) {
+            emojiToast(`Copied '${formatPascalAndSpace(name)}' to clipboard`, smile);
+            return;
+        }
+        errorToast(`Could'nt copy ${formatPascalAndSpace(name)} to clipboard`)
+    }
+
     return (
         <div className="bg-white dark:bg-stone-800 shadow overflow-hidden sm:rounded-lg">
             <div className="px-4 py-5 sm:px-6">
@@ -23,32 +37,36 @@ const DescriptionList = ({ object, title, ignoreValues, customFormatting }: Desc
             <div className="border-t border-gray-200 dark:border-stone-700 px-4 py-5 sm:px-6">
                 <dl className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
                     {Object.entries(object).map((value, idx) => {
-                        if (ignoreValues?.includes(value[0])) return <></>
+                        if (ignoreValues?.includes(value[0])) return null;
 
                         const _customFormatting = customFormatting?.find(x => x.name === value[0]);
 
                         if (_customFormatting) return (
                             <div key={idx} className="sm:col-span-1">
-                                <dt className="text-sm font-medium text-gray-500 dark:text-gray-400 flex">{formatPascalAndSpace(value[0])}  <DuplicateIcon className="h-4 w-4 ml-1 cursor-pointer" /></dt>
+                                <dt className="text-sm font-medium text-gray-500 dark:text-gray-400 flex">{formatPascalAndSpace(value[0])}  <DuplicateIcon onClick={() => copyToClipboard((value[1] as string), value[0])} className="h-4 w-4 ml-1 cursor-pointer" /></dt>
                                 <dd className="mt-1 text-sm text-gray-900 dark:text-gray-100">{_customFormatting.func(value[1])}</dd>
+                            </div>
+                        )
+                        const objectValueAsString = (value[1] as string);
+                        const objectValueAsStringLength = objectValueAsString.length;
+
+
+                        if (objectValueAsStringLength > 80) return (
+                            <div className="sm:col-span-2">
+                                <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">About</dt>
+                                <dd className="mt-1 text-sm text-gray-900 dark:text-gray-100">
+                                    {objectValueAsString.substring(0, 500)}{objectValueAsStringLength > 500 && "..."}
+                                </dd>
                             </div>
                         )
 
                         return (
                             <div key={idx} className="sm:col-span-1">
-                                <dt className="text-sm font-medium text-gray-500 dark:text-gray-400 flex">{formatPascalAndSpace(value[0])}  <DuplicateIcon className="h-4 w-4 ml-1 cursor-pointer" /></dt>
+                                <dt className="text-sm font-medium text-gray-500 dark:text-gray-400 flex">{formatPascalAndSpace(value[0])}  <DuplicateIcon onClick={() => copyToClipboard((value[1] as string), value[0])} className="h-4 w-4 ml-1 cursor-pointer" /></dt>
                                 <dd className="mt-1 text-sm text-gray-900 dark:text-gray-100">{(value[1] as any)}</dd>
                             </div>
                         )
                     })}
-                    <div className="sm:col-span-2">
-                        <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">About</dt>
-                        <dd className="mt-1 text-sm text-gray-900 dark:text-gray-100">
-                            Fugiat ipsum ipsum deserunt culpa aute sint do nostrud anim incididunt cillum culpa consequat. Excepteur
-                            qui ipsum aliquip consequat sint. Sit id mollit nulla mollit nostrud in ea officia proident. Irure nostrud
-                            pariatur mollit ad adipisicing reprehenderit deserunt qui eu.
-                        </dd>
-                    </div>
                 </dl>
             </div>
         </div>
