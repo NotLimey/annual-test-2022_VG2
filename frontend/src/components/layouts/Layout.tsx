@@ -27,8 +27,7 @@ const navigation = [
     { name: "Hours", href: '/limeyfy/hours', icon: ClockIcon, roles: ["limeyfy", "admin"] },
     { name: "Users", href: '/auth/users', icon: UsersIcon, roles: ["admin"] },
     { name: "Roles", href: '/auth/roles', icon: FingerPrintIcon, roles: ["admin"] },
-    { name: "Companies", href: '/auth/companies', icon: OfficeBuildingIcon, roles: ["admin"] },
-    { name: "Uno Marine", href: '/uno-marine', icon: TruckIcon },
+    { name: "Companies", href: '/auth/companies', icon: OfficeBuildingIcon, roles: ["admin"] }
 ]
 const userNavigation = [
     { name: 'Your Profile', href: '/profile' },
