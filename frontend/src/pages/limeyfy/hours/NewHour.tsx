@@ -1,11 +1,12 @@
 import { useQuery } from "react-query";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import Cms from "../../../components/cms/Cms";
 import { fetchProjects, fetchUsers } from "../../../scripts/fetch";
 import { TProject } from "../../../types/Limeyfy";
 
 const NewHour = () => {
     const { data: projects } = useQuery("limeyfy_projects", fetchProjects);
+    const [searchParams] = useSearchParams();
 
     if (!projects) return <></>;
 
@@ -22,6 +23,7 @@ const NewHour = () => {
     return (
         <div>
             <Cms
+                title="Add hour"
                 submit={{
                     endpoint: "/limeyfy/hours",
                 }}
@@ -32,7 +34,15 @@ const NewHour = () => {
                         type: "select",
                         select: {
                             data: projects.data ?? [],
-                            defaultValue: (data: TProject[]) => data[0],
+                            defaultValue: (data: TProject[]) => {
+                                const id = searchParams.get("id");
+                                if (id) {
+                                    const proj = data.find(x => x.id === id);
+                                    if (proj)
+                                        return proj;
+                                }
+                                return data[0]
+                            },
                             selectIdentifier: "title",
                             onSet: (data: TProject) => data.id
                         }

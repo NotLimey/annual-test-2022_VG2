@@ -1,13 +1,11 @@
-import { DefaultHelmet } from "@limeyfy/react-seo";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import ReactDOM, { createRoot } from "react-dom/client";
-import { Toaster } from "react-hot-toast";
+import React from "react";
+import { createRoot } from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { ReactQueryDevtools } from "react-query/devtools"
+import { ReactQueryDevtools } from "react-query/devtools";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
-import useTheme from "./hooks/useTheme";
+import FullscreenLoader from "./components/loaders/FullscreenLoader";
 import "./index.css";
 const env = import.meta.env;
 
@@ -29,19 +27,17 @@ const queryClient = new QueryClient({
 
 axios.defaults.baseURL = BaseUrl;
 
-document.addEventListener('DOMContentLoaded', function (event) {
-  if (!container) {
-    container = document.getElementById('root') as HTMLElement;
-    const root = createRoot(container)
-    root.render(
-      <BrowserRouter>
-        <QueryClientProvider client={queryClient}>
-          <ReactQueryDevtools />
-          <div className="dark:bg-stone-900 w-full min-h-screen dark:text-white">
-            <App />
-          </div>
-        </QueryClientProvider>
-      </BrowserRouter>
-    );
-  }
-});
+container = document.getElementById('root') as HTMLElement;
+const root = createRoot(container)
+root.render(
+  <React.Suspense fallback={<FullscreenLoader text="Loading website..." />}>
+    <BrowserRouter>
+      <QueryClientProvider client={queryClient}>
+        <ReactQueryDevtools />
+        <div className="dark:bg-stone-900 w-full min-h-screen dark:text-white">
+          <App />
+        </div>
+      </QueryClientProvider>
+    </BrowserRouter>
+  </React.Suspense>
+);

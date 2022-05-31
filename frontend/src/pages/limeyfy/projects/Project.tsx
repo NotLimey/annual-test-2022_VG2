@@ -1,18 +1,19 @@
 import DescriptionList from "@/components/information/DescriptionList";
+import Loader from "@/components/loaders/Loader";
+import { fetchHours, fetchProjects } from "@/scripts/fetch";
 import { classNames } from "@/scripts/tailwind";
+import { THour, TProject } from "@/types/Limeyfy";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import { useLocation, useParams } from "react-router-dom";
-import Cms from "../../../components/cms/Cms";
-import Loader from "../../../components/loaders/Loader";
-import { fetchHours, fetchProjects } from "../../../scripts/fetch";
-import { THour, TProject } from "../../../types/Limeyfy";
+import { Link, useLocation, useParams } from "react-router-dom";
 
 const Project = () => {
     const { id } = useParams();
     const [project, setProject] = useState<null | TProject>()
     const { data, isLoading: dataLoading, refetch } = useQuery("limeyfy_projects", fetchProjects)
-    const { data: hours } = useQuery(["limeyfy_projects", id], () => fetchHours(id as string))
+    const { data: hours } = useQuery(["limeyfy_projects", id], () => fetchHours(id as string), {
+        refetchOnMount: true
+    })
 
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState(false)
@@ -54,18 +55,28 @@ const Project = () => {
                 ]}
             />
             <div className="mt-8 bg-white dark:bg-stone-800 sm:rounded-lg">
-                <div className={classNames("border-b px-4 py-2 sm:px-6 border-b-gray-200 dark:border-b-stone-700")}>
-                    Hour summary in "{project.title}"
+                <div className={classNames(hours?.data.length > 0 ? "border-b" : "", "px-4 py-5 sm:px-6 border-b-gray-200 dark:border-b-stone-700 flex justify-between items-center gap-x-2")}>
+                    <p>
+                        Hour summary in "{project.title}"
+                    </p>
+                    <Link
+                        to={"/limeyfy/hours/add?id=" + project.id}
+                        className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-limeyfy-600 hover:bg-limeyfy-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-limeyfy-500"
+                    >
+                        Add
+                    </Link>
                 </div>
                 {hours?.data.map((hour: THour, idx: number) => (
-                    <div className={classNames(idx !== hours.data.length - 1 ? "border-b" : "", "px-4 py-3 sm:px-6 border-b-gray-200 dark:border-b-stone-700 text-sm flex flex-col sm:flex-row items-center")} key={idx}>
-                        <div className="mb-4 sm:mb-0">
-                            <span className="bg-gray-200 dark:bg-stone-700 px-2 py-1 sm:mr-3 rounded-md">{hour.hours}</span>
+                    <div className={classNames(idx !== hours.data.length - 1 ? "border-b" : "", "px-4 py-4 sm:px-6 border-b-gray-200 dark:border-b-stone-700 text-sm flex flex-col sm:flex-row items-center justify-between")} key={idx}>
+
+                        <p className="w-full text-left">{hour.description}</p>
+                        <div className="mt-4 sm:mt-0">
+                            <span className="bg-gray-200 dark:bg-stone-700 px-2 py-1 sm:ml-5 rounded-md">{hour.hours}</span>
                         </div>
-                        <p>{hour.description}</p>
                         <div className="h-full mt-4 sm:mt-0 text-center sm:ml-3">
                             {new Date(`${hour.date}`).toLocaleDateString()}
                         </div>
+
                     </div>
                 ))}
             </div>

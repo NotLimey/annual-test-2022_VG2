@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
-import { Route, Routes } from "react-router-dom"
-import Cms from "../../components/cms/Cms";
+import { Route, Routes } from "react-router-dom";
 import Loader from "../../components/loaders/Loader";
 import NotFound from "../../components/status-pages/NotFound";
 import Unauthorized from "../../components/status-pages/Unauthorized";
 import useAuth from "../../hooks/useAuth";
 import Expenses from "./expenses/Expenses";
 import NewExpense from "./expenses/NewExpense";
-import Hours from "./hours/Hours";
 import NewHour from "./hours/NewHour";
 import Invoice from "./invoices/Invoice";
 import Invoices from "./invoices/Invoices";
@@ -46,7 +44,6 @@ const LimeyfyRouting = () => {
             <Route path="expenses" element={<Expenses />} />
             <Route path="expenses/add" element={<NewExpense />} />
             {/* Hours */}
-            <Route path="hours" element={<Hours />} />
             <Route path="hours/add" element={<NewHour />} />
             {/* * Path */}
             <Route path="*" element={<NotFound />} />
