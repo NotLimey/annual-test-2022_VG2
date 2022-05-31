@@ -18,8 +18,6 @@ public class Request
 
     public bool IsPublic { get; set; } = false;
 
-    public double Hours { get; set; }
-
     public int LinesOfCode { get; set; }
 }
 

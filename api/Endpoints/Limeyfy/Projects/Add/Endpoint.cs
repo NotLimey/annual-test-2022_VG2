@@ -26,7 +26,6 @@ public class Endpoint : Endpoint<Request, Response>
         {
             Created = DateTime.UtcNow,
             Description = r.Description,
-            Hours = r.Hours,
             Images = r.Images,
             Title = r.Title,
             IsCompleted = r.IsCompleted,

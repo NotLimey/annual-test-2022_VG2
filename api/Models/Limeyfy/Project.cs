@@ -23,8 +23,6 @@ public class Project
 
     public bool IsPublic { get; set; } = false;
 
-    public double Hours { get; set; }
-
     public int LinesOfCode { get; set; }
 
     public DateTime Created { get; set; }

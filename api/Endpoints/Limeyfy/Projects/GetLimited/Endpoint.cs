@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace Limeyfy.API.Endpoints.Limeyfy.Projects.GetLimited;
 
-public class Endpoint : Endpoint<Request, List<ProjectDto>>
+public class Endpoint : Endpoint<Request, List<ProjectLimitedDto>>
 {
     private readonly IProjectService _projectService;
     private readonly IConfiguration _configuration;
@@ -29,6 +29,6 @@ public class Endpoint : Endpoint<Request, List<ProjectDto>>
             ThrowError("Unauthorized");
         }
         var projects = await _projectService.GetProjectsAsync();
-        await SendAsync(projects.Adapt<List<ProjectDto>>());
+        await SendAsync(projects.Adapt<List<ProjectLimitedDto>>());
     }
 }

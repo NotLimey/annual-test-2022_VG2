@@ -26,7 +26,6 @@ public class Endpoint : Endpoint<Request, Response>
             ThrowError("Cant find project by id");
 
         project.Description = r.Description;
-        project.Hours = r.Hours;
         project.Images = r.Images;
         project.Title = r.Title;
         project.IsCompleted = r.IsCompleted;
