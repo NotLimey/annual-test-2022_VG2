@@ -16,6 +16,7 @@ public class HourService : IHourService
     public async Task<Hour?> GetHourAsync(string id) => await _context.Hours.FirstOrDefaultAsync(x => x.Id == id);
 
     public async Task<List<Hour>> GetHoursAsync() => await _context.Hours.ToListAsync();
+    public Task<List<Hour>> GetHoursAsync(string id) => _context.Hours.Where(x => x.ProjectId == id).ToListAsync();
 
     public async Task<Hour> CreateHourAsync(Hour hour)
     {

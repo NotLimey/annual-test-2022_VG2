@@ -15,3 +15,5 @@ export const fetchStatisticsRevenue = async () => await axios("/statistics/reven
 export const fetchStatisticsRevenueLastYear = async () => await axios("/statistics/revenue/last-year");
 
 export const fetchExpenses = async () => await axios("/expenses");
+
+export const fetchHours = async (id: string) => await axios(`/limeyfy/hours/${id}`);

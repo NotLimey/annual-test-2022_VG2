@@ -70,3 +70,12 @@ export interface TExpense {
     toLink: string;
     why: string;
 }
+
+export type THour = {
+    id: string;
+    projectId: string;
+    userId: string;
+    date: string;
+    hours: number;
+    description: string;
+}

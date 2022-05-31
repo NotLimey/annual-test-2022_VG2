@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import ReactDOM, { createRoot } from "react-dom/client";
 import { Toaster } from "react-hot-toast";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools"
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import useTheme from "./hooks/useTheme";
@@ -35,6 +36,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
     root.render(
       <BrowserRouter>
         <QueryClientProvider client={queryClient}>
+          <ReactQueryDevtools />
           <div className="dark:bg-stone-900 w-full min-h-screen dark:text-white">
             <App />
           </div>

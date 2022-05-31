@@ -15,14 +15,14 @@ public class Endpoint : Endpoint<Request, List<Hour>>
 
     public override void Configure()
     {
-        Get("/limeyfy/hours");
+        Get("/limeyfy/hours/{id}");
         AuthSchemes(JwtBearerDefaults.AuthenticationScheme);
         Policies("limeyfy");
     }
 
     public override async Task HandleAsync(Request r, CancellationToken c) 
     {
-        var hours = await _hourService.GetHoursAsync();
+        var hours = await _hourService.GetHoursAsync(r.Id);
         var sorted = hours.OrderBy(x => x.Date).ToList();
         sorted.Reverse();
         await SendAsync(sorted);
