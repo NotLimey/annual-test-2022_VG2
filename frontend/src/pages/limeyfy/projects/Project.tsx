@@ -42,6 +42,7 @@ const Project = () => {
                 object={project}
                 title={project.title}
                 editPath={location.pathname + "/edit"}
+                ignoreValues={["id"]}
                 customFormatting={[
                     {
                         name: "created",
