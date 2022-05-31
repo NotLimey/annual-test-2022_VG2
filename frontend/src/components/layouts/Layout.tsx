@@ -9,13 +9,13 @@ import {
 } from '@heroicons/react/outline'
 import { Link, useLocation } from '@tanstack/react-location'
 import React, { Fragment, useState } from 'react'
-import Logo from "../../assets/Logo.svg"
-import LogoDark from "../../assets/LogoWhiteTextFull.svg"
-import useAuth from '../../hooks/useAuth'
-import useTheme from '../../hooks/useTheme'
-import { getIdenticon } from '../../scripts/avatar'
-import signOut from '../../scripts/signOut'
-import { classNames } from '../../scripts/tailwind'
+import Logo from "@/assets/Logo.svg"
+import LogoDark from "@/assets/LogoWhiteTextFull.svg"
+import useAuth from '@/hooks/useAuth'
+import useTheme from '@/hooks/useTheme'
+import { getIdenticon } from '@/scripts/avatar'
+import signOut from '@/scripts/signOut'
+import { classNames } from '@/scripts/tailwind'
 import BackBtn from '../buttons/BackBtn'
 
 const navigation = [
@@ -209,7 +209,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                                         leaveFrom="transform opacity-100 scale-100"
                                         leaveTo="transform opacity-0 scale-95"
                                     >
-                                        <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-gray-100 dark:bg-stone-900 ring-1 ring-black dark:ring-stone-700 ring-opacity-5 focus:outline-none">
+                                        <Menu.Items as="div" className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-gray-100 dark:bg-stone-900 ring-1 ring-black dark:ring-stone-700 ring-opacity-5 focus:outline-none">
                                             {userNavigation.map((item) => (
                                                 <Menu.Item key={item.name}>
                                                     {({ active }) => item.func ? <button
@@ -221,15 +221,17 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                                                     >
                                                         {item.name}
                                                     </button> : (
-                                                        <Link
-                                                            to={item.href}
-                                                            className={classNames(
-                                                                active ? 'bg-gray-100 dark:bg-stone-800' : '',
-                                                                'block px-4 py-2 text-sm text-gray-700 dark:text-gray-300'
-                                                            )}
-                                                        >
-                                                            {item.name}
-                                                        </Link>
+                                                        <>
+                                                            <Link
+                                                                to={item.href}
+                                                                className={classNames(
+                                                                    active ? 'bg-gray-100 dark:bg-stone-800' : '',
+                                                                    'block px-4 py-2 text-sm text-gray-700 dark:text-gray-300'
+                                                                )}
+                                                            >
+                                                                {item.name}
+                                                            </Link>
+                                                        </>
                                                     )}
                                                 </Menu.Item>
                                             ))}
