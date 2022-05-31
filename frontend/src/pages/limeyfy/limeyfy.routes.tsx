@@ -1,6 +1,7 @@
 import Cms from "@/components/cms/Cms";
 import EditItem from "@/components/dynamic-components/EditItem";
 import { fetchProjects } from "@/scripts/fetch";
+import { TProject } from "@/types/Limeyfy";
 import { DefaultGenerics, Route } from "@tanstack/react-location";
 import { QueryClient } from "react-query";
 import EditProject from "./projects/EditProject";
@@ -88,9 +89,11 @@ export const limeyfyRoutes: Route<DefaultGenerics>[] = [
                         path: "edit",
                         element: async ({ params: { id } }) => {
                             return (
-                                <EditItem id={(id as string)} query={["projects", fetchProjects]}>
-
-                                </EditItem>
+                                <EditItem<TProject>
+                                    id={(id as string)}
+                                    query={["projects", async () => (await fetchProjects()).data]}
+                                    returnElement={(project) => <EditProject project={project} />}
+                                />
                             )
                         }
                     }
