@@ -1,6 +1,6 @@
-import { ICmsProp } from "../../components/cms/CmsTypes";
+import { ICmsField } from "../../components/cms/CmsTypes";
 
-const formatFormDataCms = (form: ICmsProp[]) => {
+const formatFormDataCms = (form: ICmsField[]) => {
     let formData: any = {};
     for (var i = 0; i < form.length; i++) {
         const item = form[i];

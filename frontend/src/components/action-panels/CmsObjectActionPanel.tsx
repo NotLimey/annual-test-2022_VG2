@@ -1,11 +1,11 @@
 import { XIcon } from "@heroicons/react/outline";
 import { useEffect, useState } from "react";
 import CmsObject from "../cms/CmsObject";
-import { ICmsField } from "../cms/CmsTypes";
+import { ICmsField, ICmsObjectField } from "../cms/CmsTypes";
 
 interface ICmsObjectActionPanel {
     close: () => void;
-    fields: ICmsField[];
+    fields: ICmsObjectField[];
     onSubmit: (obj: any) => void;
     onEdit?: (obj: any) => void;
     edit?: boolean;
@@ -20,7 +20,7 @@ const CmsObjectActionPanel = ({
     onEdit,
     title,
 }: ICmsObjectActionPanel) => {
-    const [fields, setFields] = useState<ICmsField[]>([]);
+    const [fields, setFields] = useState<ICmsObjectField[]>([]);
 
     useEffect(() => {
         const elem = window.document.querySelector("body");
@@ -35,7 +35,7 @@ const CmsObjectActionPanel = ({
 
     useEffect(() => {
         setFields([]);
-        let newData: ICmsField[] = [];
+        let newData: ICmsObjectField[] = [];
         for (var f = 0; f < propFields.length; f++) {
             let item = propFields[f];
             let val;

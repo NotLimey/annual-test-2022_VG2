@@ -3,7 +3,7 @@ import Cms from "../../../components/cms/Cms";
 import { fetchCompanies } from "../../../scripts/fetch";
 
 const NewCompany = () => {
-    const { refetch } = useQuery("auth_companies", fetchCompanies)
+    const { refetch } = useQuery("companies", fetchCompanies)
     return (
         <Cms
             title={`Add company`}

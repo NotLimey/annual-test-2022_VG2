@@ -1,7 +1,7 @@
-import { ICmsProp } from "../../components/cms/CmsTypes";
+import { ICmsField } from "../../components/cms/CmsTypes";
 
-const getDefaultValuesCms = (props: ICmsProp[]) => {
-    let formData: ICmsProp[] = [];
+const getDefaultValuesCms = (props: ICmsField[]) => {
+    let formData: ICmsField[] = [];
     for (var i = 0; i < props.length; i++) {
         let item = props[i];
         let val = item.value;

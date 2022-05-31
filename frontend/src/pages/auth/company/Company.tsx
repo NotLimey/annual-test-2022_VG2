@@ -9,9 +9,9 @@ import useSettings from "../../../hooks/useSettings";
 import { fetchCompanies } from "../../../scripts/fetch";
 
 const Company = () => {
-    const { data: { id } } = useMatch();
+    const { params: { id } } = useMatch();
     const [company, setCompany] = useState<null | TCompany>()
-    const { data, isLoading: dataLoading, refetch } = useQuery("auth_companies", fetchCompanies)
+    const { data, isLoading: dataLoading, refetch } = useQuery("companies", fetchCompanies)
 
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState(false)

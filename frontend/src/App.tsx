@@ -4,8 +4,10 @@ import React, { useEffect, useState } from 'react';
 import { Toaster } from 'react-hot-toast';
 import Layout from './components/layouts/Layout';
 import Loader from './components/loaders/Loader';
+import NotFound from './components/status-pages/NotFound';
 import useTheme from './hooks/useTheme';
 import Home from './pages';
+import { authRoutes } from './pages/auth/auth.routes';
 import { limeyfyRoutes } from './pages/limeyfy/limeyfy.routes';
 import PrivateProvider from './providers/PrivateProvider';
 
@@ -70,6 +72,15 @@ const PrivatePaths = () => (
           path: "/limeyfy",
           element: <Layout><Outlet /></Layout>,
           children: limeyfyRoutes
+        },
+        {
+          path: "/auth",
+          element: <Layout><Outlet /></Layout>,
+          children: authRoutes
+        },
+        { // Not found
+          path: "*",
+          element: <NotFound />
         }
       ]}
     />

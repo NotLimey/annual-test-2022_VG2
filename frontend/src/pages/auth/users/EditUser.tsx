@@ -7,10 +7,10 @@ import { fetchCompanies, fetchUsers } from "../../../scripts/fetch";
 import { UserType } from "../../../types/User";
 
 const EditUser = () => {
-    const { data: { id } } = useMatch();
+    const { params: { id } } = useMatch();
     const [user, setUser] = useState<null | UserType>()
     const { data, isLoading: dataLoading, refetch } = useQuery("auth_users", fetchUsers)
-    const { data: companies } = useQuery("auth_companies", fetchCompanies);
+    const { data: companies } = useQuery("companies", fetchCompanies);
 
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState(false)

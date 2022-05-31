@@ -6,7 +6,7 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import App from "./App";
 import FullscreenLoader from "./components/loaders/FullscreenLoader";
 import "./index.css";
-const env = import.meta.env;
+const env = (import.meta as any).env;
 
 export const BaseUrl = env.DEV
   ? "https://localhost:5001"

@@ -6,7 +6,7 @@ import { fetchCompanies } from "../../../scripts/fetch";
 import { TCompany } from "../../../types/Company";
 
 const Companies = () => {
-    const { data, isLoading } = useQuery("auth_companies", fetchCompanies);
+    const { data, isLoading } = useQuery("companies", fetchCompanies);
 
     if (isLoading) return <Loader className="mt-12" />
 

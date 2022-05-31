@@ -1,8 +1,8 @@
-import { ICmsProp } from "../../components/cms/CmsTypes";
+import { ICmsField } from "../../components/cms/CmsTypes";
 
 const checkIfDuplicateExists = (arr: string[]) => (new Set(arr).size !== arr.length);
 
-const isDuplicates = (props: ICmsProp[]) => {
+const isDuplicates = (props: ICmsField[]) => {
     const names = props.map(x => x.name);
     let isDuplicates = checkIfDuplicateExists(names);
     if (isDuplicates)

@@ -4,7 +4,7 @@ import { fetchCompanies, fetchUsers } from "../../../scripts/fetch";
 
 const Register = () => {
     const { refetch: refetchUsers } = useQuery("auth_users", fetchUsers);
-    const { data } = useQuery("auth_companies", fetchCompanies);
+    const { data } = useQuery("companies", fetchCompanies);
 
     if (!data) return <></>;
 

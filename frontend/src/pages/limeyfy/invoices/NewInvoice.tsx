@@ -7,7 +7,7 @@ import { TCompany } from "../../../types/Company";
 
 const NewInvoice = () => {
     const { user } = useAuth();
-    const { data } = useQuery("auth_companies", fetchCompanies);
+    const { data } = useQuery("companies", fetchCompanies);
     const { refetch } = useQuery("limeyfy_invoices", fetchInvoices);
 
     if (!data) return <Loader />

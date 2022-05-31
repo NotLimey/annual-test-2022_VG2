@@ -1,19 +1,28 @@
 import Cms from "@/components/cms/Cms";
 import EditItem from "@/components/dynamic-components/EditItem";
+import NotFound from "@/components/status-pages/NotFound";
 import { fetchProjects } from "@/scripts/fetch";
 import { TProject } from "@/types/Limeyfy";
 import { DefaultGenerics, Route } from "@tanstack/react-location";
+import React from "react";
 import { QueryClient } from "react-query";
-import Invoice from "./invoices/Invoice";
-import Invoices from "./invoices/Invoices";
-import EditProject from "./projects/EditProject";
-import Project from "./projects/Project";
-import Projects from "./projects/Projects";
+import NewHour from "./hours/NewHour";
+
+const Invoice = React.lazy(() => import("./invoices/Invoice"));
+const NewInvoice = React.lazy(() => import("./invoices/NewInvoice"));
+const Invoices = React.lazy(() => import("./invoices/Invoices"));
+
+const Projects = React.lazy(() => import("./projects/Projects"));
+const Project = React.lazy(() => import("./projects/Project"));
+const EditProject = React.lazy(() => import("./projects/EditProject"));
+
+const Expenses = React.lazy(() => import("./expenses/Expenses"));
+const NewExpense = React.lazy(() => import("./expenses/NewExpense"));
 
 const queryClient = new QueryClient();
 
 export const limeyfyRoutes: Route<DefaultGenerics>[] = [
-    {
+    { // Projects
         path: "projects",
         loader: async () => await queryClient.getQueryData("projects") ?? await queryClient.fetchQuery("projects", fetchProjects).then(() => ({})),
         children: [
@@ -103,7 +112,7 @@ export const limeyfyRoutes: Route<DefaultGenerics>[] = [
             }
         ]
     },
-    {
+    { // Invoices
         path: "invoices",
         children: [
             {
@@ -111,9 +120,34 @@ export const limeyfyRoutes: Route<DefaultGenerics>[] = [
                 element: <Invoices />
             },
             {
+                path: "/add",
+                element: <NewInvoice />
+            },
+            {
                 path: ":id",
                 element: <Invoice />
             }
         ]
+    },
+    { // Expenses
+        path: "expenses",
+        children: [
+            {
+                path: "/",
+                element: <Expenses />
+            },
+            {
+                path: "/add",
+                element: <NewExpense />
+            }
+        ]
+    },
+    { // Hours
+        path: "hours/add",
+        element: <NewHour />
+    },
+    { // Not found
+        path: "*",
+        element: <NotFound />
     }
 ]
