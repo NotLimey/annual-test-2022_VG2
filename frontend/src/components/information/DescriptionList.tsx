@@ -7,7 +7,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 interface DescriptionListProps {
-    object?: any;
+    object: any;
     title?: string;
     ignoreValues?: string[];
     customFormatting?: DescriptionListCustomField[];
@@ -38,7 +38,7 @@ const DescriptionList = ({ object, title, ignoreValues, customFormatting, editPa
             <div className="px-4 py-5 sm:px-6 flex justify-between items-center">
                 <div>
                     <h3 className="text-lg leading-6 font-medium text-gray-900 dark:text-gray-100">{title ?? "Applicant Information"}</h3>
-                    <p className="mt-1 max-w-2xl text-sm text-gray-500 dark:text-gray-400">Personal details and application.</p>
+                    {/* <p className="mt-1 max-w-2xl text-sm text-gray-500 dark:text-gray-400">Personal details and application.</p> */}
                 </div>
                 {editPath && (
                     <Link
@@ -63,22 +63,24 @@ const DescriptionList = ({ object, title, ignoreValues, customFormatting, editPa
                             </div>
                         )
                         const objectValueAsString = (value[1] as string);
-                        const objectValueAsStringLength = objectValueAsString.length;
+                        if (objectValueAsString) {
+                            const objectValueAsStringLength = objectValueAsString.length;
 
-                        if (objectValueAsStringLength > 80) return (
-                            <div key={idx} className="sm:col-span-2">
-                                <dt className="text-sm font-medium text-gray-500 dark:text-gray-400 flex">{formatPascalAndSpace(value[0])}  <DuplicateIcon onClick={() => copyToClipboard((value[1] as string), value[0])} className="h-4 w-4 ml-1 cursor-pointer" /></dt>
-                                <dd className="mt-1 text-sm text-gray-900 dark:text-gray-100">
-                                    {showFullValue?.includes(value[0]) ? (
-                                        <span>{objectValueAsString}</span>
-                                    ) : (
-                                        <>
-                                            {objectValueAsString.substring(0, 500)}{objectValueAsStringLength > 500 && <span>... <span className="text-limeyfy-600 cursor-pointer" onClick={() => setShowFullValue([...showFullValue ?? [], value[0]])}>See more</span></span>}
-                                        </>
-                                    )}
-                                </dd>
-                            </div>
-                        )
+                            if (objectValueAsStringLength > 80) return (
+                                <div key={idx} className="sm:col-span-2">
+                                    <dt className="text-sm font-medium text-gray-500 dark:text-gray-400 flex">{formatPascalAndSpace(value[0])}  <DuplicateIcon onClick={() => copyToClipboard((value[1] as string), value[0])} className="h-4 w-4 ml-1 cursor-pointer" /></dt>
+                                    <dd className="mt-1 text-sm text-gray-900 dark:text-gray-100">
+                                        {showFullValue?.includes(value[0]) ? (
+                                            <span>{objectValueAsString}</span>
+                                        ) : (
+                                            <>
+                                                {objectValueAsString.substring(0, 500)}{objectValueAsStringLength > 500 && <span>... <span className="text-limeyfy-600 cursor-pointer" onClick={() => setShowFullValue([...showFullValue ?? [], value[0]])}>See more</span></span>}
+                                            </>
+                                        )}
+                                    </dd>
+                                </div>
+                            )
+                        }
 
                         return (
                             <div key={idx} className="sm:col-span-1">

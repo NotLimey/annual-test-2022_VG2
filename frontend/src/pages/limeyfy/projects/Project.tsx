@@ -1,6 +1,7 @@
+import DescriptionList from "@/components/information/DescriptionList";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import Cms from "../../../components/cms/Cms";
 import Loader from "../../../components/loaders/Loader";
 import { fetchProjects } from "../../../scripts/fetch";
@@ -13,6 +14,7 @@ const Project = () => {
 
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState(false)
+    const location = useLocation();
 
     useEffect(() => {
         if (dataLoading || !id || !data) return;
@@ -36,77 +38,14 @@ const Project = () => {
 
     return (
         <>
-            <Cms
-                title="Edit project"
-                edit
-                submit={{
-                    endpoint: "/limeyfy/project",
-                    onSuccessAfterToast: () => refetch(),
-                    options: {
-                        method: "PUT"
-                    },
-                    headers: {
-                        "Id": project.id
-                    }
-                }}
-                fields={[
+            <DescriptionList
+                object={project}
+                title={project.title}
+                editPath={location.pathname + "/edit"}
+                customFormatting={[
                     {
-                        name: "title",
-                        type: "string",
-                        value: project.title,
-                        options: {
-                            placeholder: "Project title"
-                        }
-                    },
-                    {
-                        name: "description",
-                        type: "text",
-                        value: project.description,
-                        options: {
-                            placeholder: "..."
-                        }
-                    },
-                    {
-                        name: "privateNote",
-                        type: "text",
-                        value: project.privateNote,
-                        options: {
-                            placeholder: "..."
-                        }
-                    },
-                    {
-                        name: "referenceLink",
-                        type: "string",
-                        value: project.referenceLink,
-                        options: {
-                            placeholder: "https://vg.no"
-                        }
-                    },
-                    {
-                        name: "isCompleted",
-                        type: "boolean",
-                        value: project.isCompleted
-                    },
-                    {
-                        name: "isPublic",
-                        type: "boolean",
-                        value: project.isPublic
-                    },
-                    {
-                        name: "hours",
-                        type: "number",
-                        value: project.hours,
-                        options: {
-                            placeholder: "10"
-                        }
-                    },
-                    {
-                        name: "linesOfCode",
-                        type: "number",
-                        value: project.linesOfCode,
-                        options: {
-                            placeholder: "3000"
-                        }
+                        name: "created",
+                        func: obj => new Date(`${obj}`).toLocaleDateString()
                     }
                 ]}
             />
