@@ -1,7 +1,7 @@
-import { useNavigate } from "@tanstack/react-location";
+import {useLocation} from "@tanstack/react-location";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useMutation, useQueryClient } from "react-query";
+import React, {useEffect, useState} from "react";
+import {useMutation, useQueryClient} from "react-query";
 import useToast from "../../hooks/useToast";
 import formatFormDataCms from "../../scripts/cms/formatFormDataCms";
 import getDefaultValuesCms from "../../scripts/cms/getDefaultValuesCms";
@@ -12,7 +12,7 @@ import CmsObject from "./CmsObject";
 import CmsSelect from "./CmsSelect";
 import CmsStringField from "./CmsStringField";
 import CmsTextField from "./CmsTextField";
-import { ICms, ICmsObjectField, ICmsField } from "./CmsTypes";
+import {ICms, ICmsField, ICmsObjectField} from "./CmsTypes";
 
 const Cms = (props: ICms) => {
     const { title } = props;
@@ -20,7 +20,7 @@ const Cms = (props: ICms) => {
     const [form, setForm] = useState<ICmsField[]>([]);
     const { errorToast, emojiToast } = useToast();
     const queryClient = useQueryClient();
-    const navigate = useNavigate();
+    const location = useLocation();
 
     useEffect(() => {
         if (!props.fields || props.fields.length < 1) return;
@@ -52,9 +52,7 @@ const Cms = (props: ICms) => {
             if (props.submit?.onSuccessAfterToast) props.submit.onSuccessAfterToast();
 
             if (!props.submit?.noNavigate) {
-                setTimeout(() => {
-                    navigate({ to: -1 });
-                }, 500);
+                setTimeout(() => location.history.back(), 500);
             }
         },
         onError: (err: any) => {
