@@ -10,9 +10,9 @@ const PrivateProvider = ({ children }: { children: React.ReactNode }) => {
 
     if (isLoadingUser) return <FullscreenLoader text='Connecting to database..' />
 
-    if (isError) return <ErrorPage apiStatus={errorCode} />
-
     if (!isAuthenticated) return <Login />
+
+    if (isError) return <ErrorPage apiStatus={errorCode} />
 
     if (!rolesUpToDate) {
         signOut();

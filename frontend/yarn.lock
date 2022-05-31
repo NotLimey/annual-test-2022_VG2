@@ -372,10 +372,10 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
-"@limeyfy/react-seo@^1.7.3":
-  version "1.7.3"
-  resolved "https://registry.yarnpkg.com/@limeyfy/react-seo/-/react-seo-1.7.3.tgz#db0a2eb3620fac909109568fc666cfea11f82fc1"
-  integrity sha512-DGlkjmvuFvtKv8K9VMnVhIQGJpu0BGMpyshm4hLK+ZdFt42EVPBm80oycTSDiR8YpndaAqRDAblqCQJwsfC+cQ==
+"@limeyfy/react-seo@2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@limeyfy/react-seo/-/react-seo-2.0.2.tgz#28275db990ee89208da5abdcebb7095e05c50f92"
+  integrity sha512-VlBtGMrjkpw+bTilFV/qD+CqH2G4WP2EQjWrSjSpWMCCyv5kZRBjrLZ4OZwdf90tN8iLoIoj7SH4PMjOWX4hLw==
   dependencies:
     react "^17.0.2"
     react-helmet "^6.1.0"

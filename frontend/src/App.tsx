@@ -1,15 +1,17 @@
-import { Outlet, ReactLocation, Router } from '@tanstack/react-location';
+import {Outlet, ReactLocation, Router} from '@tanstack/react-location';
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import { Toaster } from 'react-hot-toast';
+import React, {useEffect, useState} from 'react';
+import {Toaster} from 'react-hot-toast';
 import Layout from './components/layouts/Layout';
 import Loader from './components/loaders/Loader';
 import NotFound from './components/status-pages/NotFound';
 import useTheme from './hooks/useTheme';
 import Home from './pages';
-import { authRoutes } from './pages/auth/auth.routes';
-import { limeyfyRoutes } from './pages/limeyfy/limeyfy.routes';
+import {authRoutes} from './pages/auth/auth.routes';
+import {limeyfyRoutes} from './pages/limeyfy/limeyfy.routes';
 import PrivateProvider from './providers/PrivateProvider';
+import FullscreenLoader from "@/components/loaders/FullscreenLoader";
+import {BetterHelmet} from "@limeyfy/react-seo";
 
 const Profile = React.lazy(() => import('./pages/profile/Profile'));
 const Login = React.lazy(() => import('./pages/auth/Login'));
@@ -29,7 +31,7 @@ const App = () => {
     setTokenSat(true);
   }, [])
 
-  if (!tokenSat) return <p>...Loading</p>
+  if (!tokenSat) return <FullscreenLoader text="Retriving authorization token... This shouldn't take more than one second" />
 
   return (
     <>
@@ -37,6 +39,10 @@ const App = () => {
         position='top-right'
         reverseOrder={false}
       />
+        <BetterHelmet
+            title={"Limeyfy portal - Content management system"}
+            robots="noindex"
+        />
       <Router
         location={location}
         routes={[

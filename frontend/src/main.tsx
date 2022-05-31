@@ -26,15 +26,19 @@ const queryClient = new QueryClient({
 
 axios.defaults.baseURL = BaseUrl;
 
-container = document.getElementById('root') as HTMLElement;
-const root = createRoot(container)
-root.render(
-  <React.Suspense fallback={<FullscreenLoader text="Loading website..." />}>
-    <QueryClientProvider client={queryClient}>
-      <ReactQueryDevtools />
-      <div className="dark:bg-stone-900 w-full min-h-screen dark:text-white">
-        <App />
-      </div>
-    </QueryClientProvider>
-  </React.Suspense>
-);
+document.addEventListener('DOMContentLoaded', function (event) {
+  if (!container) {
+    container = document.getElementById('root') as HTMLElement;
+    const root = createRoot(container)
+    root.render(
+        <React.Suspense fallback={<FullscreenLoader text="Loading website..." />}>
+          <QueryClientProvider client={queryClient}>
+            <ReactQueryDevtools />
+            <div className="dark:bg-stone-900 w-full min-h-screen dark:text-white">
+              <App />
+            </div>
+          </QueryClientProvider>
+        </React.Suspense>
+    );
+  }
+});
