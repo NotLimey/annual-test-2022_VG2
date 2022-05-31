@@ -8,6 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@esbuild-plugins/node-globals-polyfill": "^0.1.1",
     "@headlessui/react": "^1.6.1",
     "@heroicons/react": "^1.0.6",
     "@limeyfy/react-seo": "^1.7.3",

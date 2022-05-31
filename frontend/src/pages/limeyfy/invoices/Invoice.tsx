@@ -20,7 +20,7 @@ const updateInvoice = async (id: string, isPaid: boolean) => {
 }
 
 const Invoice = () => {
-    const { data: { id } } = useMatch();
+    const { params: { id } } = useMatch();
     const { data, refetch } = useQuery("limeyfy_invoices", fetchInvoices)
     const { settings } = useSettings();
 

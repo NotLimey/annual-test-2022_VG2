@@ -4,6 +4,8 @@ import { fetchProjects } from "@/scripts/fetch";
 import { TProject } from "@/types/Limeyfy";
 import { DefaultGenerics, Route } from "@tanstack/react-location";
 import { QueryClient } from "react-query";
+import Invoice from "./invoices/Invoice";
+import Invoices from "./invoices/Invoices";
 import EditProject from "./projects/EditProject";
 import Project from "./projects/Project";
 import Projects from "./projects/Projects";
@@ -98,6 +100,19 @@ export const limeyfyRoutes: Route<DefaultGenerics>[] = [
                         }
                     }
                 ]
+            }
+        ]
+    },
+    {
+        path: "invoices",
+        children: [
+            {
+                path: "/",
+                element: <Invoices />
+            },
+            {
+                path: ":id",
+                element: <Invoice />
             }
         ]
     }
