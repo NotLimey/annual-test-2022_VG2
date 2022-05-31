@@ -25,7 +25,7 @@ const Invoices = () => {
                     badge={(idx) => data.data[idx].isPaid ? { color: "green", text: "Paid" } : { color: "red", text: "Not paid" }}
                     informationIcon={"CashIcon"}
                     information={i => `Kr ${i.total},-`}
-                    path={(id) => `/limeyfy/invoice/${id}`}
+                    path={(id) => `/limeyfy/invoices/${id}`}
                     date={(id) => {
                         const item = data.data.find((x: TInvoice) => x.id === id);
                         if (!item)
