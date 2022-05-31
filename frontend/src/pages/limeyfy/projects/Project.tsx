@@ -3,14 +3,14 @@ import Loader from "@/components/loaders/Loader";
 import { fetchHours, fetchProjects } from "@/scripts/fetch";
 import { classNames } from "@/scripts/tailwind";
 import { THour, TProject } from "@/types/Limeyfy";
+import { Link, useLocation, useMatch } from "@tanstack/react-location";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import { Link, useLocation, useParams } from "react-router-dom";
 
 const Project = () => {
-    const { id } = useParams();
+    const { params: { id } } = useMatch();
     const [project, setProject] = useState<null | TProject>()
-    const { data, isLoading: dataLoading, refetch } = useQuery("limeyfy_projects", fetchProjects)
+    const { data, isLoading: dataLoading } = useQuery("limeyfy_projects", fetchProjects)
     const { data: hours } = useQuery(["limeyfy_projects", id], () => fetchHours(id as string), {
         refetchOnMount: true
     })
@@ -20,6 +20,7 @@ const Project = () => {
     const location = useLocation();
 
     useEffect(() => {
+        console.log(id)
         if (dataLoading || !id || !data) return;
         const obj: TProject = data.data.find((x: TProject) => x.id === id);
         if (obj) {
@@ -45,7 +46,7 @@ const Project = () => {
             <DescriptionList
                 object={project}
                 title={project.title}
-                editPath={location.pathname + "/edit"}
+                editPath={location.current.pathname + "/edit"}
                 ignoreValues={["id"]}
                 customFormatting={[
                     {

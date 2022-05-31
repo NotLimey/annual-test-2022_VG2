@@ -1,7 +1,7 @@
+import { useNavigate } from "@tanstack/react-location";
 import axios from "axios";
 import { useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
-import { useNavigate } from "react-router-dom";
 import Logo from "../../assets/Logo_ikon.svg";
 import useAuth from "../../hooks/useAuth";
 import useToast from "../../hooks/useToast";

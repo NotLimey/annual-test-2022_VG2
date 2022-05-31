@@ -1,7 +1,7 @@
+import { Link, useMatch } from "@tanstack/react-location";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import { Link, useParams } from "react-router-dom";
 import RenderInvoicePDF from "../../../components/invoices/RenderInvoicePdfTS";
 import Loader from "../../../components/loaders/Loader";
 import useSettings from "../../../hooks/useSettings";
@@ -20,7 +20,7 @@ const updateInvoice = async (id: string, isPaid: boolean) => {
 }
 
 const Invoice = () => {
-    const { id } = useParams();
+    const { data: { id } } = useMatch();
     const { data, refetch } = useQuery("limeyfy_invoices", fetchInvoices)
     const { settings } = useSettings();
 

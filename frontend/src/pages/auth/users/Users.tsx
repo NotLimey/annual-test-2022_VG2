@@ -1,9 +1,9 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { ChevronDownIcon, MailIcon, SearchIcon, XIcon } from "@heroicons/react/outline";
+import { Link } from "@tanstack/react-location";
 import axios from "axios";
 import { Fragment, useEffect, useRef, useState } from "react";
 import { useQuery } from "react-query";
-import { Link } from "react-router-dom";
 import PageHeading from "../../../components/page-headings/PageHeading";
 import useAuth from "../../../hooks/useAuth";
 import { fetchRoles, fetchUsers, fetchUsersWithParams } from "../../../scripts/fetch";

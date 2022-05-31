@@ -1,15 +1,15 @@
 import { classNames } from "@/scripts/tailwind";
 import { TCompany } from "@/types/Company";
+import { useMatch } from "@tanstack/react-location";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import { useParams } from "react-router-dom";
 import DescriptionList from "../../../components/information/DescriptionList";
 import Loader from "../../../components/loaders/Loader";
 import useSettings from "../../../hooks/useSettings";
 import { fetchCompanies } from "../../../scripts/fetch";
 
 const Company = () => {
-    const { id } = useParams();
+    const { data: { id } } = useMatch();
     const [company, setCompany] = useState<null | TCompany>()
     const { data, isLoading: dataLoading, refetch } = useQuery("auth_companies", fetchCompanies)
 

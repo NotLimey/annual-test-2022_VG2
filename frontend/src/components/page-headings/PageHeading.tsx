@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from "@tanstack/react-location";
 
 interface IPageHeading {
     children: React.ReactNode;

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from "@tanstack/react-location";
 import Robot404 from "../../assets/svgs/404Error.svg";
 
 const NotFound = () => {

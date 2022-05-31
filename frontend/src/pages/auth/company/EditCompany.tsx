@@ -1,6 +1,6 @@
+import { useMatch } from "@tanstack/react-location";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import { useParams } from "react-router-dom";
 import Cms from "../../../components/cms/Cms";
 import Loader from "../../../components/loaders/Loader";
 import useSettings from "../../../hooks/useSettings";
@@ -8,7 +8,7 @@ import { fetchCompanies } from "../../../scripts/fetch";
 import { TCompany } from "../../../types/Company";
 
 const EditCompany = () => {
-    const { id } = useParams();
+    const { data: { id } } = useMatch();
     const [company, setCompany] = useState<null | TCompany>()
     const { data, isLoading: dataLoading, refetch } = useQuery("auth_companies", fetchCompanies)
 

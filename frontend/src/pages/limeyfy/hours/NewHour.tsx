@@ -1,12 +1,12 @@
+import { Link, useSearch } from "@tanstack/react-location";
 import { useQuery } from "react-query";
-import { Link, useSearchParams } from "react-router-dom";
 import Cms from "../../../components/cms/Cms";
 import { fetchProjects, fetchUsers } from "../../../scripts/fetch";
 import { TProject } from "../../../types/Limeyfy";
 
 const NewHour = () => {
     const { data: projects } = useQuery("limeyfy_projects", fetchProjects);
-    const [searchParams] = useSearchParams();
+    const searchParams = useSearch();
 
     if (!projects) return <></>;
 
@@ -35,7 +35,7 @@ const NewHour = () => {
                         select: {
                             data: projects.data ?? [],
                             defaultValue: (data: TProject[]) => {
-                                const id = searchParams.get("id");
+                                const id = searchParams["id"];
                                 if (id) {
                                     const proj = data.find(x => x.id === id);
                                     if (proj)

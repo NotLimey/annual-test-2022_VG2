@@ -3,14 +3,14 @@ import {
     BellIcon,
     CogIcon, KeyIcon, UserCircleIcon
 } from '@heroicons/react/outline'
+import { useNavigate, useSearch } from '@tanstack/react-location'
 import { useEffect, useState } from 'react'
-import { useNavigate, useSearchParams } from 'react-router-dom'
 import ProfileHome from './ProfileHome'
 import ProfileSettings from './ProfileSettings'
 import ProfileUpdatePassword from './ProfileUpdatePassword'
 
 const subNavigation = [
-    { name: 'Profile', to: "", icon: UserCircleIcon, component: <ProfileHome /> },
+    { name: 'Profile', to: "home", icon: UserCircleIcon, component: <ProfileHome /> },
     { name: 'Settings', to: "settings", icon: CogIcon, component: <ProfileSettings /> },
     { name: 'Password', to: "password", icon: KeyIcon, component: <ProfileUpdatePassword /> },
     { name: 'Notifications', to: "notifications", icon: BellIcon, component: <p>Nothing to se here</p> },
@@ -22,14 +22,15 @@ function classNames(...classes: any[]) {
 
 export default function Profile() {
     const [activePage, setActivePage] = useState(0);
-    const [searchParams, setSearchParams] = useSearchParams();
+    const search = useSearch();
     const navigate = useNavigate();
 
     useEffect(() => {
-        const page = searchParams.get("page");
+        const page = (search["page"] as string);
+        if (!page) return;
         const idx = subNavigation.findIndex(x => x.to === page?.toString());
         if (idx >= 0) setActivePage(idx);
-    }, [searchParams])
+    }, [search])
 
     return (
         <div className='dark:bg-stone-900 min-h-screen'>
@@ -64,7 +65,9 @@ export default function Profile() {
                         </div>
                         <header className="relative py-10">
                             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                                <button onClick={() => navigate("/")} className="text-xl font-bold text-white dark:text-stone-900 flex items-center">
+                                <button onClick={() => navigate({
+                                    to: "/"
+                                })} className="text-xl font-bold text-white dark:text-stone-900 flex items-center">
                                     <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
                                         <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M10.25 6.75L4.75 12L10.25 17.25" />
                                         <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M19.25 12H5" />
@@ -86,7 +89,11 @@ export default function Profile() {
                                 <nav className="space-y-1">
                                     {subNavigation.map((item, idx) => (
                                         <button
-                                            onClick={() => setSearchParams({ page: item.to })}
+                                            onClick={() => navigate({
+                                                search: () => ({
+                                                    page: item.to
+                                                })
+                                            })}
                                             key={item.name}
                                             className={classNames(
                                                 idx === activePage

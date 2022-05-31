@@ -1,5 +1,5 @@
 import * as HeroIcon from "@heroicons/react/outline";
-import { Link } from "react-router-dom";
+import { Link } from "@tanstack/react-location";
 import { classNames } from "../../scripts/tailwind";
 
 interface IStackedList<Type> {

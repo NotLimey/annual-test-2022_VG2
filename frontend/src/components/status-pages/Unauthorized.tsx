@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from "@tanstack/react-location";
 import UnauthorizedSvg from "../../assets/svgs/lock-dynamic-color.svg";
 
 const Unauthorized = () => {

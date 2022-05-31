@@ -1,5 +1,4 @@
 import { SpeakerphoneIcon, XIcon } from "@heroicons/react/outline";
-import { Link } from "react-router-dom";
 
 interface IBannerFloatingAtBottom {
     icon?: React.ReactNode;

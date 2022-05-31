@@ -3,7 +3,6 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
-import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import FullscreenLoader from "./components/loaders/FullscreenLoader";
 import "./index.css";
@@ -31,13 +30,11 @@ container = document.getElementById('root') as HTMLElement;
 const root = createRoot(container)
 root.render(
   <React.Suspense fallback={<FullscreenLoader text="Loading website..." />}>
-    <BrowserRouter>
-      <QueryClientProvider client={queryClient}>
-        <ReactQueryDevtools />
-        <div className="dark:bg-stone-900 w-full min-h-screen dark:text-white">
-          <App />
-        </div>
-      </QueryClientProvider>
-    </BrowserRouter>
+    <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools />
+      <div className="dark:bg-stone-900 w-full min-h-screen dark:text-white">
+        <App />
+      </div>
+    </QueryClientProvider>
   </React.Suspense>
 );

@@ -2,9 +2,9 @@ import { smile } from "@/emojies";
 import useToast from "@/hooks/useToast";
 import copyTextToClipboard from "@/scripts/copyToClipboard";
 import { formatPascalAndSpace } from "@/scripts/text";
-import { DuplicateIcon, PaperClipIcon } from "@heroicons/react/outline";
+import { DuplicateIcon } from "@heroicons/react/outline";
+import { Link } from "@tanstack/react-location";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 
 interface DescriptionListProps {
     object: any;

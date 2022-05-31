@@ -1,7 +1,7 @@
+import { useNavigate } from "@tanstack/react-location";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
-import { useNavigate } from "react-router-dom";
 import useToast from "../../hooks/useToast";
 import formatFormDataCms from "../../scripts/cms/formatFormDataCms";
 import getDefaultValuesCms from "../../scripts/cms/getDefaultValuesCms";
@@ -53,7 +53,7 @@ const Cms = (props: ICms) => {
 
             if (!props.submit?.noNavigate) {
                 setTimeout(() => {
-                    navigate(-1);
+                    navigate({ to: -1 });
                 }, 500);
             }
         },

@@ -1,15 +1,14 @@
 import { Dialog, Menu, Transition } from '@headlessui/react'
 import {
-    BellIcon, ClockIcon, CurrencyDollarIcon, DocumentTextIcon,
+    BellIcon, CurrencyDollarIcon, DocumentTextIcon,
     FingerPrintIcon,
     FolderIcon,
     HomeIcon, MenuAlt2Icon,
-    OfficeBuildingIcon, TruckIcon,
-    UsersIcon,
+    OfficeBuildingIcon, UsersIcon,
     XIcon
 } from '@heroicons/react/outline'
+import { Link, useLocation } from '@tanstack/react-location'
 import React, { Fragment, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
 import Logo from "../../assets/Logo.svg"
 import LogoDark from "../../assets/LogoWhiteTextFull.svg"
 import useAuth from '../../hooks/useAuth'
@@ -103,7 +102,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                                                     key={item.name}
                                                     to={item.href}
                                                     className={classNames(
-                                                        item.href === location.pathname
+                                                        item.href === location.current.pathname
                                                             ? 'bg-gray-100 text-gray-900 dark:bg-stone-800 dark:text-gray-200'
                                                             : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-400 hover:dark:bg-stone-800 hover:dark:bg-opacity-70',
                                                         'group flex items-center px-2 py-2 text-base font-medium rounded-md'
@@ -111,7 +110,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                                                 >
                                                     <item.icon
                                                         className={classNames(
-                                                            item.href === location.pathname ? 'text-gray-500 dark:text-gray-400' : 'text-gray-400 dark:text-gray-500 group-hover:text-gray-500 dark:group-hover:text-gray-400',
+                                                            item.href === location.current.pathname ? 'text-gray-500 dark:text-gray-400' : 'text-gray-400 dark:text-gray-500 group-hover:text-gray-500 dark:group-hover:text-gray-400',
                                                             'mr-4 flex-shrink-0 h-6 w-6'
                                                         )}
                                                         aria-hidden="true"
@@ -148,13 +147,13 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                                         key={item.name}
                                         to={item.href}
                                         className={classNames(
-                                            item.href === location.pathname ? 'bg-gray-100 text-gray-900 dark:bg-stone-800 dark:text-gray-200' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-400 hover:dark:bg-stone-800 hover:dark:bg-opacity-70',
+                                            item.href === location.current.pathname ? 'bg-gray-100 text-gray-900 dark:bg-stone-800 dark:text-gray-200' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-400 hover:dark:bg-stone-800 hover:dark:bg-opacity-70',
                                             'group flex items-center px-2 py-2 text-sm font-medium rounded-md'
                                         )}
                                     >
                                         <item.icon
                                             className={classNames(
-                                                item.href === location.pathname ? 'text-gray-500 dark:text-gray-400' : 'text-gray-400 dark:text-gray-500 group-hover:text-gray-500 dark:group-hover:text-gray-400',
+                                                item.href === location.current.pathname ? 'text-gray-500 dark:text-gray-400' : 'text-gray-400 dark:text-gray-500 group-hover:text-gray-500 dark:group-hover:text-gray-400',
                                                 'mr-3 flex-shrink-0 h-6 w-6'
                                             )}
                                             aria-hidden="true"
@@ -178,7 +177,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                         </button>
                         <div className="flex-1 px-4 flex justify-between">
                             <div className="flex-1 flex">
-                                {location.pathname.length > 1 && <BackBtn />}
+                                {location.current.pathname.length > 1 && <BackBtn />}
                             </div>
                             <div className="ml-4 flex items-center md:ml-6">
                                 <button

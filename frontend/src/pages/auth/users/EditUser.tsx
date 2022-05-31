@@ -1,13 +1,13 @@
+import { useMatch } from "@tanstack/react-location";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import { useParams } from "react-router-dom";
 import Cms from "../../../components/cms/Cms";
 import Loader from "../../../components/loaders/Loader";
 import { fetchCompanies, fetchUsers } from "../../../scripts/fetch";
 import { UserType } from "../../../types/User";
 
 const EditUser = () => {
-    const { id } = useParams();
+    const { data: { id } } = useMatch();
     const [user, setUser] = useState<null | UserType>()
     const { data, isLoading: dataLoading, refetch } = useQuery("auth_users", fetchUsers)
     const { data: companies } = useQuery("auth_companies", fetchCompanies);

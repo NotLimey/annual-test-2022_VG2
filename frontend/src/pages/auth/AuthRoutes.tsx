@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Route, Routes } from "react-router-dom"
 import Unauthorized from "../../components/status-pages/Unauthorized";
 import useAuth from "../../hooks/useAuth";
 import Companies from "./company/Companies";
@@ -25,20 +24,22 @@ const AuthRoutes = () => {
         return <Unauthorized />
     }
 
-    return (
-        <Routes>
-            <Route path="companies" element={<Companies />} />
-            <Route path="companies/:id" element={<Company />} />
-            <Route path="companies/:id/edit" element={<EditCompany />} />
-            <Route path="companies/add" element={<NewCompany />} />
-            {/* Roles */}
-            <Route path="roles" element={<Roles />} />
-            {/* Users */}
-            <Route path="users" element={<Users />} />
-            <Route path="users/register" element={<Register />} />
-            <Route path="users/:id" element={<EditUser />} />
-        </Routes>
-    );
+    return <></>
+
+    // return (
+    //     <Routes>
+    //         <Route path="companies" element={<Companies />} />
+    //         <Route path="companies/:id" element={<Company />} />
+    //         <Route path="companies/:id/edit" element={<EditCompany />} />
+    //         <Route path="companies/add" element={<NewCompany />} />
+    //         {/* Roles */}
+    //         <Route path="roles" element={<Roles />} />
+    //         {/* Users */}
+    //         <Route path="users" element={<Users />} />
+    //         <Route path="users/register" element={<Register />} />
+    //         <Route path="users/:id" element={<EditUser />} />
+    //     </Routes>
+    // );
 }
 
 export default AuthRoutes;

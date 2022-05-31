@@ -2,12 +2,12 @@ import Cms from "@/components/cms/Cms";
 import Loader from "@/components/loaders/Loader";
 import { fetchProjects } from "@/scripts/fetch";
 import { TProject } from "@/types/Limeyfy";
+import { useMatch } from "@tanstack/react-location";
 import { useState, useEffect } from "react";
 import { useQuery } from "react-query";
-import { useParams } from "react-router-dom";
 
 const EditProject = () => {
-    const { id } = useParams();
+    const { params: { id } } = useMatch();
     const [project, setProject] = useState<null | TProject>()
     const { data, isLoading: dataLoading, refetch } = useQuery("limeyfy_projects", fetchProjects)
 
@@ -15,6 +15,7 @@ const EditProject = () => {
     const [error, setError] = useState(false)
 
     useEffect(() => {
+        console.log(id)
         if (dataLoading || !id || !data) return;
         const obj: TProject = data.data.find((x: TProject) => x.id === id);
         if (obj) {
