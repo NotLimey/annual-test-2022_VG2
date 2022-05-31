@@ -1,12 +1,11 @@
 import FullscreenLoader from "@/components/loaders/FullscreenLoader";
-import React, { createContext } from "react";
+import React from "react";
 import ErrorPage from "../components/status-pages/ErrorPage";
 import useAuth from "../hooks/useAuth";
 import Login from "../pages/auth/Login";
 import signOut from "../scripts/signOut";
 
 const PrivateProvider = ({ children }: { children: React.ReactNode }) => {
-
     const { rolesUpToDate, isError, errorCode, isAuthenticated, isLoadingUser } = useAuth();
 
     if (isLoadingUser) return <FullscreenLoader text='Connecting to database..' />

@@ -33,15 +33,14 @@ const Cms = (props: ICms) => {
     }, [props.fields]);
 
     const postData = async (data: any) => {
-        if (!props.submit)
-            throw Error("Props.submit is undefined");
+        if (!props.submit) throw Error("Props.submit is undefined");
 
         return await axios(props.submit?.endpoint, {
             method: props.submit.options?.method ?? "POST",
             data: data,
-            headers: { ...props.submit.headers }
-        })
-    }
+            headers: { ...props.submit.headers },
+        });
+    };
 
     const { mutate } = useMutation(postData, {
         onSuccess: (data) => {
@@ -49,16 +48,14 @@ const Cms = (props: ICms) => {
                 props.submit.onSuccess(data);
                 return;
             }
-            emojiToast(props.submit?.options?.onSuccessText ?? "Success", "✅")
-            if (props.submit?.onSuccessAfterToast)
-                props.submit.onSuccessAfterToast();
+            emojiToast(props.submit?.options?.onSuccessText ?? "Success", "✅");
+            if (props.submit?.onSuccessAfterToast) props.submit.onSuccessAfterToast();
 
             if (!props.submit?.noNavigate) {
                 setTimeout(() => {
-                    navigate(-1)
-                }, 500)
+                    navigate(-1);
+                }, 500);
             }
-
         },
         onError: (err: any) => {
             if (props.submit?.onError) {
@@ -66,10 +63,10 @@ const Cms = (props: ICms) => {
                 return;
             }
             if (err.request.status === 0) {
-                errorToast(`Can't connect to api. Check your internet connection`)
+                errorToast(`Can't connect to api. Check your internet connection`);
                 return;
             }
-            errorToast(`${err.request.status}: There was an error`)
+            errorToast(`${err.request.status}: There was an error`);
         },
         onSettled: () => {
             queryClient.invalidateQueries("create");
@@ -79,9 +76,9 @@ const Cms = (props: ICms) => {
     const submit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const formattedData = formatFormDataCms(form);
-        const data = { ...props.extraValues, ...formattedData }
+        const data = { ...props.extraValues, ...formattedData };
         if (!props.submit && !props.onSubmit) {
-            console.error("No action set for CMS on submit")
+            console.error("No action set for CMS on submit");
             return;
         }
         if (props.onSubmit) {
@@ -89,7 +86,6 @@ const Cms = (props: ICms) => {
             return;
         }
         mutate(data);
-
     };
 
     const getObjectIndexAndArray = (name: string) => {
@@ -169,7 +165,7 @@ const Cms = (props: ICms) => {
         const { newArr, objectIdx } = getObjectIndexAndArray(name);
         newArr[objectIdx].value = val;
         setForm(newArr);
-    }
+    };
     //#endregion
 
     return (
@@ -237,7 +233,9 @@ const Cms = (props: ICms) => {
                             }
                             case "select": {
                                 if (!prop.select)
-                                    throw Error("If you use the type 'select' you have to provide a values to 'select'")
+                                    throw Error(
+                                        "If you use the type 'select' you have to provide a values to 'select'"
+                                    );
 
                                 return (
                                     <CmsSelect
@@ -246,7 +244,7 @@ const Cms = (props: ICms) => {
                                         prop={prop}
                                         onChange={(val) => handleSelectChange(prop.name, val)}
                                     />
-                                )
+                                );
                             }
                             default: {
                                 return (
