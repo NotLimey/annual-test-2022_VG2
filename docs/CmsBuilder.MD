@@ -108,5 +108,3 @@ export type ICmsTypes = "string" | "text" | "boolean" | "number" | "array" | "ob
 
 ### ICmsField
 ICmsField is a field in the cms. This is a component which renders in the form
-
-#### `submit`?
