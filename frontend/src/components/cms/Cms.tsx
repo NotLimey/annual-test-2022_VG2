@@ -1,7 +1,7 @@
-import {useLocation} from "@tanstack/react-location";
+import { useLocation } from "@tanstack/react-location";
 import axios from "axios";
-import React, {useEffect, useState} from "react";
-import {useMutation, useQueryClient} from "react-query";
+import React, { useEffect, useState } from "react";
+import { useMutation, useQueryClient } from "react-query";
 import useToast from "../../hooks/useToast";
 import formatFormDataCms from "../../scripts/cms/formatFormDataCms";
 import getDefaultValuesCms from "../../scripts/cms/getDefaultValuesCms";
@@ -12,7 +12,7 @@ import CmsObject from "./CmsObject";
 import CmsSelect from "./CmsSelect";
 import CmsStringField from "./CmsStringField";
 import CmsTextField from "./CmsTextField";
-import {ICms, ICmsField, ICmsObjectField} from "./CmsTypes";
+import { ICms, ICmsField, ICmsObjectField } from "./CmsTypes";
 
 const Cms = (props: ICms) => {
     const { title } = props;
@@ -150,6 +150,15 @@ const Cms = (props: ICms) => {
         setForm(newArr);
     };
 
+    const handleRemoveFromArray = (name: string, idx: number) => {
+        let { newArr, objectIdx } = getObjectIndexAndArray(name);
+        if (!newArr[objectIdx].value) newArr[objectIdx].value = [];
+        if (idx < 0) return;
+
+        (newArr[objectIdx].value as any[]).splice(idx, 1);
+        setForm(newArr);
+    };
+
     const handleEditObjectInArray = (name: string, val: any, idx: number) => {
         let { newArr, objectIdx } = getObjectIndexAndArray(name);
         if (!newArr[objectIdx].value) newArr[objectIdx].value = [];
@@ -195,6 +204,7 @@ const Cms = (props: ICms) => {
                                         key={idx}
                                         prop={prop}
                                         onAddToArray={(obj) => handleAddToArray(prop.name, obj)}
+                                        onRemoveItem={(index) => handleRemoveFromArray(prop.name, index)}
                                         onEditItem={(obj, idx) =>
                                             handleEditObjectInArray(prop.name, obj, idx)
                                         }

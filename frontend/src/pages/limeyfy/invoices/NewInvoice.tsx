@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useQuery } from "react-query";
 import Cms from "../../../components/cms/Cms"
 import Loader from "../../../components/loaders/Loader";
@@ -9,6 +10,7 @@ const NewInvoice = () => {
     const { user } = useAuth();
     const { data } = useQuery("companies", fetchCompanies);
     const { refetch } = useQuery("limeyfy_invoices", fetchInvoices);
+    const [activeCompanyId, setActiveCompanyId] = useState<string>("")
 
     if (!data) return <Loader />
 
@@ -48,7 +50,7 @@ const NewInvoice = () => {
                     type: "select",
                     select: {
                         data: data?.data ?? [],
-                        defaultValue: (data) => data.find((x: any) => x.name.toLowerCase() === "uno marine") ?? data[0],
+                        defaultValue: (data) => data.filter((x: any) => x.name.toLowerCase() !== "limeyfy")[0] ?? data[0],
                         selectIdentifier: "name",
                         onSet: (data: TCompany) => data.id
                     }
@@ -61,13 +63,17 @@ const NewInvoice = () => {
                         data: data?.data ?? [],
                         defaultValue: (data) => data.find((x: any) => x.name.toLowerCase() === "limeyfy") ?? data[0],
                         selectIdentifier: "name",
-                        onSet: (data: TCompany) => data.orgNr
+                        onSet: (data: TCompany) => {
+                            setActiveCompanyId(data.id);
+                            return data.orgNr;
+                        }
                     }
                 },
                 {
                     name: "bankAccount",
                     title: "Receiving bank account",
                     type: "number",
+                    value: activeCompanyId.length > 0 ? (data?.data?.find((x: TCompany) => x.id === activeCompanyId) as TCompany).bankNr ?? 0 : 0
                 },
                 {
                     name: "dueDate",
@@ -96,7 +102,8 @@ const NewInvoice = () => {
                         {
                             name: "rate",
                             title: "Hour rate",
-                            type: "number"
+                            type: "number",
+                            value: 250
                         },
                     ]
                 },

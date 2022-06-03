@@ -43,7 +43,7 @@ const EditUser = () => {
                 edit
                 title={`Edit ${user.userName}`}
                 submit={{
-                    endpoint: "/user",
+                    endpoint: "/users",
                     onSuccessAfterToast: () => refetch(),
                     headers: {
                         "Id": user.id

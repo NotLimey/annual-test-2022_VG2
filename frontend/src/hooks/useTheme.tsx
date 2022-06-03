@@ -1,19 +1,22 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 export type themes = "light" | "dark" | "system";
+
+function getThemeProviderMemo() {
+    const themeProvider = document.getElementById("themeProvider");
+    if (themeProvider) return themeProvider;
+    return document.querySelector("body");
+}
+
 
 const useTheme = () => {
     const [theme, setTheme] = useState<themes>("light")
     const [themeProviderElement, setThemeProviderElement] = useState<HTMLElement | null>()
 
-    const getThemePrvovider = () => {
-        const themeProvider = document.getElementById("themeProvider");
-        if (themeProvider) return themeProvider;
-        return document.querySelector("body");
-    }
+    const getThemeProvider = useMemo(() => getThemeProviderMemo(), []);
 
     useEffect(() => {
-        const darkMode = getThemePrvovider();
+        const darkMode = getThemeProvider;
         if (!darkMode)
             return;
 
@@ -37,7 +40,7 @@ const useTheme = () => {
     }
 
     const toggleTheme = (theme: "dark" | "light" | "system") => {
-        const themeProvider = getThemePrvovider();
+        const themeProvider = getThemeProvider;
         if (!themeProvider) return console.error("Cannot find body tag");
         switch (theme) {
             case "dark": {
@@ -74,7 +77,7 @@ const useTheme = () => {
     const detectThemeChange = () => {
         const darkMatchMd = window.matchMedia("(prefers-color-scheme: dark)");
         darkMatchMd.addEventListener("change", (e) => {
-            const themeProvider = getThemePrvovider();
+            const themeProvider = getThemeProvider;
             if (!themeProvider) return;
             setTheme("system");
             if (e.matches) {
@@ -92,7 +95,7 @@ const useTheme = () => {
     const init = () => {
         detectThemeChange();
         const storage = window.localStorage.getItem("theme");
-        const themeProvider = getThemePrvovider();
+        const themeProvider = getThemeProvider;
         if (!themeProvider) return;
 
         if (!storage) {

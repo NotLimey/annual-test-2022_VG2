@@ -242,7 +242,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                         </div>
                     </div>
 
-                    <main className="flex-1 dark:bg-stone-900 dark:text-white min-h-full">
+                    <main className="flex-1 bg-gray-100 dark:bg-stone-900 dark:text-white min-h-full">
                         <div className="py-6 min-h-full">
                             <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
                                 {children}

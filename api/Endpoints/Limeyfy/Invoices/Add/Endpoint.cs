@@ -50,7 +50,7 @@ public class Endpoint : Endpoint<Request, Response>
 
         var user = await _userManager.FindByNameAsync(User.Identity.Name);
 
-        var invoiceId = invoices.Max(x => x.InvoiceNumber) + 1;
+        var invoiceId = invoices.Count > 0 ? invoices.Max(x => x.InvoiceNumber) + 1 : 10001;
         
         var invoice = new Invoice
         {

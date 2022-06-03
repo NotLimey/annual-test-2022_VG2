@@ -1,4 +1,4 @@
-import { PlusSmIcon } from "@heroicons/react/outline";
+import { PlusSmIcon, XIcon } from "@heroicons/react/outline";
 import { useState } from "react";
 import { classNames } from "../../scripts/tailwind";
 import { formatPascalAndSpace } from "../../scripts/text";
@@ -9,9 +9,10 @@ interface ICmsArray {
     prop: ICmsField;
     onAddToArray: (obj: any) => void;
     onEditItem: (obj: any, idx: number) => void;
+    onRemoveItem: (idx: number) => void;
 }
 
-const CmsArray = ({ prop, onAddToArray, onEditItem }: ICmsArray) => {
+const CmsArray = ({ prop, onAddToArray, onEditItem, onRemoveItem }: ICmsArray) => {
     const [isPanelActive, togglePanel] = useState(false);
     const [edit, setEdit] = useState<ICmsObjectField[]>([]);
     const [editIdx, setEditIdx] = useState(0);
@@ -75,20 +76,25 @@ const CmsArray = ({ prop, onAddToArray, onEditItem }: ICmsArray) => {
                 {prop.value.length > 0 && (
                     <div className="w-full dark:bg-stone-800 border border-gray-300 dark:border-stone-700 rounded-sm mb-3">
                         {prop.value.map((val: any, idx: number) => (
-                            <div
-                                key={idx}
-                                onClick={() => handleEdit(prop, idx)}
-                                className={classNames(
-                                    "hover:bg-gray-100 dark:hover:bg-stone-700 py-2 px-5 cursor-pointer",
-                                    idx !== 0
-                                        ? ""
-                                        : "border-b border-b-gray-300 dark:border-b-stone-700"
-                                )}
-                            >
-                                <>
-                                    {formatPascalAndSpace(Object.keys(val)[0])}:{" "}
-                                    {Object.values(val)[0]}
-                                </>
+                            <div className="flex justify-between items-center">
+                                <div
+                                    key={idx}
+                                    onClick={() => handleEdit(prop, idx)}
+                                    className={classNames(
+                                        "hover:bg-gray-100 dark:hover:bg-stone-700 cursor-pointer py-2 px-5",
+                                        idx !== 0
+                                            ? ""
+                                            : "border-b border-b-gray-300 dark:border-b-stone-700"
+                                    )}
+                                >
+                                    <>
+                                        {formatPascalAndSpace(Object.keys(val)[0])}:{" "}
+                                        {Object.values(val)[0]}
+                                    </>
+                                </div>
+                                <div onClick={() => onRemoveItem(idx)} className="pr-5 cursor-pointer">
+                                    <XIcon className="h-6 w-6" />
+                                </div>
                             </div>
                         ))}
                     </div>
