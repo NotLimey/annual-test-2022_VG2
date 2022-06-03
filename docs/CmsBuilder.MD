@@ -31,27 +31,27 @@ Here you can find multiple examples on how to use the `<Cms />` component
 ### Basic usage
 ```tsx
 <Cms
-                title="Create new project"
-                submit={{
-                    endpoint: "/limeyfy/project"
-                }}
-                props={[
-                    {
-                        name: "title",
-                        type: "string",
-                        options: {
-                            placeholder: "Project title"
-                        }
-                    },
-                    {
-                        name: "description",
-                        type: "text",
-                        options: {
-                            placeholder: "..."
-                        }
-                    },
-                ]}
-            />
+  title="Create new project"
+  submit={{
+      endpoint: "/limeyfy/project"
+  }}
+  props={[
+      {
+          name: "title",
+          type: "string",
+          options: {
+              placeholder: "Project title"
+          }
+      },
+      {
+          name: "description",
+          type: "text",
+          options: {
+              placeholder: "..."
+          }
+      },
+  ]}
+/>
 ```
 
 ## Types 
@@ -108,5 +108,3 @@ export type ICmsTypes = "string" | "text" | "boolean" | "number" | "array" | "ob
 
 ### ICmsField
 ICmsField is a field in the cms. This is a component which renders in the form
-
-#### `submit`?
